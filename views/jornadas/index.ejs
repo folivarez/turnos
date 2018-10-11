@@ -1,0 +1,180 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+<title>Jornadas</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"  type="text/css">
+
+<link rel="stylesheet" href="../css/jornada.css">
+
+</head>
+<body class="container">
+
+<header>
+   <!--<nav class="navbar navbar-default" role="navigation">-->
+<div class="container-fluid">
+
+   
+
+</div>
+</nav>
+</header>
+
+<section>
+    <h1>Turnos para la jornada:</h1>
+    <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="table-responsive text-nowrap">
+
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Localidad</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Direccion Parcial</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Turnos 1/2 hs</th>
+                            <th scope="col">Proximo Turno</th>
+                            <th scope="col">Turnos por hora</th>
+                            <th scope="col">Activa</th>
+                            
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                        <% jobs.forEach(function(data) { %>
+                                
+                                <% if (data.activa) { -%>
+                                    <tr class="activa">
+                                        <td><a href="/castraciones/jornadas/<%= data._id  %>"><%= data.localidad %></a></td>
+                                        <td> <%= moment(data.fecha).format('D/M/YYYY HH:mm'); %> </td> 
+                                        <td><%= data.direccion %></td> 
+                                        <td><%= data.direparcial %></td> 
+                                        <td><%= data.precio %></td> 
+                                        <td><%= data.cant_grupo %></td>
+                                        <td><%= moment(data.hora_prox_turno).format('HH:mm'); %></td>  
+                                        <td><%= data.cont %></td>
+                                        <td><%= data.activa %></td>
+                                    </tr>
+                                    
+                                <% } else { -%>
+                                    <tr class="suspendida">
+                                        <td><a href="/castraciones/jornadas/<%= data._id  %>"><%= data.localidad %></a></td>
+                                        <td> <%= moment(data.fecha).format('D/M/YYYY HH:mm'); %> </td> 
+                                        <td><%= data.direccion %></td> 
+                                        <td><%= data.direparcial %></td> 
+                                        <td><%= data.precio %></td> 
+                                        <td><%= data.cant_grupo %></td>
+                                        <td><%= moment(data.hora_prox_turno).format('HH:mm'); %></td>  
+                                        <td><%= data.cont %></td>
+                                        <td><%= data.activa %></td>
+                                    </tr> 
+                                <% } -%>
+                        <% }); %>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-md-5  contact">
+                 <form name="form1" >
+
+                    <div class="form-group">
+                        <label>Localidad <input type="text" name="localidad" id="localidad" ></label>
+                        
+                        <label>Fecha <input type="datetime-local" value="2018-06-01T08:00" name="fecha" id="fecha"></label>
+                        
+                        <label>Direccion<input type="text" name="direccion" id="direccion" ></label>
+
+                        <label>Direccion Parcial<input type="text" name="direparcial" id="direparcial" ></label>
+
+                        <label>Precio<input type="number" name="precio" id="precio" ></label>
+
+                        <label>Turnos 1/2 hora<input type="number" name="cant_grupo" id="cant_grupo" ></label>
+                        
+                        <label>Estado
+                            <select name="activa" id="activa">
+                              <option value="1">Activa</option>
+                              <option value="0">Suspendida</option>
+                            </select>
+                        </label>
+                            
+                        <input type="submit" value="Guardar" id="guardar" >
+
+                    </div>
+                        
+                        
+
+                    </form>               
+
+                </div>
+            </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+<footer>
+   <p class="text-center text-muted">© Copyright 2018 Love Animals</p>
+</footer>
+
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+	
+	$(document).ready(function(){  
+
+		$("#guardar").click(function(e){
+			e.preventDefault();
+			console.log('**entre');
+
+			var localidad = $("#localidad").val();
+			var fecha = $("#fecha").val();
+			var direccion = $("#direccion").val();
+			var direparcial = $("#direparcial").val();
+            var precio = $("#precio").val();
+            var cant_grupo = $("#cant_grupo").val();
+            var hora_prox_turno = $("#fecha").val();
+            var cont = 0;
+			var activa = $("#activa").val();
+			
+			$.post("/castraciones/jornadas",{ localidad:localidad, fecha:fecha, direccion:direccion, direparcial:direparcial, precio:precio, cant_grupo: cant_grupo, hora_prox_turno: hora_prox_turno, cont:cont, activa:activa},
+					   function(status) {
+					   
+					   location.reload();
+			});	        			
+		});
+
+
+});
+
+
+</script>
+
+
+
+</body>
+</html>

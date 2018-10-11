@@ -1,0 +1,49 @@
+<div>
+	<form name="form1" method="POST" action="/student/add">
+    <table>
+        <tr>
+        <td>First name</td>
+        <td><input type="text" name="fname" ></td>
+        </tr>
+        <tr>
+        <td>last name</td>
+        <td><input type="text" name="lname" ></td>
+        </tr>
+        <tr>
+        <td colspan="2"><input type="submit" value="Save" ></td>
+        </tr>
+    </table>
+    </form>   
+    <% if(userValue!=null){ %>    
+        <div> Data Entered as <%= userValue.first %>  <%= userValue.last %> </div>
+    <%}%> 
+</div>
+
+
+
+<script>
+	
+	$(document).ready(function(){  
+
+		$("#guardar").click(function(e){
+			e.preventDefault();
+
+			var localidad = $("#localidad").val();
+			var fecha = $("#fecha").val();
+			var activa = $("#activa").val();
+			
+			$.post("/castraciones/jornadas",{ localidad:localidad, fecha:fecha, activa:activa},
+					   function(status) {
+             
+					if(status=="success"){
+						console.log('**********biennn');
+					}
+			});	        			
+		});
+});
+
+
+</script>
+
+
+<a href="/castraciones/jornadas/<%= data._id  %>"></a>

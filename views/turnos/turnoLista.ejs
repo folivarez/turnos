@@ -1,0 +1,161 @@
+ 
+
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+<title>Turnos</title>
+
+
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"  type="text/css">
+</head>
+<body class="container">
+
+<header>
+   <!--<nav class="navbar navbar-default" role="navigation">-->
+
+
+   
+
+
+
+</header>
+
+
+
+<section>
+	<h1>Turnos para la jornada:</h1>
+	<div class="container">
+		    <div class="row">
+		    	<div class="col-md-12">
+
+		    		<div class="table-responsive text-nowrap">
+
+					  <table class="table">
+					    <thead>
+					      <tr>
+					        <th scope="col">Nombre</th>
+					        <th scope="col">Telefono</th>
+					        <th scope="col">Mail</th>
+					        <th scope="col">DNI</th>
+					        
+					        <th scope="col">Animal</th>
+					        <th scope="col">Peso</th>
+					        <th scope="col">Cantidad</th>
+					        <th scope="col">Preniado</th>
+					        <th scope="col">Hora del turno</th>
+					        
+					      </tr>
+					    </thead>
+					    <tbody>
+					      
+					       <% jobs.forEach(function(data) { %>
+		  
+							  <tr>
+
+							    <td><%= data.nombre %></td>
+							    <td><%= data.telefono %></td>
+							    <td><%= data.mail %></td>
+							    <td><%= data.dni %></td>
+							  
+							    <td><%= data.animal.tipo %></td>
+							    <td><%= data.animal.peso %></td>
+							    <td><%= data.animal.cantidad %></td>
+							    <td><%= data.animal.preniado %></td>
+							    <td><%= data.confirmado %></td>
+							    <td><%= data.asistio %></td>
+							    <td><%= moment(data.hora).format('HH:mm'); %></td>
+							    
+							  </tr>
+							<% }); %>
+
+					    </tbody>
+					  </table>
+
+					</div>
+		    	</div>
+		    </div>
+	</div>
+
+</section>
+
+
+
+
+
+<footer>
+   <p class="text-center text-muted"></p>
+</footer>
+
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+	
+	$(document).ready(function(){  
+
+		$("#guardar").click(function(e){
+			e.preventDefault();
+			console.log('**entre');
+
+			var nombre = $("#nombre").val();
+			var telefono = $("#telefono").val();
+			var mail = $("#mail").val();
+			var dni = $("#dni").val();
+			var localidad = $("#localidad").val();
+			var fecha = $("#fecha").val();
+			var precio = $("#precio").val();
+			var tipo = $("#tipo").val();
+			var peso = $("#peso").val();
+			var cantidad = $("#cantidad").val();
+			var preniado = $("#preniado").val();
+			var confirmado = $("#confirmado").val();
+			var asistio = $("#asistio").val();
+
+
+			
+			$.post("/castraciones/turno",{ nombre:nombre, telefono:telefono,mail:mail, dni:dni, localidad:localidad, fecha:fecha, precio:precio, tipo:tipo,  peso:peso, cantidad:cantidad, preniado:preniado, confirmado:confirmado, asistio:asistio},
+					   function(status) {
+					   
+					   location.reload();
+			});	        			
+		});
+
+
+});
+
+
+</script>
+
+
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+<title>Jornadas</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+</head>
+<body class="container">
+
+
+ 
+
+  
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+<title>Jornadas</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"  type="text/css">
+<link rel="stylesheet" href="/css/jornada.css">
+
+</head>
+<body class="container">
+
+<header>
+   <!--<nav class="navbar navbar-default" role="navigation">-->
+<div class="container-fluid">
+
+   
+
+</div>
+</nav>
+</header>
+
+<main>
+    <div >
+        <h3> Jornada <%= jornada.localidad %>  <%= moment(jornada.fecha).format('D/M/YYYY HH:mm'); %></h3>
+        <h4> Hay <%= totalTurnos %> turnos</h4>
+
+        <section>
+    
+    <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="table-responsive text-nowrap">
+
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">DNI</th>
+                            
+                            <th scope="col">Animal</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Preniado</th>
+                            <th scope="col">Confirmado</th>
+                            <th scope="col">Hora del turno</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                           <% turnosLista.forEach(function(turnos) { %>
+
+                           <% if (turnos.confirmado == 1) { %>
+
+
+                              <tr class="activa">
+
+                                <td><%= turnos.nombre %></td>
+                                <td><%= turnos.telefono %></td>
+                                <td><%= turnos.mail %></td>
+                                <td><%= turnos.dni %></td>
+                              
+                                <td><%= turnos.animal.tipo %></td>
+                                <td><%= turnos.animal.peso %></td>
+                                <td><%= turnos.animal.cantidad %></td>
+                                <td><%= turnos.animal.preniado %></td>
+                                <td><%= turnos.confirmado %></td>
+                                <td><%= moment(turnos.hora).format('HH:mm'); %></td>
+                                
+                              </tr>
+                               
+                           <% } else { %>
+
+
+                              <tr class="suspendida">
+
+                                <td><%= turnos.nombre %></td>
+                                <td><%= turnos.telefono %></td>
+                                <td><%= turnos.mail %></td>
+                                <td><%= turnos.dni %></td>
+                              
+                                <td><%= turnos.animal.tipo %></td>
+                                <td><%= turnos.animal.peso %></td>
+                                <td><%= turnos.animal.cantidad %></td>
+                                <td><%= turnos.animal.preniado %></td>
+                                <td><%= turnos.confirmado %></td>
+                                <td><%= moment(turnos.hora).format('HH:mm'); %></td>
+                                
+                              </tr>
+                               
+                           <% } %>
+                           
+          
+
+                            <% }); %>
+
+
+
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</section>
+
+        
+        <div>
+	<form name="form1" >
+    <table>
+        <tr>
+        <td>Localidad</td>
+        <td><input type="text" data="<%= jornada._id  %>" name="localidad" id="localidad" value="<%= jornada.localidad %>" disabled ></td>
+        </tr>
+        <tr>
+        <td>Fecha</td>
+        <td><input type="datetime-local" value="<%= moment(jornada.fecha).format('YYYY-MM-DDTHH:mm'); %>" name="fecha" id="fecha" disabled></td>
+        </tr>
+        <tr>
+        <td>Estado</td>
+        <td>
+        	<select name="activa" id="activa" disabled>
+			  <option value="1">Activa</option>                  2018-06-01T08:00
+			  <option value="0">Suspendida</option>
+			</select>
+        	
+
+        </td>
+        </tr>
+        <tr>
+        <td colspan="2"><input type="submit" value="Eliminar" id="eliminar" ></td>
+        </tr>
+    </table>
+    </form>   
+    
+</div>
+
+        <p>Panel de Jornadas</p>
+    </div>
+
+</main>
+
+
+
+
+<footer>
+   <p class="text-center text-muted">© Copyright 2014 The Awesome People</p>
+</footer>
+
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+	
+$(document).ready(function(){  
+
+	$("#eliminar").click(function(e){
+		e.preventDefault();
+		console.log('**entre');
+
+		var id = $("#localidad").attr('data');
+			
+		$.ajax({
+    		url: '/castraciones/jornadas/' + id + '/delete',
+    		type: 'DELETE',
+    		success: function(result) {
+        	$(location).attr('href','/castraciones/jornadas');
+    		}
+		});
+    
+	});
+
+
+});
+
+
+</script>
+
+
+
+</body>
+</html>

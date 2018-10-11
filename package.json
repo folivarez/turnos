@@ -1,0 +1,27 @@
+{
+  "name": "turnos",
+  "version": "1.0.0",
+  "description": "App de turnos para castraciones.",
+  "main": "server.js",
+  "scripts": {
+    "deploy": "gcloud app deploy",
+    "start": "node server.js"
+  },
+  "author": "Federico Olivarez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "date-format": "^1.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "jade": "^1.11.0",
+    "moment": "^2.22.2",
+    "mongodb": "^3.1.6",
+    "mongoose": "^5.3.0",
+    "mysql": "^2.16.0",
+    "node-static": "^0.7.11",
+    "nodemailer": "^4.6.8"
+  },
+  "devDependencies": {},
+  "keywords": []
+}

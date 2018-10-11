@@ -1,0 +1,181 @@
+ 
+
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+<title>Turnos</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+</head>
+<body class="container">
+
+<header>
+   <!--<nav class="navbar navbar-default" role="navigation">-->
+<div class="container-fluid">
+
+   
+
+</div>
+</nav>
+</header>
+
+<main>
+    <div class="jumbotron">
+ 
+        <h3>Solicitar Turnos </h3>
+
+     
+
+		<form name="form1" >
+    <table>
+        <tr>
+        <td>Nombre</td>
+        <td><input type="text" name="nombre" id="nombre" ></td>
+        </tr>
+        <tr>
+        <td>Mail</td>
+        <td><input type="text"  name="mail" id="mail"></td>
+        </tr>
+        <tr>
+        <td>Telefono</td>
+        <td><input type="text" name="telefono" id="telefono" ></td>
+        </tr>
+
+        <tr>
+        <td>DNI</td>
+        <td><input type="text" name="dni" id="dni" ></td>
+        </tr>
+        
+        <tr>
+        <td>Jornada</td>
+        <td><input type="text" name="jornada" id="jornada" ></td>
+        </tr>
+
+        <tr>
+        <td>Tipo</td>
+        <td><input type="text" name="tipo" id="tipo" ></td>
+        </tr>
+
+        <tr>
+        <td>Peso</td>
+        <td><input type="text" name="peso" id="peso" ></td>
+        </tr>
+
+        <tr>
+        <td>Cantidad</td>
+        <td><input type="text" name="cantidad" id="cantidad" ></td>
+        </tr>
+
+        <tr>
+        <td>Preniado</td>
+        <td><input type="text" name="preniado" id="preniado" ></td>
+        </tr>
+
+        <tr>
+        <td>Confirmado</td>
+        <td><input type="text" name="confirmado" id="confirmado" ></td>
+        </tr>
+
+        <tr>
+        <td>Asistio</td>
+        <td><input type="text" name="asistio" id="asistio" ></td>
+        </tr>
+
+
+        </tr>
+        <tr>
+        <td colspan="2"><input type="submit" value="Guardar" id="guardar" ></td>
+        </tr>
+    </table>
+    </form>   
+
+  <div>
+	
+
+
+        <p>Panel de Turnos</p>
+    </div>
+
+</main>
+
+
+
+
+<footer>
+   <p class="text-center text-muted">© Copyright 2014 The Awesome People</p>
+</footer>
+
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+	
+	$(document).ready(function(){  
+
+		$("#guardar").click(function(e){
+			e.preventDefault();
+			console.log('**entre');
+
+			var nombre = $("#nombre").val();
+			var telefono = $("#telefono").val();
+			var mail = $("#mail").val();
+			var dni = $("#dni").val();
+			var idJornada = "5bb9f4d6eda1b42808792600";
+			
+			var tipo = $("#tipo").val();
+			var peso = $("#peso").val();
+			var cantidad = $("#cantidad").val();
+			var preniado = $("#preniado").val();
+			var confirmado = $("#confirmado").val();
+			var asistio = $("#asistio").val();
+
+
+			
+			$.post("/castraciones/turno",{ nombre:nombre, telefono:telefono,mail:mail, dni:dni, jornada:"5bb9f4d6eda1b42808792600", tipo:tipo,  peso:peso, cantidad:cantidad, preniado:preniado, confirmado:confirmado, asistio:asistio},
+					   function(status) {
+					   
+					   location.reload();
+			});	        			
+		});
+
+
+});
+
+
+</script>
+
+
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+<title>Jornadas</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+</head>
+<body class="container">
+
+
+ 
+
+  
+</body>
+</html>
