@@ -56,12 +56,12 @@
                                 <% if (data.activa) { -%>
                                     <tr class="activa">
                                         <td><a href="/castraciones/jornadas/<%= data._id  %>"><%= data.localidad %></a></td>
-                                        <td> <%= moment(data.fecha).format('D/M/YYYY HH:mm'); %> </td> 
+                                        <td> <%= moment(data.fecha).tz("America/Argentina/Buenos_Aires").format('D/M/YYYY HH:mm'); %> </td> 
                                         <td><%= data.direccion %></td> 
                                         <td><%= data.direparcial %></td> 
                                         <td><%= data.precio %></td> 
                                         <td><%= data.cant_grupo %></td>
-                                        <td><%= moment(data.hora_prox_turno).format('HH:mm'); %></td>  
+                                        <td><%= moment(data.hora_prox_turno).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>  
                                         <td><%= data.cont %></td>
                                         <td><%= data.activa %></td>
                                     </tr>
@@ -69,12 +69,12 @@
                                 <% } else { -%>
                                     <tr class="suspendida">
                                         <td><a href="/castraciones/jornadas/<%= data._id  %>"><%= data.localidad %></a></td>
-                                        <td> <%= moment(data.fecha).format('D/M/YYYY HH:mm'); %> </td> 
+                                        <td> <%= moment(data.fecha).tz("America/Argentina/Buenos_Aires").format('D/M/YYYY HH:mm'); %> </td> 
                                         <td><%= data.direccion %></td> 
                                         <td><%= data.direparcial %></td> 
                                         <td><%= data.precio %></td> 
                                         <td><%= data.cant_grupo %></td>
-                                        <td><%= moment(data.hora_prox_turno).format('HH:mm'); %></td>  
+                                        <td><%= moment(data.hora_prox_turno).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>  
                                         <td><%= data.cont %></td>
                                         <td><%= data.activa %></td>
                                     </tr> 
@@ -87,48 +87,95 @@
                     </div>
                 </div>
             </div>
-             <div class="row">
-                <div class="col-md-5  contact">
-                 <form name="form1" >
-
-                    <div class="form-group">
-                        <label>Localidad <input type="text" name="localidad" id="localidad" ></label>
-                        
-                        <label>Fecha <input type="datetime-local" value="2018-06-01T08:00" name="fecha" id="fecha"></label>
-                        
-                        <label>Direccion<input type="text" name="direccion" id="direccion" ></label>
-
-                        <label>Direccion Parcial<input type="text" name="direparcial" id="direparcial" ></label>
-
-                        <label>Precio<input type="number" name="precio" id="precio" ></label>
-
-                        <label>Turnos 1/2 hora<input type="number" name="cant_grupo" id="cant_grupo" ></label>
-                        
-                        <label>Estado
-                            <select name="activa" id="activa">
-                              <option value="1">Activa</option>
-                              <option value="0">Suspendida</option>
-                            </select>
-                        </label>
-                            
-                        <input type="submit" value="Guardar" id="guardar" >
-
-                    </div>
-                        
-                        
-
-                    </form>               
-
-                </div>
-            </div>
+           
 
     </div>
 
 </section>
 
+<section>
+    
+    <div class="container"> 
+            <div class="row">
+                <div class="col-md-6">
+
+                    <form name="form1" >
+
+                        <div class="form-group">
+                            <label for="localidad">Localidad </label>
+                            <input type="text" class="form-control form-control-sm" name="localidad" id="localidad" >
+                            <small id="emailHelp" class="form-text text-muted">Ingrese la localidad de la Jornada</small>
+                        </div>  
+                         <div class="form-group">
+                            <label for="fecha">Fecha </label>
+                            <input type="datetime-local" class="form-control form-control-sm" value="2018-06-01T08:00" name="fecha" id="fecha" >
+                            
+                        </div>  
+                         <div class="form-group">
+                            <label for="direccion">Dirección </label>
+                            <input type="text" class="form-control form-control-sm" name="direccion" id="direccion" >
+                        </div>  
+
+                        <div class="form-group">
+                            <label for="direparcial">Dirección Parcial</label>
+                            <input type="text" class="form-control form-control-sm" name="direparcial" id="direparcial" >
+                        </div>  
+
+                         <div class="form-group">
+                            <label for="precio">Precio </label>
+                            <input type="number" class="form-control form-control-sm" name="precio" id="precio" >
+                        </div>  
+                         <div class="form-group">
+                            <label for="cant_grupo">Turnos cada 1/2 hora</label>
+                            <input type="number" class="form-control form-control-sm" name="cant_grupo" id="cant_grupo" >
+                        </div>   
+
+                         <div class="form-group">
+                            <label for="activa">Estado </label>
+                            <select class="form-control form-control-sm" for="activa" name="activa" id="activa">
+                                  <option value="1">Activa</option>
+                                  <option value="0">Suspendida</option>
+                            </select>
+                         </div>   
+                            <button type="submit" id="guardar"class="btn btn-primary">Guardar</button>
+                        
 
 
 
+                          <!--   <label>Fecha    <input type="datetime-local" value="2018-06-01T08:00" name="fecha" id="fecha"></label>
+                            
+                            <label>Direccion<input type="text" name="direccion" id="direccion" ></label>
+
+                            <label>Direccion Parcial<input type="text" name="direparcial" id="direparcial" ></label>
+
+                            <label>Precio<input type="number" name="precio" id="precio" ></label>
+
+                            <label>Turnos 1/2 hora<input type="number" name="cant_grupo" id="cant_grupo" ></label>
+                            
+                            <label>Estado
+                                <select name="activa" id="activa">
+                                  <option value="1">Activa</option>
+                                  <option value="0">Suspendida</option>
+                                </select>
+                            </label>
+                                
+                            <input type="submit" value="Guardar" id="guardar" > -->
+
+                        
+
+                    </form>         
+
+                </div>
+            </div>
+
+
+            
+
+
+    </div>
+
+</section>
+    
 
 
 <footer>
