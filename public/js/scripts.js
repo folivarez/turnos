@@ -215,7 +215,7 @@ $(document).ready(function(){
 					   //location.reload();
 					   $('#submit').addClass("ocultar");
 					   $('.ocul').addClass("ocultar");
-						var success = 'Su mensaje ha sido enviado. \n Verifique su mail para confirmar el turno.\n\n  Muchas Gracias!';
+						var success = 'Hemos recibido su mensaje. \n Verifique su casilla de mail para confirmar el turno.\n\n  Muchas Gracias!';
 						   	
 			            $('.error-message-2').hide();
 	                    $('.success-message-2').hide();

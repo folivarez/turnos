@@ -190,7 +190,7 @@
 		    				<% jobs.forEach(function(data) { %>
 
 		    					<div class="col-md-2" >
-		    						<a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-fecha="<%= moment(data.fecha).format('D/M/YYYY'); %>" data-toggle="modal" data-target="#myModal2" >
+		    						<a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-fecha="<%= moment(data.fecha).utcOffset('-0300').format('D/M/YYYY'); %>" data-toggle="modal" data-target="#myModal2" >
 		  							
 			  							<div class="cuadrado ">'							
 										    <h5 class="center centerh5"><%= data.localidad %></h5>
