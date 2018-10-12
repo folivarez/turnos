@@ -72,7 +72,7 @@
                                 <td><%= turnos.animal.cantidad %></td>
                                 <td><%= turnos.animal.preniado %></td>
                                 <td><%= turnos.confirmado %></td>
-                                <td><%= moment(turnos.hora).format('HH:mm'); %></td>
+                                <td><%= moment(turnos.hora).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>
                                 
                               </tr>
                                
@@ -91,7 +91,7 @@
                                 <td><%= turnos.animal.cantidad %></td>
                                 <td><%= turnos.animal.preniado %></td>
                                 <td><%= turnos.confirmado %></td>
-                                <td><%= moment(turnos.hora).format('HH:mm'); %></td>
+                                <td><%= moment(turnos.hora).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>
                                 
                               </tr>
                                

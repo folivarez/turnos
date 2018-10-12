@@ -1,7 +1,7 @@
 const Jornadas = require('../models/jornada.models');
 const Turno = require('../models/turno.models');
 var format = require('date-format');
-var moment = require('moment');
+var moment = require('moment-timezone');
 
 
 
@@ -70,7 +70,7 @@ exports.jornada_create = function (req, res) {
     Jornada.save()
     .then(item => {
       console.log(req.body);
-      console.log('fecha ' +  moment(req.body.fecha).format("dddd, MMMM Do YYYY, h:mm:ss a"))
+      console.log('fecha ' +  moment(req.body.fecha).tz("America/Argentina/Buenos_Aires").format("dddd, MMMM Do YYYY, h:mm:ss a"))
       res.send("item saved to database");
     })
     .catch(err => {

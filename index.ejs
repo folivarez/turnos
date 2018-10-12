@@ -194,7 +194,7 @@
 		  							
 			  							<div class="cuadrado ">'							
 										    <h5 class="center centerh5"><%= data.localidad %></h5>
-										    <p class="center fecha"><%= moment(data.fecha).format('D/M/YYYY HH:mm'); %></p>
+										    <p class="center fecha"><%= moment(data.hora_prox_turno).tz("America/Argentina/Buenos_Aires").format('D/M/YYYY HH:mm'); %></p>
 	    								</div>
     								</a> 
     							</div>
