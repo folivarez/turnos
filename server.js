@@ -4,9 +4,10 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const jornada = require('./routes/jornada.route'); // Imports routes for the products
 const turno = require('./routes/turno.route'); 
+const admin = require('./routes/admin.route'); 
 const app = express()
 
-require('@google-cloud/debug-agent').start();
+//require('@google-cloud/debug-agent').start();
 
 app.set('view engine', 'ejs');
 
@@ -62,6 +63,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/castraciones', jornada);
 app.use('/castraciones', turno);
+app.use('/castraciones/admin', admin);
 
  
 http.createServer(app).listen(8080, () => {

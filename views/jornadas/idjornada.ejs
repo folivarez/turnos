@@ -58,51 +58,26 @@
                            <% turnosLista.forEach(function(turnos) { %>
 
                            <% if (turnos.confirmado == 1) { %>
-
-
-                              <tr class="activa">
-
-                                <td><%= turnos.nombre %></td>
-                                <td><%= turnos.telefono %></td>
-                                <td><%= turnos.mail %></td>
-                                <td><%= turnos.dni %></td>
-                              
-                                <td><%= turnos.animal.tipo %></td>
-                                <td><%= turnos.animal.peso %></td>
-                                <td><%= turnos.animal.cantidad %></td>
-                                <td><%= turnos.animal.preniado %></td>
-                                <td><%= turnos.confirmado %></td>
-                                <td><%= moment(turnos.hora).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>
-                                
-                              </tr>
-                               
+                              <tr class="activa">                
                            <% } else { %>
-
-
                               <tr class="suspendida">
-
-                                <td><%= turnos.nombre %></td>
-                                <td><%= turnos.telefono %></td>
-                                <td><%= turnos.mail %></td>
-                                <td><%= turnos.dni %></td>
-                              
-                                <td><%= turnos.animal.tipo %></td>
-                                <td><%= turnos.animal.peso %></td>
-                                <td><%= turnos.animal.cantidad %></td>
-                                <td><%= turnos.animal.preniado %></td>
-                                <td><%= turnos.confirmado %></td>
-                                <td><%= moment(turnos.hora).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>
-                                
-                              </tr>
-                               
                            <% } %>
                            
-          
+                                <td><%= turnos.nombre %></td>
+                                <td><%= turnos.telefono %></td>
+                                <td><%= turnos.mail %></td>
+                                <td><%= turnos.dni %></td>
+                              
+                                <td><%= turnos.animal.tipo %></td>
+                                <td><%= turnos.animal.peso %></td>
+                                <td><%= turnos.animal.cantidad %></td>
+                                <td><%= turnos.animal.preniado %></td>
+                                <td><%= turnos.confirmado %></td>
+                                <td><%= moment(turnos.hora).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>
+                                
+                              </tr>
 
                             <% }); %>
-
-
-
 
                         </tbody>
                       </table>
@@ -160,36 +135,6 @@
 
 
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-
-<script>
-	
-$(document).ready(function(){  
-
-	$("#eliminar").click(function(e){
-		e.preventDefault();
-		console.log('**entre');
-
-		var id = $("#localidad").attr('data');
-			
-		$.ajax({
-    		url: '/castraciones/jornadas/' + id + '/delete',
-    		type: 'DELETE',
-    		success: function(result) {
-        	$(location).attr('href','/castraciones/jornadas');
-    		}
-		});
-    
-	});
-
-
-});
-
-
-</script>
 
 
 

@@ -9,7 +9,7 @@
 <!-- CSS (load bootstrap from a CDN) -->
 
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"  type="text/css">
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/jornada.css">
 
 </head>
@@ -42,9 +42,8 @@
                             <th scope="col">Direccion Parcial</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Turnos 1/2 hs</th>
-                            <th scope="col">Proximo Turno</th>
-                            <th scope="col">Turnos por hora</th>
-                            <th scope="col">Activa</th>
+                            <th scope="col">Turno</th>
+                            
                             
                             
                           </tr>
@@ -55,30 +54,20 @@
                                 
                                 <% if (data.activa) { -%>
                                     <tr class="activa">
-                                        <td><a href="/castraciones/jornadas/<%= data._id  %>"><%= data.localidad %></a></td>
-                                        <td> <%= moment(data.fecha).tz("America/Argentina/Buenos_Aires").format('D/M/YYYY HH:mm'); %> </td> 
-                                        <td><%= data.direccion %></td> 
-                                        <td><%= data.direparcial %></td> 
-                                        <td><%= data.precio %></td> 
-                                        <td><%= data.cant_grupo %></td>
-                                        <td><%= moment(data.hora_prox_turno).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>  
-                                        <td><%= data.cont %></td>
-                                        <td><%= data.activa %></td>
-                                    </tr>
-                                    
                                 <% } else { -%>
                                     <tr class="suspendida">
+                                <% } -%>
                                         <td><a href="/castraciones/jornadas/<%= data._id  %>"><%= data.localidad %></a></td>
                                         <td> <%= moment(data.fecha).tz("America/Argentina/Buenos_Aires").format('D/M/YYYY HH:mm'); %> </td> 
                                         <td><%= data.direccion %></td> 
                                         <td><%= data.direparcial %></td> 
-                                        <td><%= data.precio %></td> 
+                                        <td>$<%= data.precio %></td> 
                                         <td><%= data.cant_grupo %></td>
-                                        <td><%= moment(data.hora_prox_turno).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td>  
-                                        <td><%= data.cont %></td>
-                                        <td><%= data.activa %></td>
-                                    </tr> 
-                                <% } -%>
+                                        <td><%= moment(data.hora_prox_turno).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td> 
+                                        <td><a data="<%= data._id  %>"href=""><i title="Editar" class="far fa-edit"></i></a>  </td>
+                                        <td><a href=""><i title="Suspender" class="fas fa-ban"></i></a>  </td>
+                                        <td><a href=""><i title="48 horas" class="far fa-envelope"></i></a>  </td>
+                                    </tr>
                         <% }); %>
 
                         </tbody>
@@ -214,6 +203,26 @@
 					   location.reload();
 			});	        			
 		});
+
+       
+
+    $("#eliminar").click(function(e){
+        e.preventDefault();
+        console.log('**entre');
+
+        var id = $(this).attr('data');
+            
+        $.ajax({
+            url: '/castraciones/jornadas/' + id + '/delete',
+            type: 'DELETE',
+            success: function(result) {
+            $(location).attr('href','/castraciones/jornadas');
+            }
+        });
+    
+    });
+
+
 
 
 });

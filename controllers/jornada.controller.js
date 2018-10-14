@@ -7,6 +7,8 @@ var moment = require('moment-timezone');
 
 //Simple version, without validation or sanitation
 
+
+
 exports.jornadas = function (req, res) {
     var myquery = { activa: true };
 
@@ -14,6 +16,7 @@ exports.jornadas = function (req, res) {
         if (err) return next(err);
         //res.send(jornada);
         //res.render('jornadas/index');
+         var totalJornadas = data.length;
 
         res.render('../index',  { 
             'jobs': data, 
@@ -22,7 +25,7 @@ exports.jornadas = function (req, res) {
 
 
         console.log('devuelve todas las jornadas activas');
-    })
+    }).sort({fecha: -1})
 };
 
 
@@ -33,7 +36,7 @@ exports.lista = function (req, res) {
         //res.send(jornada);
         //res.render('jornadas/index');
         
-        res.render('jornadas/index',  { 
+        res.render('jornadas/jornadas',  { 
         	'jobs': data, 
         	moment: moment 
         });
@@ -41,7 +44,7 @@ exports.lista = function (req, res) {
 
 
         console.log('devuelve todas las jornadas');
-    });
+    }).sort({fecha: -1});
     
 };
 
@@ -96,7 +99,7 @@ exports.jornada_details = function (req, res) {
         //res.render('jornadas/index');
         var totalTurnos = turnos.length;
 
-        res.render('jornadas/idjornada',  { 
+        res.render('jornadas/jornada_turnos',  { 
             jornada,
             moment,
             'turnosLista' : turnos,
