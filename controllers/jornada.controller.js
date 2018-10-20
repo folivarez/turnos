@@ -107,6 +107,19 @@ exports.jornada_details = function (req, res) {
         var contTurnosCancelados = 0;
         var totalTurnosCancelados = 0;
 
+
+        var contPerros = 0;
+        var totalPerros = 0;
+        
+        var contPerras = 0;
+        var totalPerras = 0;
+        
+        var contGatos = 0;
+        var totalGatos = 0;
+
+        var contGatas = 0;
+        var totalGatas = 0;
+
        turnos.forEach (element => { 
             //console.log("---probando " + element);
             if (element.confirmado == "") {
@@ -114,13 +127,39 @@ exports.jornada_details = function (req, res) {
                 contTurnosSinConfirmar++;
             }
             else if (element.confirmado == 1) {
+
                 contTurnosConfirmados++;
+
+                if (element.animal.tipo == "PERRO") {
+                //console.log("---probando " + element);
+                contPerros++;
+                }
+                else if (element.animal.tipo == "PERRA") {
+                    contPerras++;
+
+                }else if (element.animal.tipo == "GATO") {
+                    contGatos++;
+
+                }
+                else if (element.animal.tipo == "GATA") {
+                    contGatas++;
+                }
+
+
 
             }else if (element.confirmado == 0) {
                 contTurnosCancelados++;
 
             }
+
+            
         });
+
+       
+        totalPerros = contPerros;
+        totalPerras = contPerras;
+        totalGatos = contGatos;
+        totalGatas = contGatas;
            
         totalTurnosSinConfirmar = contTurnosSinConfirmar;
         totalTurnosConfirmados = contTurnosConfirmados;
@@ -134,7 +173,11 @@ exports.jornada_details = function (req, res) {
             totalTurnos,
             totalTurnosSinConfirmar,
             totalTurnosConfirmados,
-            totalTurnosCancelados
+            totalTurnosCancelados,
+            totalPerros,
+            totalPerras,
+            totalGatos,
+            totalGatas
 
         });
 
