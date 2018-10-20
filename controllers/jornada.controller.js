@@ -93,17 +93,48 @@ exports.jornada_details = function (req, res) {
         var myquery = { jornada: req.params.id };
 
         Turno.find(myquery, function (err, turnos) {
-
         if (err) return next(err);
         //res.send(jornada);
         //res.render('jornadas/index');
         var totalTurnos = turnos.length;
+        
+        var contTurnosSinConfirmar = 0;
+        var totalTurnosSinConfirmar = 0;
+        
+        var contTurnosConfirmados = 0;
+        var totalTurnosConfirmados = 0;
+        
+        var contTurnosCancelados = 0;
+        var totalTurnosCancelados = 0;
+
+       turnos.forEach (element => { 
+            //console.log("---probando " + element);
+            if (element.confirmado == "") {
+                //console.log("---probando " + element);
+                contTurnosSinConfirmar++;
+            }
+            else if (element.confirmado == 1) {
+                contTurnosConfirmados++;
+
+            }else if (element.confirmado == 0) {
+                contTurnosCancelados++;
+
+            }
+        });
+           
+        totalTurnosSinConfirmar = contTurnosSinConfirmar;
+        totalTurnosConfirmados = contTurnosConfirmados;
+        totalTurnosCancelados = contTurnosCancelados;
+       
 
         res.render('jornadas/jornada_turnos',  { 
             jornada,
             moment,
             'turnosLista' : turnos,
-            totalTurnos
+            totalTurnos,
+            totalTurnosSinConfirmar,
+            totalTurnosConfirmados,
+            totalTurnosCancelados
 
         });
 

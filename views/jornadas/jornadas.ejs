@@ -192,16 +192,18 @@
                                     <tr>
                                     <td class="bg-red"></td>
                                 <% } -%>
-                                        <td><a href="/castraciones/jornadas/<%= data._id  %>"><%= data.localidad %></a></td>
-                                        <td> <%= moment(data.fecha).tz("America/Argentina/Buenos_Aires").format('D/M/YYYY HH:mm'); %> </td> 
-                                        <td><%= data.direccion %></td> 
-                                        <td><%= data.direparcial %></td> 
-                                        <td>$<%= data.precio %></td> 
-                                        <td><%= data.cant_grupo %></td>
-                                        <td><%= moment(data.hora_prox_turno).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %></td> 
-                                        <td><a data="<%= data._id  %>"href=""><i title="Editar" class="far fa-edit"></i></a>  </td>
-                                        <td><a href=""><i title="Suspender" class="fas fa-ban"></i></a>  </td>
-                                        <td><a href=""><i title="48 horas" class="far fa-envelope"></i></a>  </td>
+                                        <td><a href="/castraciones/jornadas/<%= data._id  %>  "><%= data.localidad %></a></td>
+                                  <td> <%= moment(data.fecha).format('D/M/YYYY HH:mm'); %> Hs. </td> 
+                                  <td><%= data.direccion %></td> 
+                                  <td><%= data.direparcial %></td> 
+                                  <td>$<%= data.precio %></td> 
+                                  <td><%= data.cant_grupo %></td>
+                                  <td><%= moment(data.hora_prox_turno).format('HH:mm'); %> Hs. </td> 
+                                  <td><a data="<%= data._id  %>"href=""><i title="Editar" class="far fa-edit"></i></a>  </td>
+                                  <td><a href=""><i title="Suspender" class="fas fa-ban"></i></a>  </td>
+                                  <td><a href=""><i title="48 horas" class="far fa-envelope"></i></a>  </td> 
+
+                                  <td><a href="#" class="eliminar-jornada" data-id="<%= data._id  %>"  data-localidad="<%= data.localidad %>" data-toggle="modal" data-target="#modal-danger"> <i title="Eliminar" class="far fa-trash-alt"></i></a></td>
                                     </tr>
                         <% }); %>
 

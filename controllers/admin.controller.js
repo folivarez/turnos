@@ -18,29 +18,43 @@ exports.admin = function (req, res) {
     Jornadas.find(jornadasActivas, function (err, data) {
         if (err) return next(err);
           
-    Turno.find(turnosSinConfirmar, function (err, sinConfirmar) {
+    Turno.find( function (err, data_turnos) {
         if (err) return next(err);
     
-    Turno.find(turnosConfirmados, function (err, confirmados) {
-        if (err) return next(err);
-
-    Turno.find(turnosCancelados, function (err, cancelados) {
-        if (err) return next(err);
+    
          
         
+        var contTurnosSinConfirmar = 0;
+        var totalTurnosSinConfirmar = 0;
+        
+        var contTurnosConfirmados = 0;
+        var totalTurnosConfirmados = 0;
+        
+        var contTurnosCancelados = 0;
+        var totalTurnosCancelados = 0;
 
-        var totalTurnosSinConfirmar = sinConfirmar.length;
-        var totalTurnosConfirmados = confirmados.length;
-        var cancelados = cancelados.length;
+       data_turnos.forEach (element => { 
+            //console.log("---probando " + element);
+            if (element.confirmado == "") {
+                //console.log("---probando " + element);
+                contTurnosSinConfirmar++;
+            }
+            else if (element.confirmado == 1) {
+                contTurnosConfirmados++;
 
-        if(cancelados == 0){
-            totalTurnosCancelados = 0;
-        }
-        else{
-            totalTurnosCancelados = cancelados;
-        }
+            }else if (element.confirmado == 0) {
+                contTurnosCancelados++;
+
+            }
+        });
+           
+        totalTurnosSinConfirmar = contTurnosSinConfirmar;
+        totalTurnosConfirmados = contTurnosConfirmados;
+        totalTurnosCancelados = contTurnosCancelados;
+       
 
         var totalJornadas = data.length;
+        
 
 
 
@@ -57,9 +71,7 @@ exports.admin = function (req, res) {
         console.log('devuelve todas los turnos cancelados ' + totalTurnosCancelados);
         console.log('devuelve todas los turnos confirmados ' + totalTurnosConfirmados);
         
-    })
-
-    })
+   
 
     })
         console.log('devuelve todas las jornadas  para admin');
