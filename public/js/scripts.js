@@ -201,15 +201,21 @@ $(document).ready(function(){
 			else{
 				preniado = 0;
 			}
-
+			var aviso = 0 ;
 			var confirmado = $("#confirmado").val();
 			var asistio = $("#asistio").val();	
 			
 			console.log("mail1 " + email + " - jornada " + idJornada);
 
-			
+			if(nombre==''||email==''||telefono==''|| dni==''|| peso=='Seleccione Peso Aprox.'|| telefono==''|| tipo == 'Seleccione Animal' || cantidad=='Cantidad de animales'){
+			console.log('no entre');
+		   	alert("Todos los campos son requeridos! "); 
 
-			$.post("/castraciones/turno",{ nombre:nombre, telefono:telefono,mail:email, dni:dni, jornada:idJornada, tipo:tipo,  peso:peso, cantidad:cantidad, preniado:preniado, confirmado:confirmado, asistio:asistio},
+			}
+			else{
+
+
+				$.post("/castraciones/turno",{ nombre:nombre, telefono:telefono,mail:email, dni:dni, jornada:idJornada, tipo:tipo,  peso:peso, cantidad:cantidad,aviso:aviso, preniado:preniado, confirmado:confirmado, asistio:asistio},
 					   function(status) {
 					   console.log("mail2 " + email);
 					   //location.reload();
@@ -232,7 +238,11 @@ $(document).ready(function(){
 							console.log('**********biennn');
 						}
 					
-			});	        			
+			});	
+
+			}
+
+			        			
 		});
 			
 

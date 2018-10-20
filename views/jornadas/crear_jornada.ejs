@@ -135,8 +135,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       Turnos
-        <small>por jornada</small>
+       Alta
+        <small>de jornada</small>
       </h1>
      
     </section>
@@ -148,68 +148,57 @@
 
        <!-- /.row -->
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-6">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title"> Jornada: <%= jornada.localidad %>  <%= moment(jornada.fecha).format('D/M/YYYY HH:mm');%></h3>
+              <h3 class="box-title"> Crear Jornada</h3>
 
              
             </div>
             <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                
-                 <thead>
-                          <tr>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Mail</th>
-                            <th scope="col">DNI</th>
+            <div class="box-body">
+              
+              <form name="form1" >
+
+                        <div class="form-group">
+                            <label for="localidad">Localidad </label>
+                            <input type="text" class="form-control form-control-sm" name="localidad" id="localidad" >
+                            <small id="emailHelp" class="form-text text-muted">Ingrese la localidad de la Jornada</small>
+                        </div>  
+                         <div class="form-group">
+                            <label for="fecha">Fecha </label>
+                            <input type="datetime-local" class="form-control form-control-sm" value="2018-10-01T08:00" name="fecha" id="fecha-jornada" >
                             
-                            <th scope="col">Animal</th>
-                            <th scope="col">Peso</th>
-                            <th scope="col">Preniado</th>
-                            <th scope="col">Hora del turno</th>
-                            
-                            
-                          </tr>
-                        </thead>
-                        <tbody>
-                          
-                        
-                           <% turnosLista.forEach(function(turnos) { %>
+                        </div>  
+                         <div class="form-group">
+                            <label for="direccion">Dirección </label>
+                            <input type="text" class="form-control form-control-sm" name="direccion" id="direccion" >
+                        </div>  
 
-                           <% if (turnos.confirmado == 1) { %>
+                        <div class="form-group">
+                            <label for="direparcial">Dirección Parcial</label>
+                            <input type="text" class="form-control form-control-sm" name="direparcial" id="direparcial" >
+                        </div>  
 
-                              <td class="bg-green">             
-                           <% } else { if (turnos.confirmado == "") { %>
-                                  <td class="bg-yellow">
-                                <% } else {  if (turnos.confirmado == 0) {%>
-                                      <td class="bg-red">
-                                <% }
-                                  }
-                                 } %>
-                           
-                                <td><%= turnos.nombre %></td>
-                                <td><%= turnos.telefono %></td>
-                                <td><%= turnos.mail %></td>
-                                <td><%= turnos.dni %></td>
-                              
-                                <td><%= turnos.animal.tipo %></td>
-                                <td><%= turnos.animal.peso %></td>
-                                <td><%= turnos.animal.preniado %></td>
-                                <td><%= moment(turnos.hora).format('HH:mm'); %></td>
-                                <td><%= turnos.confirmado %></td>
-                                
-                              </tr>
+                         <div class="form-group">
+                            <label for="precio">Precio </label>
+                            <input type="number" class="form-control form-control-sm" name="precio" id="precio" >
+                        </div>  
+                         <div class="form-group">
+                            <label for="cant_grupo">Turnos cada 1/2 hora</label>
+                            <input type="number" class="form-control form-control-sm" name="cant_grupo" id="cant_grupo" >
+                        </div>   
 
-                            <% }); %>
+                         <div class="form-group">
+                            <label for="activa">Estado </label>
+                            <select class="form-control form-control-sm" for="activa" name="activa" id="activa">
+                                  <option value="1">Activa</option>
+                                  <option value="0">Suspendida</option>
+                            </select>
+                         </div>   
+                            <button type="submit" id="guardar-jornada"class="btn btn-primary">Guardar</button>
 
-
-                        </tbody>
-               
-              </table>
+                    </form>         
             </div>
             <!-- /.box-body -->
           </div>
@@ -251,14 +240,11 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="../../admin/bower_components/raphael/raphael.min.js"></script>
-<script src="../../admin/bower_components/morris.js/morris.min.js"></script>
+
 <!-- Sparkline -->
 <script src="../../admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 
-<!-- jQuery Knob Chart -->
-<script src="../../admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+
 <!-- daterangepicker -->
 <script src="../../admin/bower_components/moment/min/moment.min.js"></script>
 <script src="../../admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
@@ -276,5 +262,7 @@
 <script src="../../admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../admin/dist/js/demo.js"></script>
+
+<script src="../../admin/dist/js/admin.js"></script>
 </body>
 </html>

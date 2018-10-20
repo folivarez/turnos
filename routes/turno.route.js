@@ -8,6 +8,7 @@ router.get('/turnoLista', turno_controller.turnoLista);
 
 router.post('/turno', turno_controller.turno_create);
 router.get('/confirmarTurno/:id', turno_controller.confirmar_turno);
+router.get('/cancelarTurno/:id', turno_controller.cancelar_turno);
 
 
 

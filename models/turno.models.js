@@ -16,6 +16,7 @@ var turno_schema = new Schema({
   					cantidad: String,
   					preniado: String
   			 	},		 
+    aviso: Number,
   	confirmado: String,
   	asistio:    String,
  });

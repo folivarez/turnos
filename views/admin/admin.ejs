@@ -123,6 +123,13 @@
           </a>
         </li>
 
+        <!-- crear jornada -->
+        <li>
+          <a href="admin/altajornada">
+            <i class="fa far fa-calendar-alt">  </i> <span>Crear Jornadas</span>
+          </a>
+        </li>
+
         
           
         </li>
@@ -172,7 +179,7 @@
               <p>Turnos sin Confirmar</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="far fa-question-circle"></i>
             </div>
             
           </div>
@@ -187,7 +194,7 @@
               <p>Turnos Confirmados</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="far fa-check-square"></i>
             </div>
             
           </div>
@@ -205,7 +212,7 @@
               <p>Turnos Cancelados</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="fas fa-ban"></i>
             </div>
             
           </div>
@@ -227,7 +234,7 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 
-                 <thead>
+                        <thead>
                           <tr>
                             <th scope="col">Localidad</th>
                             <th scope="col">Fecha</th>
@@ -242,18 +249,20 @@
                         <tbody>
                           
                         <% jobs.forEach(function(data) { %>                              
-                                    <tr>
-                                        <td><a href="/castraciones/jornadas/<%= data._id  %>"><%= data.localidad %></a></td>
-                                        <td> <%= moment(data.fecha).tz("America/Argentina/Buenos_Aires").format('D/M/YYYY HH:mm'); %> Hs. </td> 
-                                        <td><%= data.direccion %></td> 
-                                        <td><%= data.direparcial %></td> 
-                                        <td>$<%= data.precio %></td> 
-                                        <td><%= data.cant_grupo %></td>
-                                        <td><%= moment(data.hora_prox_turno).tz("America/Argentina/Buenos_Aires").format('HH:mm'); %> Hs.</td> 
-                                         <td><a data="<%= data._id  %>"href=""><i title="Editar" class="far fa-edit"></i></a>  </td>
-                                        <td><a href=""><i title="Suspender" class="fas fa-ban"></i></a>  </td>
-                                        <td><a href=""><i title="48 horas" class="far fa-envelope"></i></a>  </td>               
-                                    </tr>
+                               <tr>
+                                  <td><a href="/castraciones/jornadas/<%= data._id  %>  "><%= data.localidad %></a></td>
+                                  <td> <%= moment(data.fecha).format('D/M/YYYY HH:mm'); %> Hs. </td> 
+                                  <td><%= data.direccion %></td> 
+                                  <td><%= data.direparcial %></td> 
+                                  <td>$<%= data.precio %></td> 
+                                  <td><%= data.cant_grupo %></td>
+                                  <td><%= moment(data.hora_prox_turno).format('HH:mm'); %> Hs. </td> 
+                                  <td><a data="<%= data._id  %>"href=""><i title="Editar" class="far fa-edit"></i></a>  </td>
+                                  <td><a href=""><i title="Suspender" class="fas fa-ban"></i></a>  </td>
+                                  <td><a href=""><i title="48 horas" class="far fa-envelope"></i></a>  </td> 
+
+                                  <td><a href="#" class="eliminar-jornada" data-id="<%= data._id  %>"  data-localidad="<%= data.localidad %>" data-toggle="modal" data-target="#modal-danger"> <i title="Eliminar" class="far fa-trash-alt"></i></a></td>
+                              </tr>
                         <% }); %>
                         </tbody>
               </table>
@@ -263,18 +272,47 @@
           <!-- /.box -->
         </div>
       </div>
+
+     
+
      
           
         </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-     
-        <!-- right col -->
-      </div>
-      <!-- /.row (main row) -->
 
-    </section>
-    <!-- /.content -->
+    
+
+
+
+     <div class="modal modal-danger fade modal-eliminar " id="modal-danger">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">ATENCION</h4>
+              </div>
+              <div class="modal-body" id="modal-body-eliminar">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Salir</button>
+                <button type="button" class="btn btn-outline confirma-eliminar">ELIMINAR</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+
+
+
+
+        
+
+       
+      
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -293,20 +331,18 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="../admin/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="../admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="../admin/bower_components/raphael/raphael.min.js"></script>
-<script src="../admin/bower_components/morris.js/morris.min.js"></script>
+<!-- <script src="../admin/bower_components/morris.js/morris.min.js"></script> -->
 <!-- Sparkline -->
 <script src="../admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
-<script src="../admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="../admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- jQuery Knob Chart -->
+<!-- <script src="../admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="../admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>-->
+<!-- jQuery Knob Chart --> 
 <script src="../admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
 <script src="../admin/bower_components/moment/min/moment.min.js"></script>
@@ -325,5 +361,7 @@
 <script src="../admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../admin/dist/js/demo.js"></script>
+
+<script src="../admin/dist/js/admin.js"></script>
 </body>
 </html>

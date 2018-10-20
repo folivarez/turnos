@@ -68,6 +68,19 @@ exports.admin = function (req, res) {
 };
 
 
+exports.alta_jornada = function (req, res) {
+    
+  
+        
+        res.render('jornadas/crear_jornada',  {layout: false});
+        
+
+
+        console.log('devuelve todas las jornadas');
+   
+    
+};
+
 
 
 

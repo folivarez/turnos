@@ -25,7 +25,7 @@ exports.jornadas = function (req, res) {
 
 
         console.log('devuelve todas las jornadas activas');
-    }).sort({fecha: -1})
+    }).sort({fecha: 1})
 };
 
 
@@ -56,7 +56,7 @@ exports.jornada_create = function (req, res) {
    var Jornada = new Jornadas(
         {
             localidad: req.body.localidad,
-            fecha: moment(req.body.fecha).toISOString(),
+            fecha: moment(req.body.fecha).toISOString(), 
             direccion: req.body.direccion,
             direparcial: req.body.direparcial,
             precio: req.body.precio,
@@ -73,7 +73,7 @@ exports.jornada_create = function (req, res) {
     Jornada.save()
     .then(item => {
       console.log(req.body);
-      console.log('fecha ' +  moment(req.body.fecha).tz("America/Argentina/Buenos_Aires").format("dddd, MMMM Do YYYY, h:mm:ss a"))
+      console.log('fecha ' +  moment(req.body.fecha).format("dddd, MMMM Do YYYY, h:mm:ss a"))
       res.send("item saved to database");
     })
     .catch(err => {
