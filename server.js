@@ -5,10 +5,8 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-//var cookieParser = require('cookie-parser');
-const http = require('http')
+const http = require('http');
 const mongoose = require('mongoose')
-//const bodyParser = require('body-parser')
 const jornada = require('./routes/jornada.route'); // Imports routes for the products
 const turno = require('./routes/turno.route'); 
 const admin = require('./routes/admin.route'); 
@@ -19,19 +17,17 @@ const app = express()
 var back = require('express-back');
 
 const MongoStore = require('connect-mongo')(session);
-require('@google-cloud/debug-agent').start();
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public/' ));
 
-const dbURI = "mongodb://castracionesdb:castracionesdb@dbcastraciones-shard-00-00-9boem.gcp.mongodb.net:27017,dbcastraciones-shard-00-01-9boem.gcp.mongodb.net:27017,dbcastraciones-shard-00-02-9boem.gcp.mongodb.net:27017/dbCastraciones?ssl=true&replicaSet=dbCastraciones-shard-0&authSource=admin&retryWrites=true";
-//const dbURI =   "mongodb://localhost:27017/dbCastraciones";
+const dbURI = process.env.DB ;
 
 const options = {
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE,
   poolSize: 10,
-  dbName: 'dbCastraciones'
+  dbName: process.env.DBNAME
 };
 
 mongoose.connect(dbURI, options).then(
@@ -57,10 +53,10 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// required for passport
+
 app.use(session({
 
-    secret: 'eminem', // session secret
+    secret: process.env.SECRET, // session secret
     resave: true,
     saveUninitialized: true,
     //maxAge: 604800000,
@@ -74,14 +70,10 @@ app.use(back());
 app.use('/castraciones', jornada);
 app.use('/castraciones', turno);
 app.use('/castraciones', login);
-//app.use('/castraciones/admin', admin);
 app.use('/castraciones', admin);
  
-http.createServer(app).listen(8080, () => {
-  console.log('Server started at http://localhost:8080');
-  //console.log(process.env);
+http.createServer(app).listen(process.env.PORT, () => {
+  console.log('Server started');
 });
-
-
 
 module.exports = app;
