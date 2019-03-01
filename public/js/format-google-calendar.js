@@ -264,7 +264,7 @@ window.formatGoogleCalendar = function () {
 
 
             //output = '<' + tagName + '>',
-            output = '<div class="col-md-2" ><a href="#" class="fechaJornada" data-id="' + dateFormatted + ' - ' + result.summary +  '" data-toggle="modal" data-target="#myModal2"><div class="cuadrado ">',
+            output = '<div class="col-md-2" ><a href="#" class="fechaJornada" data-id="' + dateFormatted + ' - ' + result.summary +  '" data-toggle="modal" data-target="#myModal2"><div class="cuadrado">',
             summary = result.summary || '',
             description = result.description || '',
             location = result.location || '',

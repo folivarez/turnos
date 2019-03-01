@@ -1,0 +1,52 @@
+<!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p><%= user.local.email %></p>
+        </div>
+      </div>
+     
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">Menú</li>
+         <li>
+          <a href="dashboard">
+            <i class="fa fa-th"></i> <span>Principal</span>
+          </a>
+        </li>
+
+ 		<!-- todas las jornadas -->
+        <li>
+          <a href="jornadasAll">
+            <i class="fa far fa-calendar-alt">  </i> <span> Jornadas</span>
+          </a>
+        </li>
+
+        <!-- crear jornada -->
+        <li>
+          <a href="altajornada">
+            <i class="fa far fa-calendar-alt">  </i> <span>Crear Jornadas</span>
+          </a>
+        </li>
+
+          <li>
+          <a href="veterinarios">  
+           <i class="fas fa-first-aid">    </i> <span>   Veterinarios</span>
+          </a>  
+        </li> 
+
+         <li>
+          <a href="cartel_web">
+            <i class="fas fa-exclamation-triangle">  </i> <span>Avisos</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>

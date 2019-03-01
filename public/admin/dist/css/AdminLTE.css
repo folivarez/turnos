@@ -4975,3 +4975,20 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+.btn-group {  
+    white-space: nowrap;   
+    position: absolute;           
+}
+.btn-group .btn {  
+    float: none;
+    display: inline-block;
+}
+ .btn + .dropdown-toggle { 
+    margin-left: -4px;
+}
+
+.table-responsive {
+  overflow-y: visible !important;
+}
+

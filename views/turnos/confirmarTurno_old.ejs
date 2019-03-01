@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]>
+<!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126131032-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126131032-1');
+</script>
+
+	<meta charset="utf-8" />
+    
+    <!-- Website Title & Description -->
+    <title>Organizacion Love Animals | Castraciones a bajo costo</title>
+    <meta name="description" content="Asociacion Love Animals | Castraciones a bajo costo">
+    
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+    
+    <!-- Included CSS Files -->
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"  type="text/css">
+    <link rel="stylesheet" href="../../css/supersized.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/supersized.shutter.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    
+	<!-- JS Files -->
+	<script type="text/javascript" src="../../js/modernizr.js"></script>
+	<script type="text/javascript" src="../../js/device.min.js"></script>
+    
+    <!-- Google Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Exo:200,400,600' rel='stylesheet' type='text/css'>  
+    
+  
+    
+</head>
+<body>
+
+
+
+    <section class="home-content confirmacion-turno">
+	    <div class="container">
+		    <div class="row">
+		    	<div class="col-md-10 col-md-offset-1">
+		    		<div id="home">
+		    				<img id="logo" src="../../img/logo.png" alt="">	
+					       
+				        <h2 class="center text-dark">Hola <%= cliente.nombre %>, su Turno esta confirmado!</h2>
+						
+						<p><b>Fecha: </b><%= moment(cliente.hora).format('D/M/YYYY'); %> a las <%= moment(cliente.hora).format('HH:mm'); %></p>
+
+				        <p><b>Direccion: </b><span><%= jornada.direccion %></span></p>
+    					
+    					<p><b>Zona: </b><%= (jornada.localidad); %></p>
+    					<p><b>Precio:</b> $<span><%= jornada.precio %></span></p>
+
+    					<hr>
+    					<h3>MUY IMPORTANTE: Cuidados para antes de la cirugia.</h3>
+    					<p>Una manta, frazada o toalla para cubrirlo una vez que es operado.</p>
+
+    					<% if (cliente.animal.tipo=='GATO' || cliente.animal.tipo=='GATA') { -%>
+
+    						<p>GATOS/AS : concurrir con collar y transportarlo en donde ud. quiera(mochila, bolso transportador, etc) pero debe llevar una bolsa de red o arpillera SI o SI para ingresar a cirugía (son las bolsas de cebolla y se consiguen en forma gratuita o a muy bajo costo en verdulerias)</p>
+    						
+    					<% } else { -%>
+
+    						<p>PERROS/AS : deben venir con collar, correa y/o bozal SÓLO en caso de ser necesario.</p>
+    						
+    					<% } -%>
+    					
+
+    					<p>Tiempo estimado de cirugía: 30 a 50 minutos (Depende exclusivamente del animal y del ayuno que el dueño le haya dado al mismo) venir con tiempo y paciencia ya que el <b><br>TURNO ES MERAMENTE ORGANIZATIVO.</b></p>
+						
+    					<p><b>No ASISTIR ANTES.</b>
+						Pedimos compromiso y seriedad. Recuerde que es una campaña masiva a bajo costo. </p>
+
+                        <p><b>La Jornada no se suspende por lluvia.</b></p>
+    					
+    					<hr>
+
+    					<!-- <button type="button" class="btn btn-danger ">Cancelar TURNO</button> -->
+    					<p>Si quiere cancelar haga click <a class="empresa" href="https://castraciones-218323.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" >AQUI</a></p>
+
+    					<p>Por cualquier consulta enviar un mail a <i>info@castraciones.com.ar</i></p>
+    					<p>Muchas gracias.</p>
+    					<p><a class="empresa" href="http://www.castraciones.com.ar">Organizacion Love Animals.</a></p>
+
+
+    	
+					</div>
+				        
+						
+				</div>
+			</div>
+		</div>
+	 
+    </section>
+
+   
+
+
+
+ 
+
+ 
+	<!-- Javascript -->
+    <script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../js/detectmobilebrowser.js"></script>
+    
+    <script type="text/javascript" src="../../js/supersized.3.2.7.min.js"></script>
+	<script type="text/javascript" src="../../js/supersized.shutter.min.js"></script>
+	
+   
+    <script type="text/javascript" src="../../js/scripts.js"></script>
+  
+  
+</body>
+</html>

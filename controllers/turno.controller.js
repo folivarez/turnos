@@ -1,404 +1,340 @@
 const Turno = require('../models/turno.models');
+const Veterinarios = require('../models/veterinario.models');
 var format = require('date-format');
 var moment = require('moment-timezone');
-var nodemailer = require('nodemailer');
+//var nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 const Jornadas = require('../models/jornada.models');
+const reel = require('node-reel');
 
 
-  var _localidad;
-            var _precio;
-            var _fecha;
-            var _direparcial;
-            var _hora;
-            
-            var _contador;
-            var _grupo;
-            var i;
-            var turno;
+var _localidad;
+var _precio;
+var _fecha;
+var _direparcial;
+var _hora;
 
+var _contador;
+var _grupo;
+var i;
+var turno;
 
-//Simple version, without validation or sanitation
-
-exports.turno = function (req, res) {
-    Turno.find( function (err, data) {
+exports.turno = function(req, res) {
+    Turno.find(function(err, data) {
 
         if (err) return next(err);
-        //res.send(jornada);
-        //res.render('jornadas/index');
-
-        res.render('turnos/turno',  {});
-
-        //console.log('consola de turno');
+        res.render('turnos/turno', {});
     })
 };
 
-exports.turnoLista = function (req, res) {
-    Turno.find( function (err, data) {
+exports.turnoLista = function(req, res) {
+    let user = req.user;
+    Turno.find(function(err, data) {
 
         if (err) return next(err);
-        //res.send(jornada);
-        //res.render('jornadas/index');
 
-        res.render('turnos/turnoLista',  { 
-            'jobs': data, 
-            moment: moment 
+        res.render('turnos/turnoLista', {
+            'jobs': data,
+            user:user,
+            moment: moment
         });
-
-
-        //console.log('devuelve todas los turnos');
     })
 };
 
 //crear turno
-exports.turno_create = function (req, res) {
-
-
-     try{
-                
-            obtenerJornada(req, res);
-              //console.log("__________________ " + horaTurno + " __________________");
-        } 
-           catch(error) {
-          console.error("error obtener jornada " + error);
-         
-        }
-
-    
+exports.turno_create = function(req, res) {
+    try {
+        obtenerJornada(req, res);
+    } catch (error) {
+        console.error("error obtener jornada " + error);
+    }
 };
 
 
-function mail_confirmacion(destino, nombre, localidad, precio,  fecha, hora, direparcial, idTurno) {
-   
-    console.log("Mandando mail " + destino + ' - ' + nombre + ' - ' + precio + ' - ' + fecha + ' - ' + hora + ' - ' + direparcial);
-
-    var transporter = nodemailer.createTransport({
-        host: 'mail.c1380931.ferozo.com',
-        tls: {
-            rejectUnauthorized:false
-        },
-        secure: true,
-        auth: {
-            user: 'no-reply@c1380931.ferozo.com',
-            pass: 'V6hKGi@pJu'
-        }
-    });
-
-    var mailOptions = {
-            from: 'no-reply@castraciones.com.ar',
-            to: destino,
-            subject: 'Castracion - Se requiere confirmacion!',
-            text: 'Hola , usted solicito un turno para la jornada de castracion ' + localidad + ' ' + fecha + ',\n' +
-            'Se le otorgara un turno para las ' + hora + '\n' +
-            'Zona: ' + direparcial + ' (la direccion exacta se brindara 48hs antes por mail) \n  Costo: $' + precio + '\n\n' + 
-            'Muchas Gracias',
-            html: '<!doctype html><html>  <head><meta name="viewport" content="width=device-width" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Confirmar Turno</title><style>  /* -------------------------------------  GLOBAL RESETS  ------------------------------------- */  img {border: none;-ms-interpolation-mode: bicubic;max-width: 100%; }  body {background-color: #f6f6f6;font-family: sans-serif;-webkit-font-smoothing: antialiased;font-size: 14px;line-height: 1.4;margin: 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%; }  table {border-collapse: separate;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%; }table td {  font-family: sans-serif;  font-size: 14px;  vertical-align: top; }  /* -------------------------------------  BODY & CONTAINER  ------------------------------------- */  .body {background-color: #f6f6f6;width: 100%; }  /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */  .container {display: block;Margin: 0 auto !important;/* makes it centered */max-width: 580px;padding: 10px;width: 580px; }  /* This should also be a block element, so that it will fill 100% of the .container */  .content {box-sizing: border-box;display: block;Margin: 0 auto;max-width: 580px;padding: 10px; }  /* -------------------------------------  HEADER, FOOTER, MAIN  ------------------------------------- */  .main {background: #ffffff;border-radius: 3px;width: 100%; }  .wrapper {box-sizing: border-box;padding: 20px; }  .content-block {padding-bottom: 10px;padding-top: 10px;  }  .footer {clear: both;Margin-top: 10px;text-align: center;width: 100%; }.footer td,.footer p,.footer span,.footer a {  color: #999999;  font-size: 12px;  text-align: center; }  /* -------------------------------------  TYPOGRAPHY  ------------------------------------- */  h1,  h2,  h3,  h4 {color: #000000;font-family: sans-serif;font-weight: 400;line-height: 1.4;margin: 0;margin-bottom: 30px; }  h1 {font-size: 35px;font-weight: 300;text-align: center;text-transform: capitalize; }  p,  ul,  ol {font-family: sans-serif;font-size: 14px;font-weight: normal;margin: 0;margin-bottom: 15px; }p li,ul li,ol li {  list-style-position: inside;  margin-left: 5px; }  a {color: #3498db;text-decoration: underline; }  /* -------------------------------------  BUTTONS  ------------------------------------- */  .btn {box-sizing: border-box;width: 100%; }.btn > tbody > tr > td {  padding-bottom: 15px; }.btn table {  width: auto; }.btn table td {  background-color: #ffffff;  border-radius: 5px;  text-align: center; }.btn a {  background-color: #ffffff;  border: solid 1px #3498db;  border-radius: 5px;  box-sizing: border-box;  color: #3498db;  cursor: pointer;  display: inline-block;  font-size: 14px;  font-weight: bold;  margin: 0;  padding: 12px 25px;  text-decoration: none;  text-transform: capitalize; }  .btn-primary table td {background-color: #3498db; }  .btn-primary a {background-color: #3498db;border-color: #3498db;color: #ffffff; }  /* -------------------------------------  OTHER STYLES THAT MIGHT BE USEFUL  ------------------------------------- */  .last {margin-bottom: 0; }  .first {margin-top: 0; }  .align-center {text-align: center; }  .align-right {text-align: right; }  .align-left {text-align: left; }  .clear {clear: both; }  .mt0 {margin-top: 0; }  .mb0 {margin-bottom: 0; }  .preheader {color: transparent;display: none;height: 0;max-height: 0;max-width: 0;opacity: 0;overflow: hidden;mso-hide: all;visibility: hidden;width: 0; }  .powered-by a {text-decoration: none; }  hr {border: 0;border-bottom: 1px solid #f6f6f6;Margin: 20px 0; }  /* -------------------------------------  RESPONSIVE AND MOBILE FRIENDLY STYLES  ------------------------------------- */  @media only screen and (max-width: 620px) {table[class=body] h1 {  font-size: 28px !important;  margin-bottom: 10px !important; }table[class=body] p,table[class=body] ul,table[class=body] ol,table[class=body] td,table[class=body] span,table[class=body] a {  font-size: 16px !important; }table[class=body] .wrapper,table[class=body] .article {  padding: 10px !important; }table[class=body] .content {  padding: 0 !important; }table[class=body] .container {  padding: 0 !important;  width: 100% !important; }table[class=body] .main {  border-left-width: 0 !important;  border-radius: 0 !important;  border-right-width: 0 !important; }table[class=body] .btn table {  width: 100% !important; }table[class=body] .btn a {  width: 100% !important; }table[class=body] .img-responsive {  height: auto !important;  max-width: 100% !important;  width: auto !important; }}  /* -------------------------------------  PRESERVE THESE STYLES IN THE HEAD  ------------------------------------- */  @media all {.ExternalClass {  width: 100%; }.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div {  line-height: 100%; }.apple-link a {  color: inherit !important;  font-family: inherit !important;  font-size: inherit !important;  font-weight: inherit !important;  line-height: inherit !important;  text-decoration: none !important; }.btn-primary table td:hover {  background-color: #34495e !important; }.btn-primary a:hover {  background-color: #34495e !important;  border-color: #34495e !important; } }</style>  </head>  <body class=""><table border="0" cellpadding="0" cellspacing="0" class="body">  <tr><td>&nbsp;</td><td class="container">  <div class="content"><!-- START CENTERED WHITE CONTAINER --><span class="preheader"></span><table class="main">  <!-- START MAIN CONTENT AREA -->  <tr><td class="wrapper">  <table border="0" cellpadding="0" cellspacing="0"><tr>  <td><p>Hola ' + nombre + ',</p><p>Usted solicito un turno para la jornada de castracion de ' + localidad + ' el dia ' + fecha + '.</p>                        <p>Se le otorgara un turno para las ' + hora + ' hs.</p>                       <p>Zona: ' + direparcial + ', (la direccion exacta se brindara 48hs antes por mail).</p>                       <p>Costo: $' + precio + '</p>                       <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">  <tbody><tr>  <td align="left"><table border="0" cellpadding="0" cellspacing="0">  <tbody><tr>  <td> <a href="https://castraciones-218323.appspot.com/castraciones/confirmarTurno/' + idTurno+ ' " target="_blank">CONFIRMAR TURNO</a> </td></tr>  </tbody></table>  </td></tr>  </tbody></table><p>Muchas gracias.</p><p>Organizacion Love Animals.</p>  </td></tr>  </table></td>  </tr><!-- END MAIN CONTENT AREA --></table><!-- START FOOTER --><div class="footer">  <table border="0" cellpadding="0" cellspacing="0"><tr>  <td class="content-block"><span class="apple-link">Castraciones.com.ar</span><br> Si quiere cancelar el turno haga click <a href="http://i.imgur.com/CScmqnj.gif">AQUI</a>.  </td></tr><tr>  <td class="content-block powered-by">Powered by <a href="http://htmlemail.io">HTMLemail</a>.  </td></tr>  </table></div><!-- END FOOTER -->  <!-- END CENTERED WHITE CONTAINER -->  </div></td><td>&nbsp;</td>  </tr></table>  </body></html>'
-
+function actualizar_hora_jornada(idJornada, hora) {
+    var myquery = {
+        _id: idJornada,
     };
 
-    transporter.sendMail(mailOptions, function(err, data){
-        if (err){
-            console.log(err);
-            //res.send(500, err.message);
-            
+    var newvalues = {
+        $set: {
+
+            hora_prox_turno: hora,
+        }
+    };
+    Jornadas.updateOne(myquery, newvalues, function(err, data) {
+        if (err) throw err;
+    });
+}
+
+function actualizar_contador_jornada(idJornada, contador) {
+    var myquery = {
+        _id: idJornada,
+    };
+
+    var newvalues = {
+        $set: {
+            cont: contador,
+        }
+    };
+    Jornadas.updateOne(myquery, newvalues, function(err, data) {
+        if (err) throw err;
+    });
+}
+
+
+function sumar_mediahora(hora) {
+    //var hora_final = moment(hora).add(30, 'minutes').format('HH:mm');
+    //return hora_final;
+    return moment(hora).add(30, 'minutes').format('HH:mm');
+}
+
+
+exports.btnConfirmarTurno = function(req, res) {
+
+    var id = req.body.idTurno;
+    var id_final = '';
+    var idAux = id.substr(-3); //id.slice(0, -3)
+    var idAux1 = id.substr(-1); //id.slice(0, -3)
+
+    if (idAux == '%20') {
+        id_final = id.slice(0, -3);
+    } else if (idAux1 == '+') {
+        id_final = id.slice(0, -1);
+    } else {
+        id_final = id;
+    }
+
+    var myquery = { _id: id_final };
+    var newvalues = { $set: { confirmado: 1 } };
+
+    Turno.findById(myquery, function(err, _cliente) {
+        if (_cliente != undefined) {
+            console.log('reconozco cliente ' + _cliente.nombre);
+            Jornadas.findById(_cliente.jornada, function(err, jor) {
+                if (_cliente.confirmado == '') {
+                    try {
+                        Turno.findOneAndUpdate(myquery, newvalues, function(err, cli) {});
+
+                        res.send('Turno Confirmado');
+                    } catch (err) {
+                        console.error("Error al confirmar " + id_final + " Turno con error " + err);
+                        res.render('turnos/errorTurno', {
+                            moment: moment
+                        });
+                    }
+                } else {
+                    res.send('Turno Confirmado');
+                }
+            });
         } else {
-            console.log("Email sent");
-            
+            console.log('cliente no existe');
+            res.send('cliente no existe');
         }
     });
+};
 
-   
+exports.confirmarTurno = function(req, res) {
+
+    var id = req.params.id;
+    var id_final = '';
+    var idAux = id.substr(-3); //id.slice(0, -3)
+    var idAux1 = id.substr(-1); //id.slice(0, -3)
+
+    if (idAux == '%20') {
+        id_final = id.slice(0, -3);
+    } else if (idAux1 == '+') {
+        id_final = id.slice(0, -1);
+    } else {
+        id_final = id;
+    }
+
+    var myquery = { _id: id_final };
+    var newvalues = { $set: { confirmado: 1 } };
+
+    Turno.findById(myquery, function(err, _cliente) {
+
+        if (_cliente != undefined) {
+            console.log('reconozco cliente ' + _cliente.nombre);
+            Jornadas.findById(_cliente.jornada, function(err, jor) {
+
+                Veterinarios.findOne({$or:[{ 'nombre': jor.veterinario },]}, function(err, veterinario) {
+  
+                    res.render('turnos/confirmarTurno', {
+                        'cliente': _cliente,
+                        'jornada': jor,
+                        'veterinario': veterinario,
+                        moment: moment,
+                    });
+                });
+            });
+        } else {
+            console.log('cliente no existe');
+            res.send('cliente no existe');
+        }
+    });
+};
+
+exports.cancelar_turno = function(req, res) {
+    var id = req.params.id;
+    var id_final = '';
+    var idAux = id.substr(-3); //id.slice(0, -3)
+    var idAux1 = id.substr(-1); //id.slice(0, -3)
+
+    if (idAux == '%20') {
+        id_final = id.slice(0, -3);
+    } else if (idAux1 == '+') {
+        id_final = id.slice(0, -1);
+    } else {
+        id_final = id;
+    }
+
+    var myquery = {
+        _id: id_final,
+    };
+
+    var newvalues = {
+        $set: {
+            confirmado: 0,
+        }
+    };
+
+    Turno.findOneAndUpdate(myquery, newvalues, function(err, data) {
+        try {
+            res.render('turnos/cancelarTurno', {
+                'jobs': data,
+                moment: moment
+            });
+            console.log("Se cancela el turno " + id_final);
+        } catch (err) {
+            console.error("Error al cancelar Turno " + err);
+        }
+    });
 };
 
 
+exports.envio_turno = function(req, res) {
+    var id = req.body.idJornada;
+    var id_final = '';
+    var idAux = id.substr(-3); //id.slice(0, -3)
+    var idAux1 = id.substr(-1); //id.slice(0, -3)
 
- function actualizar_hora_jornada(idJornada, hora){
-    var myquery = { 
-                        _id:idJornada,
-                  };
-    
+    if (idAux == '%20') {
+        id_final = id.slice(0, -3);
+    } else if (idAux1 == '+') {
+        id_final = id.slice(0, -1);
+    } else {
+        id_final = id;
+    }
+
+    var myquery = {
+        _id: id_final,
+    };
+
     var newvalues = {
-                        $set: {
-                                
-                                hora_prox_turno: hora,
-                              } 
+        $set: {
+            aviso: 2,
+        }
+    };
 
-                    };
-    Jornadas.updateOne(myquery, newvalues, function(err, data) {
-    if (err) throw err;
-    //console.log("Se actualizo hora de la jornada ");
-   
-    
+    Turno.findOneAndUpdate(myquery, newvalues, function(err, data) {
+        try {
+            console.log("Se envia aviso " + id_final);
+        } catch (err) {
+            console.error("Error al enviar aviso " + err);
+        }
+        res.send("Aviso enviado");
     });
-}
-
- function actualizar_contador_jornada(idJornada, contador){
-    //console.log("actualizando contador " + contador)
-    var myquery = { 
-                        _id:idJornada,
-                  };
-    
-    var newvalues = {
-                        $set: {
-                                cont: contador,
-                              } 
-
-                    };
-    Jornadas.updateOne(myquery, newvalues, function(err, data) {
-    if (err) throw err;
-    //console.log("Se actualizo el contador de la jornada " );
-    
-    
-    });
-}
-
- /*function actualizar_hora_turno(idTurno, hora){
-    //console.log("actualizando hora de turno " + hora)
-    var myquery = { 
-                        _id:idTurno,
-                  };
-    
-    var newvalues = {
-                        $set: {
-                                hora: hora,
-                              } 
-
-                    };
-    Turno.updateOne(myquery, newvalues, function(err, data) {
-    if (err) throw err;
-    //console.log("Se actualizo la hora del turno " + hora );
-    
-    
-    });
-}*/
-
-function sumar_mediahora(hora){
-
-    var hora_final = moment(hora).add(30, 'minutes').format('HH:mm');
-    //console.log("hora sumada " + hora_final);
-    return hora_final;
-}
-
-
-
-
-exports.confirmar_turno = function (req, res) {
-    var myquery = { 
-                        _id:req.params.id,
-                  };
-    
-    var newvalues = {
-                        $set: {
-                                confirmado: 1,
-                              } 
-
-                    };
-    Turno.updateOne(myquery, newvalues, function(err, data) {
-    if (err) throw err;
-
-        res.render('turnos/confirmarTurno',  { 
-                'jobs': data, 
-                moment: moment 
-        });
-    });
-
-    Turno.findById(myquery, function (err, cliente) {
-
-        if (err) return next(err);
-        //res.send(jornada);
-        //res.render('jornadas/index');
-
-        
-
-        Jornadas.findById(cliente.jornada, function (err, jor) {
-                        if (err) return next(err);
-
-        console.log("primer aviso localidad " + jor);
-
-        res.render('turnos/confirmarTurno',  { 
-                'jobs': cliente, 
-                moment: moment 
-        });
-
-       mail_primer_aviso(cliente.mail, cliente.nombre, jor.localidad,jor.direparcial,moment(cliente.hora).format('D/M/YYYY HH:mm'), cliente.id);
-       })
-     
-    })
-    
 };
 
 
+async function obtenerJornada(req, res) {
 
-
-
-exports.cancelar_turno = function (req, res) {
-    var myquery = { 
-                        _id:req.params.id,
-                  };
-    
-    var newvalues = {
-                        $set: {
-                                confirmado: 0,
-                              } 
-
-                    };
-    Turno.updateOne(myquery, newvalues, function(err, data) {
-    if (err) throw err;
-
-        res.render('turnos/cancelarTurno',  { 
-                'jobs': data, 
-                moment: moment 
-        });
-    });
-    console.log("Se cancela el turno" );
-};
-
-
-
-async function obtenerJornada(req,res){
-
-    
     _hora = "";
     var hora_nueva;
-    
-    _contador = 0; 
-  
-   idJornadaSelec = req.body.jornada;
+    _contador = 0;
+    idJornadaSelec = req.body.jornada;
 
-   Jornadas.findById(idJornadaSelec, function (err, jor) {
-                        if (err) return next(err);
-                        //res.send(jornada);
-                        console.log("------------------------------------------obtengo jornada " + jor.id);
-                        console.log("--obtengo hora turno jornada " + jor.hora_prox_turno);
-                        console.log("--obtengo contador  jornada " + jor.cont);
+    Jornadas.findById(idJornadaSelec, function(err, jor) {
+        if (err) return next(err);
 
-            _localidad = jor.localidad;
-            _precio = jor.precio;
-            _fecha = jor.fecha;
-            _hora = jor.hora_prox_turno;
-            _direparcial = jor.direparcial;
-            _grupo = jor.cant_grupo;
-            _contador = jor.cont;        
-          console.log("00hora antes de hora nueva " + moment(_hora).format('HH:mm'));
-                        
-    
+        _localidad = jor.localidad;
+        _precio = jor.precio;
+        _fecha = jor.fecha;
+        _hora = jor.hora_prox_turno;
+        _direparcial = jor.direparcial;
+        _grupo = jor.cant_grupo;
+        _contador = jor.cont;
 
-          if (_contador >= _grupo) {
-
-            
+        if (_contador >= _grupo) {
             actualizar_contador_jornada(idJornadaSelec, 1);
-
-            
-            //console.log("hora antes de sumar " + moment(_hora).tz("America/Argentina/Buenos_Aires").format('HH:mm'));
             hora_nueva = moment(_hora).add(30, 'minutes');
-            //console.log("hora sumada " + moment(hora_nueva).tz("America/Argentina/Buenos_Aires").format('HH:mm'));
             actualizar_hora_jornada(idJornadaSelec, hora_nueva);
-            }
-            else{
-
-                console.log("tadavia no cambio la hora");
-                console.log("hora antes de hora nueva " + moment(_hora).format('HH:mm'));
-
-                hora_nueva = _hora;
-
-                console.log("hora nueva " + hora_nueva);
-                i = _contador + 1;
-                //console.log("el contador queda en i " + i);
-                ////console.log("valor de i " + i);
-            console.log("voy a actualizar el contador de la jornada " + idJornadaSelec + " que sera " + i.toString() + " cast de " + i);
-            actualizar_contador_jornada(idJornadaSelec,i.toString());
-
-            }
-            //actualizar_hora_turno(item.id, hora_nueva);
-           
-            console.log("_____________________________ " + hora_nueva + " ______________________________________")
-
-             var turno = new Turno({
-                            nombre : req.body.nombre,
-                            telefono : req.body.telefono,
-                            mail : req.body.mail,
-                            dni : req.body.dni,
-                            jornada :    req.body.jornada , 
-                            hora: hora_nueva,       
-                            animal  : {
-                                        tipo : req.body.tipo,
-                                        peso : req.body.peso,
-                                        cantidad : req.body.cantidad,
-                                        preniado : req.body.preniado
-                                    },
-                            aviso: req.body.aviso,
-                            confirmado : '',
-                            asistio  : ''
-                        });
-   
-
+        } else {
+            hora_nueva = _hora;
+            i = _contador + 1;
+            actualizar_contador_jornada(idJornadaSelec, i.toString());
+        }
+        var turno = new Turno({
+            nombre: req.body.nombre,
+            telefono: req.body.telefono,
+            mail: '',
+            dni: req.body.dni,
+            jornada: req.body.jornada,
+            hora: hora_nueva,
+            animal: {
+                tipo: req.body.tipo,
+                peso: req.body.peso,
+                nombreMascota: req.body.nombreMascota,
+                cantidad: req.body.cantidad,
+                preniado: req.body.preniado
+            },
+            aviso: req.body.aviso,
+            confirmado: '',
+            asistio: '',
+            reserva: req.body.reserva
+        });
 
         turno.save().then(item => {
-
-        res.send("guardando turno en database ");
-
-        
-        //console.log("Mandando mail " + turno.mail + ' - ' + turno.nombre + ' - ' + _localidad, _precio + ' - ' + moment(_fecha).format('D/M/YYYY') + ' - ' + moment(hora_nueva).tz("America/Argentina/Buenos_Aires").format('HH:mm') + ' - ' + _direparcial, turno.id);
-      
-        mail_confirmacion(turno.mail, turno.nombre, _localidad, _precio, moment(_fecha).format('D/M/YYYY'), moment(hora_nueva).format('HH:mm'), _direparcial, turno.id);
-        
-    })
-    .catch(err => {
-      res.status(400).send("unable to save to database " + err);
-      console.log(err);
+                res.send("guardando turno en database ");
+            })
+            .catch(err => {
+                res.status(400).send("unable to save to database " + err);
+                console.log(err);
+            });
     });
-             
-});
-   
-
-   return hora_nueva;
-
+    return hora_nueva;
 }
 
+exports.presente = function(req, res) {
+    var id = req.body.idTurno;
+    var estado = req.body.estado;
+    var myquery = {
+        _id: id,
+    };
+    console.log('estado que llega ' + estado);
+    var estadoPersona = 0;
+    if (estado == 'presente') {
+        estadoPersona = '';
+    } else {
+        estadoPersona = 1;
+    }
 
-
-
-
-
-
-
-function mail_primer_aviso(destino, nombre, localidad, direparcial,   fecha,  idTurno) {
-   
-    console.log("Mandando mail " + destino + ' - ' + nombre );
-
-    var transporter = nodemailer.createTransport({
-        host: 'mail.c1380931.ferozo.com',
-        tls: {
-            rejectUnauthorized:false
-        },
-        secure: true,
-        auth: {
-            user: 'no-reply@c1380931.ferozo.com',
-            pass: 'V6hKGi@pJu'
+    var newvalues = {
+        $set: {
+            asistio: estadoPersona,
         }
-    });
-
-    var mailOptions = {
-            from: 'no-reply@castraciones.com.ar',
-            to: destino,
-            subject: 'Castracion - TURNO CONFIRMADO!',
-            text: 'Hola , usted solicito un turno para la jornada de castracion Florencio Varela 22/10/2018,\n' +
-            'Se le otorgara un turno para las 09:00 hs\n' +
-            'Zona: a 4 cuadras del centro (la direccion exacta se brindara 48hs antes por mail)\n\n' +
-            'Muchas Gracias',
-            html: '<!doctype html><html>  <head><meta name="viewport" content="width=device-width" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Simple Transactional Email</title><style>  /* -------------------------------------  GLOBAL RESETS  ------------------------------------- */  img {border: none;-ms-interpolation-mode: bicubic;max-width: 100%; }  body {background-color: #f6f6f6;font-family: sans-serif;-webkit-font-smoothing: antialiased;font-size: 14px;line-height: 1.4;margin: 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%; }  table {border-collapse: separate;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%; }table td {  font-family: sans-serif;  font-size: 14px;  vertical-align: top; }  /* -------------------------------------  BODY & CONTAINER  ------------------------------------- */  .body {background-color: #f6f6f6;width: 100%; }  /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */  .container {display: block;Margin: 0 auto !important;/* makes it centered */max-width: 580px;padding: 10px;width: 580px; }  /* This should also be a block element, so that it will fill 100% of the .container */  .content {box-sizing: border-box;display: block;Margin: 0 auto;max-width: 580px;padding: 10px; }  /* -------------------------------------  HEADER, FOOTER, MAIN  ------------------------------------- */  .main {background: #ffffff;border-radius: 3px;width: 100%; }  .wrapper {box-sizing: border-box;padding: 20px; }  .content-block {padding-bottom: 10px;padding-top: 10px;  }  .footer {clear: both;Margin-top: 10px;text-align: center;width: 100%; }.footer td,.footer p,.footer span,.footer a {  color: #999999;  font-size: 12px;  text-align: center; }  /* -------------------------------------  TYPOGRAPHY  ------------------------------------- */  h1,  h2,  h3,  h4 {color: #000000;font-family: sans-serif;font-weight: 400;line-height: 1.4;margin: 0;margin-bottom: 30px; }  h1 {font-size: 35px;font-weight: 300;text-align: center;text-transform: capitalize; }  p,  ul,  ol {font-family: sans-serif;font-size: 14px;font-weight: normal;margin: 0;margin-bottom: 15px; }p li,ul li,ol li {  list-style-position: inside;  margin-left: 5px; }  a {color: #3498db;text-decoration: underline; }  /* -------------------------------------  BUTTONS  ------------------------------------- */  .btn {box-sizing: border-box;width: 100%; }.btn > tbody > tr > td {  padding-bottom: 15px; }.btn table {  width: auto; }.btn table td {  background-color: #ffffff;  border-radius: 5px;  text-align: center; }.btn a {  background-color: #ffffff;  border: solid 1px #3498db;  border-radius: 5px;  box-sizing: border-box;  color: #3498db;  cursor: pointer;  display: inline-block;  font-size: 14px;  font-weight: bold;  margin: 0;  padding: 12px 25px;  text-decoration: none;  text-transform: capitalize; }  .btn-primary table td {background-color: #3498db; }  .btn-primary a {background-color: red;border-color: #3498db;color: #ffffff; }  /* -------------------------------------  OTHER STYLES THAT MIGHT BE USEFUL  ------------------------------------- */  .last {margin-bottom: 0; }  .first {margin-top: 0; }  .align-center {text-align: center; }  .align-right {text-align: right; }  .align-left {text-align: left; }  .clear {clear: both; }  .mt0 {margin-top: 0; }  .mb0 {margin-bottom: 0; }  .preheader {color: transparent;display: none;height: 0;max-height: 0;max-width: 0;opacity: 0;overflow: hidden;mso-hide: all;visibility: hidden;width: 0; }  .powered-by a {text-decoration: none; }  hr {border: 0;border-bottom: 1px solid #f6f6f6;Margin: 20px 0; }  /* -------------------------------------  RESPONSIVE AND MOBILE FRIENDLY STYLES  ------------------------------------- */  @media only screen and (max-width: 620px) {table[class=body] h1 {  font-size: 28px !important;  margin-bottom: 10px !important; }table[class=body] p,table[class=body] ul,table[class=body] ol,table[class=body] td,table[class=body] span,table[class=body] a {  font-size: 16px !important; }table[class=body] .wrapper,table[class=body] .article {  padding: 10px !important; }table[class=body] .content {  padding: 0 !important; }table[class=body] .container {  padding: 0 !important;  width: 100% !important; }table[class=body] .main {  border-left-width: 0 !important;  border-radius: 0 !important;  border-right-width: 0 !important; }table[class=body] .btn table {  width: 100% !important; }table[class=body] .btn a {  width: 100% !important; }table[class=body] .img-responsive {  height: auto !important;  max-width: 100% !important;  width: auto !important; }}  /* -------------------------------------  PRESERVE THESE STYLES IN THE HEAD  ------------------------------------- */  @media all {.ExternalClass {  width: 100%; }.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div {  line-height: 100%; }.apple-link a {  color: inherit !important;  font-family: inherit !important;  font-size: inherit !important;  font-weight: inherit !important;  line-height: inherit !important;  text-decoration: none !important; }.btn-primary table td:hover {  background-color: #34495e !important; }.btn-primary a:hover {  background-color: #34495e !important;  border-color: #34495e !important; } }</style>  </head>  <body class=""><table border="0" cellpadding="0" cellspacing="0" class="body">  <tr><td>&nbsp;</td><td class="container">  <div class="content"><!-- START CENTERED WHITE CONTAINER --><span class="preheader"></span><table class="main">  <!-- START MAIN CONTENT AREA -->  <tr><td class="wrapper">  <table border="0" cellpadding="0" cellspacing="0"><tr>  <td><p>Hola ' + nombre + ',</p><p>Su turno para la jornada de castracion de ' + localidad + ' el dia ' + fecha + ' se encuentra <strong>CONFIRMADO</strong>.</p> <div dir="auto">Zona: ' + direparcial + ' (la direccion exacta se brindara 48 horas antes de la jornada).</div><div dir="auto"><strong>MUY IMPORTANTE: Cuidados para antes de la cirugia&nbsp;</strong></div><div dir="auto">Ayuno: 12hs s&oacute;lido y 10hs de l&iacute;quido.<br> <br> </div><div dir="auto">Una manta, frazada o toalla para cubrirlo una vez que es operado.<br> <br></div><div dir="auto"> <strong>GATOS/AS :</strong>  concurrir con collar y transportarlo en donde ud. quiera(mochila, bolso transportador, etc) pero debe llevar una bolsa de red o arpillera <strong>SI o SI</strong> para ingresar a cirug&iacute;a (son las bolsas de cebolla y se consiguen en forma gratuita o a muy bajo costo en verdulerias).&nbsp;<br> <br></div><div dir="auto"><strong>PERROS/AS</strong> : deben venir con collar, correa y/o bozal S&Oacute;LO en caso de ser necesario.<br> <br></div><div dir="auto">Tiempo estimado de cirug&iacute;a: 30 a 50 minutos (Depende exclusivamente del animal y del ayuno que el due&ntilde;o le haya dado al mismo) venir con tiempo y paciencia ya que&nbsp;<strong>el TURNO ES MERAMENTE ORGANIZATIVO.<br> <br></strong></div><div dir="auto"><strong>No ASISTIR ANTES</strong>.</div><div dir="auto">En caso de no asistir puede cancelar el turno desde el boton que se encuentra en el mail, tenga en cuenta avisar 48hs antes, pedimos compromiso y seriedad. <br><br></div> <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">  <tbody><tr>  <td align="left"><table border="0" cellpadding="0" cellspacing="0">  <tbody><tr>  <td> <a href="https://castraciones-218323.appspot.com/castraciones/cancelarTurno/' + idTurno+ ' " target="_blank">CANCELAR TURNO</a> </td></tr>  </tbody></table>  </td></tr>  </tbody></table> <br>  <p>Muchas gracias.</p><p>Organizacion Love Animals.</p>  </td></tr>  </table></td>  </tr><!-- END MAIN CONTENT AREA --></table><!-- START FOOTER --><div class="footer">  <table border="0" cellpadding="0" cellspacing="0"><tr>  <td class="content-block"><span class="apple-link">Castraciones.com.ar</span><br> Si quiere cancelar el turno haga click <a href="http://i.imgur.com/CScmqnj.gif">AQUI</a>.  </td></tr><tr>  <td class="content-block powered-by">Powered by <a href="http://htmlemail.io">HTMLemail</a>.  </td></tr>  </table></div><!-- END FOOTER -->  <!-- END CENTERED WHITE CONTAINER -->  </div></td><td>&nbsp;</td>  </tr></table>  </body></html>'
-
     };
 
-    transporter.sendMail(mailOptions, function(err, data){
-        if (err){
-            console.log(err);
-            //res.send(500, err.message);
-            
-        } else {
-            console.log("Email sent");
-            
+    Turno.findOneAndUpdate(myquery, newvalues, function(err, data) {
+
+        try {
+            console.log("estadoPersona " + estadoPersona);
+        } catch (err) {
+            console.error("Error al dar presente " + err);
         }
+        res.send("Presente");
+
     });
 
-   
 };

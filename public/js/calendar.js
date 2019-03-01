@@ -1,6 +1,7 @@
 /*
 https://www.googleapis.com/calendar/v3/calendars/c59jmvokqruv0bld7qu141rt54@group.calendar.google.com/events?key=AIzaSyBEMP4hAxvvJ1w7vov-JdcYTvIJR2CaPes
 */
+/*
 
 $(window).load(function() {
         "use strict";
@@ -38,7 +39,7 @@ $(window).load(function() {
 
 
 
-
+*/
 
 
 

@@ -1,62 +1,208 @@
-<!doctype html>
-<html>  <head>
-<meta name="viewport" content="width=device-width" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Turno Confirmado</title>
-<style>  /* -------------------------------------  GLOBAL RESETS  ------------------------------------- */  img {border: none;-ms-interpolation-mode: bicubic;max-width: 100%; }  body {background-color: #f6f6f6;font-family: sans-serif;-webkit-font-smoothing: antialiased;font-size: 14px;line-height: 1.4;margin: 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%; }  table {border-collapse: separate;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%; }table td {  font-family: sans-serif;  font-size: 14px;  vertical-align: top; }  /* -------------------------------------  BODY & CONTAINER  ------------------------------------- */  .body {background-color: #f6f6f6;width: 100%; }  /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */  .container {display: block;Margin: 0 auto !important;/* makes it centered */max-width: 580px;padding: 10px;width: 580px; }  /* This should also be a block element, so that it will fill 100% of the .container */  .content {box-sizing: border-box;display: block;Margin: 0 auto;max-width: 580px;padding: 10px; }  /* -------------------------------------  HEADER, FOOTER, MAIN  ------------------------------------- */  .main {background: #ffffff;border-radius: 3px;width: 100%; }  .wrapper {box-sizing: border-box;padding: 20px; }  .content-block {padding-bottom: 10px;padding-top: 10px;  }  .footer {clear: both;Margin-top: 10px;text-align: center;width: 100%; }.footer td,.footer p,.footer span,.footer a {  color: #999999;  font-size: 12px;  text-align: center; }  /* -------------------------------------  TYPOGRAPHY  ------------------------------------- */  h1,  h2,  h3,  h4 {color: #000000;font-family: sans-serif;font-weight: 400;line-height: 1.4;margin: 0;margin-bottom: 30px; }  h1 {font-size: 35px;font-weight: 300;text-align: center;text-transform: capitalize; }  p,  ul,  ol {font-family: sans-serif;font-size: 14px;font-weight: normal;margin: 0;margin-bottom: 15px; }p li,ul li,ol li {  list-style-position: inside;  margin-left: 5px; }  a {color: #3498db;text-decoration: underline; }  /* -------------------------------------  BUTTONS  ------------------------------------- */  .btn {box-sizing: border-box;width: 100%; }.btn > tbody > tr > td {  padding-bottom: 15px; }.btn table {  width: auto; }.btn table td {  background-color: #ffffff;  border-radius: 5px;  text-align: center; }.btn a {  background-color: #ffffff;  border: solid 1px #3498db;  border-radius: 5px;  box-sizing: border-box;  color: #3498db;  cursor: pointer;  display: inline-block;  font-size: 14px;  font-weight: bold;  margin: 0;  padding: 12px 25px;  text-decoration: none;  text-transform: capitalize; }  .btn-primary table td {background-color: #3498db; }  .btn-primary a {background-color: red;border-color: #3498db;color: #ffffff; }  /* -------------------------------------  OTHER STYLES THAT MIGHT BE USEFUL  ------------------------------------- */  .last {margin-bottom: 0; }  .first {margin-top: 0; }  .align-center {text-align: center; }  .align-right {text-align: right; }  .align-left {text-align: left; }  .clear {clear: both; }  .mt0 {margin-top: 0; }  .mb0 {margin-bottom: 0; }  .preheader {color: transparent;display: none;height: 0;max-height: 0;max-width: 0;opacity: 0;overflow: hidden;mso-hide: all;visibility: hidden;width: 0; }  .powered-by a {text-decoration: none; }  hr {border: 0;border-bottom: 1px solid #f6f6f6;Margin: 20px 0; }  /* -------------------------------------  RESPONSIVE AND MOBILE FRIENDLY STYLES  ------------------------------------- */  @media only screen and (max-width: 620px) {table[class=body] h1 {  font-size: 28px !important;  margin-bottom: 10px !important; }table[class=body] p,table[class=body] ul,table[class=body] ol,table[class=body] td,table[class=body] span,table[class=body] a {  font-size: 16px !important; }table[class=body] .wrapper,table[class=body] .article {  padding: 10px !important; }table[class=body] .content {  padding: 0 !important; }table[class=body] .container {  padding: 0 !important;  width: 100% !important; }table[class=body] .main {  border-left-width: 0 !important;  border-radius: 0 !important;  border-right-width: 0 !important; }table[class=body] .btn table {  width: 100% !important; }table[class=body] .btn a {  width: 100% !important; }table[class=body] .img-responsive {  height: auto !important;  max-width: 100% !important;  width: auto !important; }}  /* -------------------------------------  PRESERVE THESE STYLES IN THE HEAD  ------------------------------------- */  @media all {.ExternalClass {  width: 100%; }.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div {  line-height: 100%; }.apple-link a {  color: inherit !important;  font-family: inherit !important;  font-size: inherit !important;  font-weight: inherit !important;  line-height: inherit !important;  text-decoration: none !important; }.btn-primary table td:hover {  background-color: #34495e !important; }.btn-primary a:hover {  background-color: #34495e !important;  border-color: #34495e !important; } }</style>  </head>  <body class="">
-<table border="0" cellpadding="0" cellspacing="0" class="body">  <tr>
-<td>&nbsp;</td>
-<td class="container">  <div class="content">
-<!-- START CENTERED WHITE CONTAINER -->
-<span class="preheader">
-</span>
-<table class="main">  <!-- START MAIN CONTENT AREA -->  <tr>
-<td class="wrapper">  <table border="0" cellpadding="0" cellspacing="0">
-<tr>  <td>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]>
+<!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 
-<p><strong>Su turno ha sido  CONFIRMADO</strong>.</p> 
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126131032-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-126131032-1');
+</script>
+    <meta charset="utf-8" />
+    <!-- Website Title & Description -->
+    <title>Organizacion Love Animals | Castraciones a bajo costo</title>
+    <meta property="og:title" content="Organizacion Love Animals | Confirme su Turno">
+    <meta property="og:image" content="https://castraciones-218323.appspot.com/img/logo.png">
+    <meta property="og:description" content="Ingrese para confirmar su turno.">
+    <meta name="description" content="Asociacion Love Animals | Castraciones a bajo costo">
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Included CSS Files -->
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/supersized.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/supersized.shutter.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <!-- JS Files -->
+    <script type="text/javascript" src="../../js/modernizr.js"></script>
+    <script type="text/javascript" src="../../js/device.min.js"></script>
+    <!-- Google Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Exo:200,400,600' rel='stylesheet' type='text/css'>
+</head>
 
-<div dir="auto">Venir con tiempo y paciencia ya que&nbsp; el<strong> TURNO ES MERAMENTE ORGANIZATIVO.<br> <br>
-</strong>
-</div>
+<body>
+    <section class="home-content confirmacion-turno">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div id="home">
+                        <img id="logo" src="../../img/logo.png" alt="">
+                        <% if (cliente.confirmado=='0') { -%>
+                        <h2 class="center text-dark">Hola <%= cliente.nombre %>, su Turno esta CANCELADO!</h2>
+                        <p>Debera sacar uno nuevo si lo desea.</p>
+                        <p> <a class="empresa" href="https://castraciones-218323.appspot.com/castraciones" ><button type="button" class="btn btn-success ">SACAR TURNO</button> </a></p>
+                        <% } else if (cliente.confirmado=='1'){ -%>
+                        <h2 class="center text-dark">Hola <%= cliente.nombre %>, su Turno esta confirmado!</h2>
+                        <p>Puede cancelarlo si lo desea.</p>
+                        <p> <a class="empresa" href="https://castraciones-218323.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" ><button type="button" class="btn btn-danger ">CANCELO</button> </a></p>
+                        <p>Le recordamos que puede entrar al link que recibio por Whatsapp las veces que lo requiera.</p>
+                        <br>
+                        <p><b>Fecha: </b>
+                            <%= moment(cliente.hora).format('D/M/YYYY'); %> a las
+                            <%= moment(cliente.hora).format('HH:mm'); %>
+                        </p>
+                        <p><b>Direccion: </b><span><%= jornada.direccion %></span></p>
+                        <p><b>Zona: </b>
+                            <%= (jornada.localidad); %>
+                        </p>
+                        <hr>
+                        <table class="table table-bordered">
+                          
+                          <tbody>
+                            <tr>
+                              <th scope="row">Cantidad de animales:</th>
+                              <td><%= cliente.animal.cantidad %></td>
+                              
+                            </tr>
+                            <tr>
+                              <th scope="row">Precio por animal:</th>
+                              <td>$<%= jornada.precio %></td>
+                              
+                            </tr>
+                           
+                              <% if (cliente.animal.peso == 'Menos de 30 Kg') { -%>
+                                
+                                <tr>
+                                   <th scope="row"><h3>Total:</h3></th>
+                                   <td><h3>$<%= jornada.precio * cliente.animal.cantidad %></h3></td>
+                              <% } else { -%>
+                                    <tr>
+                                        <th scope="row">Adicional por peso mayor a 30kg. <small>Por 1 (un animal).</small></th>
+                                        <td>$<%= veterinario.adicional %></td>  
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><h3>Total:</h3></th>
+                                        <td><h3>$<%= (jornada.precio * cliente.animal.cantidad) + parseInt(veterinario.adicional) %></h3></td>
+                                    
+                              <% } -%>
+                              
+                                                                  
+                            </tr>
+                          </tbody>
+                        </table>
+                         <h3><%= jornada.observacion %></h3>
+                        <hr>
+                        <h3>MUY IMPORTANTE: Cuidados para antes de la cirugia.</h3>
+                        <h4>Ayuno: 12hs sólido y 10hs de líquido.</h4>
+                        <p>Una manta, frazada o toalla para cubrirlo una vez que es operado.</p>
+                            <% if (cliente.animal.tipo=='GATO' || cliente.animal.tipo=='GATA') { -%>
+                            <p>GATOS/AS : concurrir con collar y transportarlo en donde ud. quiera(mochila, bolso transportador, etc) pero debe llevar una bolsa de red o arpillera SI o SI para ingresar a cirugía (son las bolsas de cebolla y se consiguen en forma gratuita o a muy bajo costo en verdulerias)</p>
+                            <% } else { -%>
+                            <p>PERROS/AS : deben venir con collar, correa y/o bozal SÓLO en caso de ser necesario.</p>
+                            <% } -%>
+                        <p>Tiempo estimado de cirugía: 60 a 90 minutos (Depende exclusivamente del animal y del ayuno que el dueño le haya dado al mismo) venir con tiempo y paciencia ya que el <b><br>TURNO ES MERAMENTE ORGANIZATIVO.</b></p>
+                        <p><b>No ASISTIR ANTES.</b>
+                            Pedimos compromiso y seriedad. Recuerde que es una campaña masiva a bajo costo. </p>
+                        <p><b>La Jornada no se suspende por lluvia.</b></p>
+                        <% }
 
- <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">  <tbody>
-<tr>  <td align="left">
-<table border="0" cellpadding="0" cellspacing="0">  <tbody>
-<tr>  
-</tr>  </tbody>
-</table>  </td>
-</tr>  </tbody>
-</table> <br>  <p>Muchas gracias.</p>
-<p>Organizacion Love Animals.</p>  </td>
-</tr>  </table>
-</td>  </tr>
-<!-- END MAIN CONTENT AREA -->
-</table>
-<!-- START FOOTER -->
-<div class="footer">  <table border="0" cellpadding="0" cellspacing="0">
-<tr>  <td class="content-block">
-<span class="apple-link">Castraciones.com.ar</span>
+                        else { -%>
+                        <h2 class="center text-dark">Hola <%= cliente.nombre %>, necesitamos que confirme o cancele su turno!</h2>
+                        <p> <a class="empresa" href="https://castraciones-218323.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" ><button type="button" class="btn btn-danger ">CANCELO</button> </a><a class="empresa" id="confirmaTurno" data-id="<%= cliente.id %>"  href="#" ><button type="button" id="btnConfirmo" class="btn btn-success verde">CONFIRMO</button> </a></p>
+                        <p>Le recordamos que puede entrar al link que recibio por Whatsapp las veces que lo requiera.</p>
+                        <br>
+                        <p><b>Fecha: </b>
+                            <%= moment(cliente.hora).format('D/M/YYYY'); %> a las
+                            <%= moment(cliente.hora).format('HH:mm'); %>
+                        </p>
+                        <p><b>Direccion: </b><span><%= jornada.direccion %></span></p>
+                        <p><b>Zona: </b>
+                            <%= (jornada.localidad); %>
+                        </p>
+                        <hr>
+                        <!-- <h3><b>Precio: $<span><%= jornada.precio %> por animal.</span></b></h3>
+                        <h3><b>Adicional: $<span>200 </span></b>por que su mascota pesa as de 30 kilos.</h3>
+                        <h3><b>Precio: $<span><%= jornada.precio %> por animal.</span></b></h3>
+                        <h3><%= jornada.observacion %></h3> -->
 
-<tr>  
-</tr>  </table>
-</div>
-<!-- END FOOTER -->  <!-- END CENTERED WHITE CONTAINER -->  </div>
-</td>
-<td>&nbsp;</td>  </tr>
-</table> 
-	
+                        <table class="table table-bordered">
+                          
+                          <tbody>
+                            <tr>
+                              <th scope="row">Cantidad de animales:</th>
+                              <td><%= cliente.animal.cantidad %></td>
+                              
+                            </tr>
+                            <tr>
+                              <th scope="row">Precio por animal:</th>
+                              <td>$<%= jornada.precio %></td>
+                              
+                            </tr>
+                           
+                              <% if (cliente.animal.peso == 'Menos de 30 Kg') { -%>
+                                
+                                <tr>
+                                   <th scope="row"><h3>Total:</h3></th>
+                                   <td><h3>$<%= jornada.precio * cliente.animal.cantidad %></h3></td>
+                              <% } else { -%>
+                                    <tr>
+                                        <th scope="row">Adicional por peso mayor a 30kg. <small>Por 1 (un animal).</small></th>
+                                        <td>$<%= veterinario.adicional %></td>  
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><h3>Total:</h3></th>
+                                        <td><h3>$<%= (jornada.precio * cliente.animal.cantidad) + parseInt(veterinario.adicional) %></h3></td>
+                                    
+                              <% } -%>
+                              
+                                                                  
+                            </tr>
+                          </tbody>
+                        </table>
+                         <h3><%= jornada.observacion %></h3>
+                        <hr>
+                        <h3>MUY IMPORTANTE: Cuidados para antes de la cirugia.</h3>
+                        <h4>Ayuno: 12hs sólido y 10hs de líquido.</h4>
+                        <p>Una manta, frazada o toalla para cubrirlo una vez que es operado.</p>
+                            <% if (cliente.animal.tipo=='GATO' || cliente.animal.tipo=='GATA') { -%>
+                            <p>GATOS/AS : concurrir con collar y transportarlo en donde ud. quiera(mochila, bolso transportador, etc) pero debe llevar una bolsa de red o arpillera SI o SI para ingresar a cirugía (son las bolsas de cebolla y se consiguen en forma gratuita o a muy bajo costo en verdulerias)</p>
+                            <% } else { -%>
+                            <p>PERROS/AS : deben venir con collar, correa y/o bozal SÓLO en caso de ser necesario.</p>
+                            <% } -%>
+                        <p>Tiempo estimado de cirugía: 60 a 90 minutos (Depende exclusivamente del animal y del ayuno que el dueño le haya dado al mismo) venir con tiempo y paciencia ya que el <b><br>TURNO ES MERAMENTE ORGANIZATIVO.</b></p>
+                        <p><b>No ASISTIR ANTES.</b>
+                            Pedimos compromiso y seriedad. Recuerde que es una campaña masiva a bajo costo. </p>
+                        <p><b>La Jornada no se suspende por lluvia.</b></p>
+                        <% } -%>
+                        <hr>
+                        <!-- <button type="button" class="btn btn-danger ">Cancelar TURNO</button> -->
+                        <p>Por cualquier consulta enviar un mail a <i>info@castraciones.com.ar</i></p>
+                        <p>Muchas gracias.</p>
+                        <p><a class="empresa" href="http://www.castraciones.com.ar">Organizacion Love Animals.</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Javascript -->
+    <script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/detectmobilebrowser.js"></script>
+    <script type="text/javascript" src="../../js/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="../../js/supersized.shutter.min.js"></script>
+    <script type="text/javascript" src="../../js/scripts.js"></script>
+</body>
 
-	 <script>
-    	
-	
-		setTimeout("location.href = 'http://www.castraciones.com.ar';",8000);
-		//setTimeout($(location).attr("href", "https://castraciones-218323.appspot.com/castraciones"), 5000);
-
-
-
-    </script>
-
- </body>
 </html>

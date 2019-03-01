@@ -1,186 +1,284 @@
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]>
-<!--><html class="no-js" lang="en"><!--<![endif]-->
+<!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126131032-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126131032-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'UA-126131032-1');
-</script>
-
-	<meta charset="utf-8" />
-    
+        gtag('config', 'UA-126131032-1');
+    </script>
+    <meta charset="utf-8" />
     <!-- Website Title & Description -->
     <title>Organizacion Love Animals | Castraciones a bajo costo</title>
     <meta name="description" content="Asociacion Love Animals | Castraciones a bajo costo">
-    
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    
-    
+    <meta name="google" content="notranslate" />
     <!-- Included CSS Files -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"  type="text/css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/supersized.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/supersized.shutter.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    
-	<!-- JS Files -->
-	<script type="text/javascript" src="js/modernizr.js"></script>
-	<script type="text/javascript" src="js/device.min.js"></script>
-    
+    <!-- JS Files -->
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script type="text/javascript" src="js/device.min.js"></script>
     <!-- Google Web Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Exo:200,400,600' rel='stylesheet' type='text/css'>  
-    
-  
-    
+    <link href='http://fonts.googleapis.com/css?family=Exo:200,400,600' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
-
-
-
     <section class="home-content">
-	    <div class="container">
-		    <div class="row">
-		    	<div class="col-md-10 col-md-offset-1">
-		    		<div id="home">
-		    				<img id="logo" src="./img/logo.png" alt="">	
-					       
-				        <h1 class="animate" data-animate="fadeInDown">Proxima jornadas: </h1>
-				        
-						
-					</div>
-			    </div>
-		    </div>
-	    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div id="home">
+                        <img id="logo" src="./img/logo.png" alt="">
+                        <h1 class="animate" data-animate="fadeInDown">Proxima jornadas: </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <section id="jornadas">
+        <div class="container">
+            <div class="row" id="jornadaslista">
+                <div class="col-md-12 ">
+                    <!-- <h3 class="titulo">Proximas jornadas</h3> -->
+                    <% jobs.forEach(function(data) { %>
+                    <div class="col-md-3">
+                        <a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-observacion="<%= data.observacion %>" data-direparcial="<%= data.direparcial %>" data-fecha="<%= moment(data.fecha).utcOffset('-0300').format('D/M/YYYY'); %>" data-completa="<%=data.completa%>" data-toggle="modal" data-target="#myModal2" >
 
-   
-
-
-
-	<section id="jornadas">
-		<div class="container">
-		    <div class="row" id="jornadaslista">
-		    	<div class="col-md-12 ">
-		    		<!-- <h3 class="titulo">Proximas jornadas</h3> -->		    				
-		    				<% jobs.forEach(function(data) { %>
-
-		    					<div class="col-md-2" >
-		    						<a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-fecha="<%= moment(data.fecha).utcOffset('-0300').format('D/M/YYYY'); %>" data-toggle="modal" data-target="#myModal2" >
-		  							
-			  							<div class="cuadrado ">'							
-										    <h5 class="center centerh5"><%= data.localidad %></h5>
-										    <p class="center fecha"><%= moment(data.hora_prox_turno).format('D/M/YYYY HH:mm'); %></p>
-	    								</div>
-    								</a> 
-    							</div>
-							<% }); %>				 
-				</div>
-			</div>
-			  
-	 	</div>	
-
-		
-
-	</section>
-
-	
-    
-    
+                                        <div class="cuadrado">                            
+                                            <h5 class="center centerh5"><%= data.localidad %></h5>
+                                             
+                                            <p class="center fecha"><%= moment(data.hora_prox_turno).format('D/M/YYYY HH:mm'); %></p>
+                                           
+                                        </div>
+                                    </a>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </section>
     <div id="myModal2" class="modal fade meet-us" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-	    	<a href="#" class="close" data-dismiss="modal" aria-hidden="true">
-			<span class="fa fa-close close-1"></span>
-			<span class="fa fa-close close-2"></span>
-		</a>
-		<div class="modal-body">
-			<div class="container">
-				<div class="row modal-body-content">
-					
-					<div class="col-md-6 col-md-offset-3 contact">	
-			            <h2>SOLICITAR TURNO</h2>
-			            <h4 >Recuerde, el turno es un compromiso de asistencia.</h4>
-			            <h4 class="ocul">El valor es de <span>$700</span> por animal (incluye, perro o gato, hembra o macho).</h4>
-			        
-			        	<form  id="contactform"  >
-			                <input type="text" id="nombre" name="name" class="input" placeholder="Apellido y Nombre">
-			                <input type="number" id="telefono" name="telefono" class="input" placeholder="Telefono">
-							<input type="email" id="email" name="email" class="input" placeholder="Email">
-							<input type="number" id="dni" name="dni"  class="input" placeholder="DNI">
+        <a href="#" class="close" data-dismiss="modal" aria-hidden="true">
+            <span class="fa fa-close close-1"></span>
+            <span class="fa fa-close close-2"></span>
+        </a>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row modal-body-content">
+                    <div class=" col-xs-12 ">
+                        <form id="contactform">
+                            <div class="col-md-12 col-xs-12 ">
+                                <div class="stepwizard ">
+                                    <div class="stepwizard-row setup-panel">
+                                        <div class="stepwizard-step">
+                                            <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                                            <p>Cliente</p>
+                                        </div>
+                                        <div class="stepwizard-step">
+                                            <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                                            <p>Contacto</p>
+                                        </div>
+                                        <div class="stepwizard-step">
+                                            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                                            <p>Animal</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row setup-content" id="step-1">
+                                <div class="col-md-offset-3 col-md-6 col-xs-12 ">
+                                    <h4 id="localidadJornada"></h4>
+                                    <h4 id="direccionJornada"></h4>
+                                    <h4 id="observacionJornada"></h4>
+                                    <h3><b>El valor por animal es: <span>$700</span><br> (Perro o Gato, hembra o macho). </b></h3>
+                                    <div class="form-group">
+                                        <label class="control-label">Apellido y Nombre:</label><!-- required="required" -->
+                                        <input id="nombre" required="required" maxlength="100" type="text" class="form-control" placeholder="Ingrese su Apellido y Nombre" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">D.N.I.</label>
+                                        <input id="dni" required="required" maxlength="100" type="number" class="form-control" placeholder="Ingrese su DNI" />
+                                    </div>
+                                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Siguiente</button>
+                                </div>
+                            </div>
+                            <div class="row setup-content" id="step-2">
+                                <div class="col-md-offset-3 col-md-6 col-xs-12 ">
+                                    <div class="col-md-12">
+                                        <h4>Datos de Contacto</h4>
+                                        <div class="form-group">
+                                            <label class="control-label">Ingrese su Numero de Whatsapp <span><i class="fab fa-whatsapp fa-1x"></i></span></label>
+                                            <label class="control-label">Ejemplo: 1123456789 sin "0" ni "15" solamente colocando el prefijo "11"</label>
+                                            <input id="telefono" required="required" min="1100000000" max="1599999999" type="number" class="form-control" placeholder="1123456789 " />
+                                        </div>
+                                        
+                                        <h4><span>Es importante que nos proporcione un numero correcto para notificarle el turno y la direccion de la jornada.</span></h4>
+                                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Siguiente</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row setup-content" id="step-3">
+                                <div class="col-md-offset-3 col-md-6 col-xs-12 ">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Seleccione Animal</label>
+                                            <select class="form-control" id="tipo">
+                                                <option>PERRA</option>
+                                                <option>PERRO</option>
+                                                <option>GATA</option>
+                                                <option>GATO</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nombre de su Mascota (si es mas de 1 separelo con espacios):</label><!-- required="required" -->
+                                            <input id="nombreMascota" required="required" maxlength="150" type="text" class="form-control" placeholder="Ingrese nombre de Mascota/s" />
+                                            <label class="control-label">Seleccione Peso Aprox.</label>
+                                            <select class="form-control" id="peso">
+                                                <option>Menos de 30 Kg</option>
+                                                <option>Mas de 30 Kg</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Seleccione Cantidad de Animales a Castrar.</label>
+                                            <select class="form-control" id="cantidad">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">¿Cree que su animal esta preñada?</label>
+                                            <input type="checkbox" name="preniado" id="preniado">
+                                        </div>
+                                        <h4>Esta a punto de <span>Reservar un Turno!</span></h4>
+                                        <h4><b>El valor por animal es: <span>$700</span><span id="obser"></span><br> (Perro o Gato, hembra o macho). </b></h4>
+                                        <button class="btn btn-success btn-lg pull-right" type="submit" id="submit">Reservar Turno</button>
+                                       <!--  <button class="btn btn-success btn-lg pull-left">Pagar seña<a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=244144594-a3a00e5a-4f92-461f-a431-66a2b82174a9" ></a></button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div><h3 class="success-message-2"></h3>
+                        </div>
+                        <div class="error-message-2"></div>
+                        <!-- <div class="col-md-6 col-md-offset-3 contact"> 
+                        <h2>SOLICITAR TURNO</h2>
+                        <h4 >Recuerde, el turno es un compromiso de asistencia.</h4>
+                        <h4 class="ocul">El valor es de <span>$700</span> por animal (incluye, perro o gato, hembra o macho).</h4>
+                    
+                        <form  id="contactform"  >
+                            <input type="text" id="nombre" name="name" class="input" placeholder="Apellido y Nombre">
+                            <input type="number" id="telefono" name="telefono" class="input" placeholder="Telefono">
+                            <input type="email" id="email" name="email" class="input" placeholder="Email">
+                            <input type="number" id="dni" name="dni"  class="input" placeholder="DNI">
 
-							<h4>Datos del/los animal/es:</h4>
+                            <h4>Datos del/los animal/es:</h4>
 
-							<select class="form-control" id="tipo">
-							   <option>Seleccione Animal</option>
-							   <option>PERRA</option>
-							   <option>PERRO</option>
-							   <option>GATA</option>
-							   <option>GATO</option>
-							</select>
+                            <select class="form-control" id="tipo">
+                               <option>Seleccione Animal</option>
+                               <option>PERRA</option>
+                               <option>PERRO</option>
+                               <option>GATA</option>
+                               <option>GATO</option>
+                            </select>
 
-							<select class="form-control" id="peso">
-							    <option>Seleccione Peso Aprox.</option>
-							    <option>Menos de 30 Kg</option>
-							    <option>Mas de 30 Kg</option>
-							</select>
+                            <select class="form-control" id="peso">
+                                <option>Seleccione Peso Aprox.</option>
+                                <option>Menos de 30 Kg</option>
+                                <option>Mas de 30 Kg</option>
+                            </select>
 
-							<select class="form-control" id="cantidad">
-							    <option>Cantidad de animales</option>
-							    <option>1</option>
-							</select>
+                            <select class="form-control" id="cantidad">
+                                <option>Cantidad de animales</option>
+                                <option>1</option>
+                            </select>
 
-							<label>¿Cree que su animal esta preñada?<input type="checkbox" name="preniado" id="preniado"></label>
-
-
-							<button class="button" type="submit" value="Send" id="submit">
-								<span class="fa fa-hand-o-right submit-1"></span>
-			                    <span class="submit-2">Solicitar un turno</span>
-							</button>
-						</form>
+                            <label>¿Cree que su animal esta preñada?<input type="checkbox" name="preniado" id="preniado"></label>
 
 
-						<div class="success-message-2"></div>
-			            <div class="error-message-2"></div>  		
-					</div>     
-						
-				
-				</div>
-				
-			</div>
-	    
-		
-	    
-	
-    </div>   
+                            <button class="button" type="submit" value="Send" id="submit">
+                                <span class="fa fa-hand-o-right submit-1"></span>
+                                <span class="submit-2">Solicitar un turno</span>
+                            </button>
+                        </form>
 
 
- 
-	<!-- Javascript -->
+                        <div class="success-message-2"></div>
+                        <div class="error-message-2"></div>         
+                    </div>     
+                         -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModalCompleto" class="modal fade meet-us" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <a href="#" class="close" data-dismiss="modal" aria-hidden="true">
+            <span class="fa fa-close close-1"></span>
+            <span class="fa fa-close close-2"></span>
+        </a>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row modal-body-content">
+                    <div class=" col-xs-12 ">
+                        <div class="col-md-12 col-xs-12 text-center ">
+                            <i class="far fa-frown fa-9x"></i>
+                            <h2>La Jornada se encuentra COMPLETA!</h2>
+                            <h3>Por favor verifique otra fecha.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascript -->
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/detectmobilebrowser.js"></script>
-    
+    <script type="text/javascript" src="js/detectmobilebrowser.js"></script>
     <script type="text/javascript" src="js/supersized.3.2.7.min.js"></script>
-	<script type="text/javascript" src="js/supersized.shutter.min.js"></script>
-	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/supersized.shutter.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
     <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
-	<script type="text/javascript" src="js/jquery.countdown.js"></script>
+    <script type="text/javascript" src="js/jquery.countdown.js"></script>
     <script type="text/javascript" src="js/waypoints.min.js"></script>
     <script type="text/javascript" src="js/images.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
-  
-  
+    <script type="text/javascript">
+    (function() {
+        function $MPC_load() {
+            window.$MPC_loaded !== true && (function() {
+                var s = document.createElement("script");
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+                window.$MPC_loaded = true;
+            })();
+        }
+        window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+    })();
+    </script>
 </body>
+
 </html>

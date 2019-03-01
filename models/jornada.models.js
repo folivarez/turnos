@@ -13,6 +13,9 @@ var jornada_schema = new Schema({
   	hora_prox_turno : {type: Date},
   	cont : {type: Number},
   	activa:    {type: Boolean},
+    completa:    {type: String},
+    veterinario: {type: String},
+    observacion: {type: String},
  });
 
 
