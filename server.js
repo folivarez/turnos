@@ -21,7 +21,16 @@ const MongoStore = require('connect-mongo')(session);
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public/' ));
 
-const dbURI = process.env.DB ;
+
+var dbURI = '';
+if (process.env.ENVIRONMENT == 'PROD') {
+    dbURI = process.env.DBPROD;
+    process.env.GOOGLELOG;
+}
+else{
+    dbURI = process.env.DBTEST; 
+}
+
 
 const options = {
   useNewUrlParser: true,
