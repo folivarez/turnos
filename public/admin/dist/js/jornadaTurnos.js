@@ -23,7 +23,7 @@ $(document).ready(function() {
 
         // var _mensaje_si_modificar = 'Hola ' + nombre + ', su turno para la Jornada de Castracion en ' + localidad + ' ha sido recibido.\n *Si Ud. desea confirmarlo presione aquí* 👇 \n https://castraciones-218323.appspot.com/castraciones/confirmarTurno/' + id +'\n\nOrganizacion Love Animals🐾\n\n*Mensaje automático, NO responder.*'
 
-        var _mensaje_si_modificar = 'Hola ' + nombre + ', su petición de turno para la Jornada de Castracion en ' + localidad + ' ha sido recibida. \nPara conocer dirección, horario, cuidados previos, confirmar o cancelar el turno, *por favor RESPONDA "OK" a este mensaje automático y luego ingrese aquí.* 👇  \n\n https://castraciones-218323.appspot.com/castraciones/confirmarTurno/' + id + '\n\n' + observacion + '\n\nOrganizacion Love Animals🐾'
+        var _mensaje_si_modificar = 'Hola ' + nombre + ', su petición de turno para la Jornada de Castracion en ' + localidad + ' ha sido recibida. \nPara conocer dirección, horario, cuidados previos, confirmar o cancelar el turno, *por favor RESPONDA "OK" a este mensaje automático y luego ingrese aquí.* 👇  \n\n https://castraciones-218323.appspot.com/castraciones/confirmarTurno/' + id + '\n\nOrganizacion Love Animals🐾'
 
         var mensaje = encodeURIComponent(_mensaje_si_modificar);
 

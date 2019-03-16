@@ -11,7 +11,7 @@ $("#guardar-veterinario").click(function(e) {
     var puntos = $("#puntos").val();
 
     console.log("datos a guardar " + nombre + ' - ' + adicional + ' - '  + puntos);
-    $.post("/castraciones/admin/veterinarios", { nombre: nombre, adicional: adicional, puntos: puntos, activo:1 },
+    $.post("/castraciones/veterinarios", { nombre: nombre, adicional: adicional, puntos: puntos, activo:1 },
         function(status) {
             
             console.log(status);
@@ -26,7 +26,7 @@ $(".eliminar-veterinario").click(function(e) {
     var id = $(this).data('id');
     console.log('eliminando ' + id);
     
-   $.post("/castraciones/admin/veterinarios/delete", { id: id },
+   $.post("/castraciones/veterinarios/delete", { id: id },
         function(status) {
             
             console.log(status);

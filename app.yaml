@@ -1,2 +1,11 @@
 runtime: nodejs8
 instance_class: F2
+
+env_variables:
+  ENVIRONMENT: 'PROD'
+  SECRET: 'eminem'
+  PORT: '8080'
+  DBTEST: 'mongodb://localhost:27017/dbCastraciones'
+  DBNAME: 'dbCastraciones'
+  DBPROD: 'mongodb://castracionesdb:castracionesdb@dbcastraciones-shard-00-00-9boem.gcp.mongodb.net:27017,dbcastraciones-shard-00-01-9boem.gcp.mongodb.net:27017,dbcastraciones-shard-00-02-9boem.gcp.mongodb.net:27017/dbCastraciones?ssl=true&replicaSet=dbCastraciones-shard-0&authSource=admin&retryWrites=true'
+  GOOGLELOG: require('@google-cloud/debug-agent').start()

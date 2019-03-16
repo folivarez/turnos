@@ -295,6 +295,8 @@ async function obtenerJornada(req, res) {
             reserva: req.body.reserva
         });
 
+        
+
         turno.save().then(item => {
                 res.send("guardando turno en database ");
             })
