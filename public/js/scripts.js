@@ -138,26 +138,38 @@ $(document).ready(function() {
 
             $.post("/castraciones/turno", { nombre: nombre, telefono: telefono, mail: email, dni: dni, jornada: idJornada, tipo: tipo, peso: peso, nombreMascota: nombreMascota, cantidad: cantidad, aviso: aviso, preniado: preniado, confirmado: confirmado, asistio: asistio, reserva: reserva },
                 function(status) {
+                    console.log('status ' + status);
                     //console.log("mail2 " + email);
                     //location.reload();
-                    $('#submit').addClass("ocultar");
-                    $('.ocul').addClass("ocultar");
-                    var success = 'Le enviaremos un mensaje automatico por Whatsapp <span> entre 24 y 48 horas antes </span> del dia de la Jornada con los datos de la misma. </p> <p>¡Muchas Gracias!</p>';
+                    if (status == 'guardando turno en database' ) {
+                        $('#submit').addClass("ocultar");
+                        $('.ocul').addClass("ocultar");
+                        var success = '<span> Entre 24 y 48 horas antes </span> del dia de la campaña de castración enviaremos un mensaje automático por <span>Whatsapp</span> con todas las indicaciones. </p> <p>¡Muchas Gracias!</p>';
 
-                    $('.error-message-2').hide();
-                    $('.success-message-2').hide();
-                    $('.ocultar').hide();
-                    $('#contactform').hide();
-                    $('#contactform input').val('');
-                    $('#contactform textarea').val('');
-                    $('.success-message-2').html('<div class="center negro success-message-2"><h3>SU TURNO FUE RESERVADO EXITOSAMENTE</h3><p>' + success + '</p></div>');
-                    $('.success-message-2').fadeIn().delay(4000);
-
-                    //console.log("mail3 " + email);                     
-
-                    if (status == "success") {
-                        console.log('**********biennn');
+                        $('.error-message-2').hide();
+                        $('.success-message-2').hide();
+                        $('.ocultar').hide();
+                        $('#contactform').hide();
+                        $('#contactform input').val('');
+                        $('#contactform textarea').val('');
+                        $('.success-message-2').html('<div class="center negro success-message-2"><h3>SU TURNO FUE RESERVADO EXITOSAMENTE</h3><p>' + success + '</p></div>');
+                        $('.success-message-2').fadeIn().delay(4000);
                     }
+                    else{
+                        $('#submit').addClass("ocultar");
+                        $('.ocul').addClass("ocultar");
+                        var success = '<span>' + status.nombre + '</span> Usted ya cuenta con un turno para esta Jornada. Entre <span>24 y 48 horas</span> antes del dia de la campaña de castración enviaremos un mensaje automático por <span>Whatsapp</span> con todas las indicaciones. </p> <p>¡Muchas Gracias!</p>';
+
+                        $('.error-message-2').hide();
+                        $('.success-message-2').hide();
+                        $('.ocultar').hide();
+                        $('#contactform').hide();
+                        $('#contactform input').val('');
+                        $('#contactform textarea').val('');
+                        $('.success-message-2').html('<div class="center negro success-message-2"><h3>USTED YA TIENE UN TURNO</h3><p>' + success + '</p></div>');
+                        $('.success-message-2').fadeIn().delay(4000);   
+                    }
+                    
 
                 });
 

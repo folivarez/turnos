@@ -44,7 +44,7 @@ exports.turnoLista = function(req, res) {
 //crear turno
 exports.turno_create = function(req, res) {
     try {
-        obtenerJornada(req, res);
+        altaDeTurno(req, res);
     } catch (error) {
         console.error("error obtener jornada " + error);
     }
@@ -248,64 +248,82 @@ exports.envio_turno = function(req, res) {
 };
 
 
-async function obtenerJornada(req, res) {
+async function altaDeTurno(req, res) {
 
-    _hora = "";
-    var hora_nueva;
-    _contador = 0;
-    idJornadaSelec = req.body.jornada;
-
-    Jornadas.findById(idJornadaSelec, function(err, jor) {
-        if (err) return next(err);
-
-        _localidad = jor.localidad;
-        _precio = jor.precio;
-        _fecha = jor.fecha;
-        _hora = jor.hora_prox_turno;
-        _direparcial = jor.direparcial;
-        _grupo = jor.cant_grupo;
-        _contador = jor.cont;
-
-        if (_contador >= _grupo) {
-            actualizar_contador_jornada(idJornadaSelec, 1);
-            hora_nueva = moment(_hora).add(30, 'minutes');
-            actualizar_hora_jornada(idJornadaSelec, hora_nueva);
-        } else {
-            hora_nueva = _hora;
-            i = _contador + 1;
-            actualizar_contador_jornada(idJornadaSelec, i.toString());
-        }
-        var turno = new Turno({
-            nombre: req.body.nombre,
-            telefono: req.body.telefono,
-            mail: '',
-            dni: req.body.dni,
+    let check_dni = {
             jornada: req.body.jornada,
-            hora: hora_nueva,
-            animal: {
-                tipo: req.body.tipo,
-                peso: req.body.peso,
-                nombreMascota: req.body.nombreMascota,
-                cantidad: req.body.cantidad,
-                preniado: req.body.preniado
-            },
-            aviso: req.body.aviso,
-            confirmado: '',
-            asistio: '',
-            reserva: req.body.reserva
-        });
+            dni: req.body.dni,
+        };
+        //console.log('check DNI ' + check_dni.dni);
 
-        
+    Turno.findOne(check_dni, function(err, turno) {
 
-        turno.save().then(item => {
-                res.send("guardando turno en database ");
-            })
-            .catch(err => {
-                res.status(400).send("unable to save to database " + err);
-                console.log(err);
-            });
+            console.log('Turno ' + turno );
+            if (!turno) {
+                console.log('Guardar turno ' + turno);
+                _hora = "";
+                var hora_nueva;
+                _contador = 0;
+                idJornadaSelec = req.body.jornada;
+
+                Jornadas.findById(idJornadaSelec, function(err, jor) {
+                    if (err) return next(err);
+
+                    _localidad = jor.localidad;
+                    _precio = jor.precio;
+                    _fecha = jor.fecha;
+                    _hora = jor.hora_prox_turno;
+                    _direparcial = jor.direparcial;
+                    _grupo = jor.cant_grupo;
+                    _contador = jor.cont;
+
+                    if (_contador >= _grupo) {
+                        actualizar_contador_jornada(idJornadaSelec, 1);
+                        hora_nueva = moment(_hora).add(30, 'minutes');
+                        actualizar_hora_jornada(idJornadaSelec, hora_nueva);
+                    } else {
+                        hora_nueva = _hora;
+                        i = _contador + 1;
+                        actualizar_contador_jornada(idJornadaSelec, i.toString());
+                    }
+                    var turno = new Turno({
+                        nombre: req.body.nombre,
+                        telefono: req.body.telefono,
+                        mail: '',
+                        dni: req.body.dni,
+                        jornada: req.body.jornada,
+                        hora: hora_nueva,
+                        animal: {
+                            tipo: req.body.tipo,
+                            peso: req.body.peso,
+                            nombreMascota: req.body.nombreMascota,
+                            cantidad: req.body.cantidad,
+                            preniado: req.body.preniado
+                        },
+                        aviso: req.body.aviso,
+                        confirmado: '',
+                        asistio: '',
+                        reserva: req.body.reserva
+                    });
+
+                        turno.save().then(item => {
+                            res.status(200).send("guardando turno en database");
+                        })
+                        .catch(err => {
+                            res.status(400).send("unable to save to database " + err);
+                            console.log(err);
+                        });
+                });
+                return hora_nueva;
+            }
+            else{
+                //console.log('El DNI ya existe ' + turno);
+                res.status(200).send(turno);
+
+            }
     });
-    return hora_nueva;
+
+    
 }
 
 exports.presente = function(req, res) {
