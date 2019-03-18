@@ -34,12 +34,14 @@ $(document).on("click", ".fechaJornada", function() {
     var direparcial = $(this).data('direparcial');
     var completa = $(this).data('completa');
     var observacion = $(this).data('observacion');
+    var precio = $(this).data('precio');
     
    
 
     if (completa == "") {
         $("#myModal2").attr('data-id', idJornada);
         $("#localidadJornada").html('Jornada: <b>' + localidad + '</b>')
+        $("#precio").html('$' + precio);
         $("#direccionJornada").html('Zona: <b>' + direparcial + '</b>')
         if (typeof name !== "undefined") {
             $("#observacionJornada").html('<b>' + observacion + '</b>')
