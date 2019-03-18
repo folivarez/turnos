@@ -4,6 +4,9 @@ var format = require('date-format');
 var moment = require('moment-timezone');
 var passport = require("passport");
 
+ var cantAvisos = {};
+ var aCantAvisos = [];
+
 
 exports.admin = function(req, res) {
     console.log(req.user);
@@ -14,16 +17,24 @@ exports.admin = function(req, res) {
     };
 
     var idActivas = [];
+    //var _avisos = {};
+    
 
     var turnosSinConfirmar = { confirmado: "" };
     var turnosConfirmados = { confirmado: "1" };
     var turnosCancelados = { confirmado: "0" };
 
+    
+
     Jornadas.find(jornadasActivas, function(err, data) {
 
         if (err) return next(err);
         data.forEach(element => {
+            console.log('* ' + element._id);
+            //cantidadAvisosPendientes(element._id);
+
             idActivas.push(element._id);
+
         });
 
         var inActivas = {
@@ -58,19 +69,52 @@ exports.admin = function(req, res) {
             totalTurnosCancelados = contTurnosCancelados;
 
             var totalJornadas = data.length;
+            
+            console.log(aCantAvisos);
+            
+            
 
-            res.render('admin/dashboard', {
+            res.status(200).render('admin/dashboard', {
                 'jobs': data,
                 user : user,
                 moment: moment,
                 totalJornadas,
                 totalTurnosSinConfirmar,
                 totalTurnosConfirmados,
-                totalTurnosCancelados
+                totalTurnosCancelados,
+                aCantAvisos
+
+                
             });
         })
     }).sort({ fecha: -1 })
 };
+
+async function cantidadAvisosPendientes(idJornada){
+
+    console.log('**cuento avisos - ' + idJornada);
+   
+
+      var avisos = ''
+            avisos = {
+                jornada : idJornada,
+                aviso : 0
+            }
+
+            console.log('**cantidad de avisos faltantes - ' + avisos.jornada + ' - ');
+
+            Turno.count(avisos, function(err, count) {
+                console.log('cantidad de avisos faltantes - ' + avisos.jornada + ' - ' + count);
+                cantAvisos.jornadaId = idJornada;
+                cantAvisos.cantidad = count;
+                aCantAvisos.push(cantAvisos);
+
+                
+            });
+
+            
+
+}
 
 exports.alta_jornada = function(req, res) {
     res.render('jornadas/crear_jornada', { layout: false });

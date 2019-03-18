@@ -59,7 +59,7 @@
                 <div class="col-md-12 ">
                     <!-- <h3 class="titulo">Proximas jornadas</h3> -->
                     <% jobs.forEach(function(data) { %>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-observacion="<%= data.observacion %>" data-precio="<%= data.precio %>" data-direparcial="<%= data.direparcial %>" data-fecha="<%= moment(data.fecha).utcOffset('-0300').format('D/M/YYYY'); %>" data-completa="<%=data.completa%>" data-toggle="modal" data-target="#myModal2" >
 
                                         <div class="cuadrado">                            

@@ -31,7 +31,6 @@ else{
     dbURI = process.env.DBTEST; 
 }
 
-
 const options = {
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE,
