@@ -103,15 +103,14 @@ input[type="text"],input[type="text"]:hover,input[type="text"]:active,input[type
 	border: 3px solid #fff;
 	margin-bottom: 50px;
 	color: #fff;
-	
+   
 
 }
+
 .titulo{
 	margin-top: 50px;
 	font-size: 30px;
 	font-weight: bold;
-
-	
 }
 
 footer{
@@ -354,3 +353,4 @@ h1{
     color: black;
     font-size: 28px;
 }
+
