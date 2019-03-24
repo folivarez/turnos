@@ -34,12 +34,14 @@ $(document).on("click", ".fechaJornada", function() {
     var direparcial = $(this).data('direparcial');
     var completa = $(this).data('completa');
     var observacion = $(this).data('observacion');
+    var precio = $(this).data('precio');
     
    
 
     if (completa == "") {
         $("#myModal2").attr('data-id', idJornada);
         $("#localidadJornada").html('Jornada: <b>' + localidad + '</b>')
+        $("#precio").html('$' + precio);
         $("#direccionJornada").html('Zona: <b>' + direparcial + '</b>')
         if (typeof name !== "undefined") {
             $("#observacionJornada").html('<b>' + observacion + '</b>')
@@ -158,7 +160,7 @@ $(document).ready(function() {
                     else{
                         $('#submit').addClass("ocultar");
                         $('.ocul').addClass("ocultar");
-                        var success = '<span>' + status.nombre + '</span> Usted ya cuenta con un turno para esta Jornada. Entre <span>24 y 48 horas</span> antes del dia de la campaña de castración enviaremos un mensaje automático por <span>Whatsapp</span> con todas las indicaciones. </p> <p>¡Muchas Gracias!</p>';
+                        var success = '<span>' + status + '</span> Usted ya cuenta con un turno para esta Jornada. Entre <span>24 y 48 horas</span> antes del dia de la campaña de castración enviaremos un mensaje automático por <span>Whatsapp</span> con todas las indicaciones. </p> <p>¡Muchas Gracias!</p>';
 
                         $('.error-message-2').hide();
                         $('.success-message-2').hide();

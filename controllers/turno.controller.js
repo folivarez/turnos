@@ -250,16 +250,17 @@ exports.envio_turno = function(req, res) {
 
 async function altaDeTurno(req, res) {
 
-    let check_dni = {
+    let check_telefono = {
             jornada: req.body.jornada,
-            dni: req.body.dni,
+            telefono: req.body.telefono,
         };
         //console.log('check DNI ' + check_dni.dni);
 
-    Turno.findOne(check_dni, function(err, turno) {
+    Turno.countDocuments(check_telefono, function(err, turno) {
 
-            console.log('Turno ' + turno );
-            if (!turno) {
+        console.log('turnos devueltos ' + turno); //verificar si piden detallar animales
+            if (!turno || turno < 3) {
+                
                 console.log('Guardar turno ' + turno);
                 _hora = "";
                 var hora_nueva;
@@ -317,9 +318,7 @@ async function altaDeTurno(req, res) {
                 return hora_nueva;
             }
             else{
-                //console.log('El DNI ya existe ' + turno);
-                res.status(200).send(turno);
-
+                res.status(202).send(req.body.nombre);
             }
     });
 
@@ -332,7 +331,6 @@ exports.presente = function(req, res) {
     var myquery = {
         _id: id,
     };
-    console.log('estado que llega ' + estado);
     var estadoPersona = 0;
     if (estado == 'presente') {
         estadoPersona = '';

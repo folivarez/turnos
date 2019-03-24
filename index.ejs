@@ -59,8 +59,8 @@
                 <div class="col-md-12 ">
                     <!-- <h3 class="titulo">Proximas jornadas</h3> -->
                     <% jobs.forEach(function(data) { %>
-                    <div class="col-md-3">
-                        <a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-observacion="<%= data.observacion %>" data-direparcial="<%= data.direparcial %>" data-fecha="<%= moment(data.fecha).utcOffset('-0300').format('D/M/YYYY'); %>" data-completa="<%=data.completa%>" data-toggle="modal" data-target="#myModal2" >
+                    <div class="col-md-4">
+                        <a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-observacion="<%= data.observacion %>" data-precio="<%= data.precio %>" data-direparcial="<%= data.direparcial %>" data-fecha="<%= moment(data.fecha).utcOffset('-0300').format('D/M/YYYY'); %>" data-completa="<%=data.completa%>" data-toggle="modal" data-target="#myModal2" >
 
                                         <div class="cuadrado">                            
                                             <h5 class="center centerh5"><%= data.localidad %></h5>
@@ -108,7 +108,7 @@
                                     <h4 id="localidadJornada"></h4>
                                     <h4 id="direccionJornada"></h4>
                                     <h4 id="observacionJornada"></h4>
-                                    <h3><b>El valor por animal es: <span>$700</span><br> (Perro o Gato, hembra o macho). </b></h3>
+                                    <h3><b>El valor por animal es: <span id="precio"></span><br> (Perro o Gato, hembra o macho). </b></h3>
                                     <div class="form-group">
                                         <label class="control-label">Apellido y Nombre:</label><!-- required="required" -->
                                         <input id="nombre" required="required" maxlength="100" type="text" class="form-control" placeholder="Ingrese su Apellido y Nombre" />

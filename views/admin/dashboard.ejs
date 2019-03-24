@@ -156,8 +156,7 @@
                             <th scope="col">Precio</th>
                             <th scope="col">Turnos 1/2 hs</th>
                             <th scope="col">Turno</th>
-                            <th scope="col">Vete</th>
-                            
+                            <th scope="col">Vete</th> 
                           </tr>
                         </thead>
                         <tbody>
@@ -188,16 +187,14 @@
 
                                         <% } else{%>
                                             Cerrar Jornada <i title="Jornada Completa" class="fas fa-lock"></i>  
-                                        
                                         <% } %>
-
                                       </a> 
                                   </li>
                                   <li class="divider"></li>
                                   <li><a  class="eliminar-jornada" data-id="<%= data._id  %>"  data-localidad="<%= data.localidad %>" data-toggle="modal" data-target="#modal-danger"> Eliminar</a></li>
                                 </ul>
                                     </div></td>
-                                  <td><a href="/castraciones/jornadas?id=<%= data._id%>&device=mobile"><%= data.localidad %></a></td>
+                                  <td><a href="/castraciones/jornadas?id=<%= data._id%>&device=mobile"><%= data.localidad %> </a></td>
                                   <td> <%= moment(data.fecha).format('D/M/YYYY HH:mm'); %> Hs. </td> 
                                   <td><%= data.direccion %></td> 
                                   <td><%= data.direparcial %></td> 
@@ -205,23 +202,6 @@
                                   <td><%= data.cant_grupo %></td>
                                   <td><%= moment(data.hora_prox_turno).format('HH:mm'); %> Hs. </td> 
                                   <td><%= data.veterinario %></td>
-
-                                  <!-- <td><a data="<%= data._id  %>"href=""><i title="Editar" class="far fa-edit"></i></a>  </td> -->
-                                  <!-- <td><a href="#" class="suspender-jornada" data-id="<%= data._id  %>" data-localidad="<%= data.localidad %>" data-toggle="modal" data-target="#modal-warning"><i title="Suspender" class="fas fa-ban"></i></a>  </td>
-
-                                  <td><a href="#" class="bloquear-jornada" data-id="<%= data._id  %>" data-localidad="<%= data.localidad %>" data-toggle="modal" data-target="#modal-success">
-                                    
-                                    <% if (data.completa == "1") { %>
-                                      <i title="Jornada Completa" class="fas fa-lock"></i>  
-                                    <% } else{%>
-                                      <i title="Jornada Completa" class="fas fa-lock-open"></i>  
-                                    
-                                    <% } %>
-
-
-                                  </a>  </td> 
-
-                                  <td><a href="#" class="eliminar-jornada" data-id="<%= data._id  %>"  data-localidad="<%= data.localidad %>" data-toggle="modal" data-target="#modal-danger"> <i title="Eliminar" class="far fa-trash-alt"></i></a></td> -->
                               </tr>
                         <% }); %>
                         </tbody>
