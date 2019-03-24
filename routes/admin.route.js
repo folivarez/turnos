@@ -13,6 +13,9 @@ router.get('/dashboard', isLoggedIn,admin_controller.admin);
 router.get('/cartel_web', isLoggedIn, admin_controller.cartel_web);
 router.post('/newAviso', isLoggedIn, public_controller.new_aviso);
 
+router.get('/cantidaddeturnos', isLoggedIn, admin_controller.cantidadDeTurnosView);
+router.post('/cantidaddeturnos', isLoggedIn, admin_controller.cantidadDeTurnos);
+
 router.post('/updateAviso',  isLoggedIn, public_controller.update_aviso);
 router.get('/getAviso/:id',   public_controller.get_aviso);
 

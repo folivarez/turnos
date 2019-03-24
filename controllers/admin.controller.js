@@ -4,9 +4,6 @@ var format = require('date-format');
 var moment = require('moment-timezone');
 var passport = require("passport");
 
- var cantAvisos = {};
- var aCantAvisos = [];
-
 
 exports.admin = function(req, res) {
     console.log(req.user);
@@ -18,24 +15,28 @@ exports.admin = function(req, res) {
 
     var idActivas = [];
     //var _avisos = {};
-    
+    var cantAvisos = {};
+    var jornadaId = '';
 
     var turnosSinConfirmar = { confirmado: "" };
     var turnosConfirmados = { confirmado: "1" };
     var turnosCancelados = { confirmado: "0" };
 
-    
+    var avisos = '';
+    var aIndex = [];
 
     Jornadas.find(jornadasActivas, function(err, data) {
-
+        var i = 0
+        var id = '';
+        console.log('length ' + data.length);
         if (err) return next(err);
-        data.forEach(element => {
-            console.log('* ' + element._id);
-            //cantidadAvisosPendientes(element._id);
 
-            idActivas.push(element._id);
+          for ( i ; i <= data.length - 1; i++) {
+            
+           
+            idActivas.push( Object(data[i]._id));
 
-        });
+        };
 
         var inActivas = {
             jornada: { $in: idActivas },
@@ -68,9 +69,7 @@ exports.admin = function(req, res) {
             totalTurnosConfirmados = contTurnosConfirmados;
             totalTurnosCancelados = contTurnosCancelados;
 
-            var totalJornadas = data.length;
-            
-            console.log(aCantAvisos);
+            var totalJornadas = data.length; 
             
             
 
@@ -82,39 +81,10 @@ exports.admin = function(req, res) {
                 totalTurnosSinConfirmar,
                 totalTurnosConfirmados,
                 totalTurnosCancelados,
-                aCantAvisos
-
-                
             });
         })
     }).sort({ fecha: -1 })
 };
-
-async function cantidadAvisosPendientes(idJornada){
-
-    console.log('**cuento avisos - ' + idJornada);
-   
-
-      var avisos = ''
-            avisos = {
-                jornada : idJornada,
-                aviso : 0
-            }
-
-            console.log('**cantidad de avisos faltantes - ' + avisos.jornada + ' - ');
-
-            Turno.count(avisos, function(err, count) {
-                console.log('cantidad de avisos faltantes - ' + avisos.jornada + ' - ' + count);
-                cantAvisos.jornadaId = idJornada;
-                cantAvisos.cantidad = count;
-                aCantAvisos.push(cantAvisos);
-
-                
-            });
-
-            
-
-}
 
 exports.alta_jornada = function(req, res) {
     res.render('jornadas/crear_jornada', { layout: false });
@@ -132,3 +102,58 @@ exports.cartel_web = function(req, res) {
 
     });
 };
+
+
+exports.cantidadDeTurnos = function(req, res) {
+        let user = req.user;
+        var start = moment().startOf('day'); // set to 12:00 am today
+        var end = moment().endOf('day'); 
+
+        var fecha = [
+                        {$match: {reserva: {$gte: new Date(start), $lt: new Date(end)}}},
+                        {"$group" : {_id:"$jornada", count:{$sum:1}}}
+                        ];
+
+        var activas = {activa: true};
+        var  inJornadas = [];
+        var jornadasNombre = {};
+        
+        Turno.aggregate(fecha, function(err, turnosPorJornada) {
+            if (err) return next(err);
+                        
+            turnosPorJornada.forEach(element =>{
+                inJornadas.push(element._id);
+                
+            });
+
+            let jornadaBuscadas = {
+                _id: { $in: inJornadas },
+            };
+
+            //console.log('--------------------------------------------------');  
+            var jornada_agrupada = {};
+
+            Jornadas.find(jornadaBuscadas, function(err, data_jornadas) {
+                if (err) return next(err);
+
+               
+                res.send( {'jornadas':data_jornadas,
+                           'turnosporjornada':turnosPorJornada,
+                           start,end
+                            });
+                
+            }).sort({ _id: -1 });
+        }).sort({ jornada: -1 });
+};
+
+exports.cantidadDeTurnosView = function(req, res) {
+        let user = req.user;
+
+        res.render('jornadas/jornada_graficos', {
+            layout: false,
+            moment: moment,
+            user:user,
+        });
+       
+};
+
