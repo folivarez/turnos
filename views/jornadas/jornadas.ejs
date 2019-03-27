@@ -79,7 +79,7 @@
             <!-- /.box-header -->
            <!--  <div class="box-body table-responsive no-padding">
               <table class="table table-hover"> -->
-                <div class="table">
+                <div class="box-body table-responsive no-padding">
       <table class="table table-bordered">
                 
                  <thead>
@@ -116,7 +116,7 @@
                                       </button>
                                       <ul class="dropdown-menu" role="menu">
                                         <li><a data="<%= data._id %>" href="/castraciones/jornadas?id=<%=data._id%>&device=pc">Ver Detalles</a> </li>
-                                        <li><a href="jornada/<%= data._id  %>" data="<%= data._id  %>">Editar</a> </li>
+                                        <li><a  href="/castraciones/jornadaId?id=<%=data._id%>" data-id="<%= data._id  %>">Editar</a> </li>
                                         <li><a href="">Suspender</a></li>
                                         <li class="divider"></li>
                                         <li><a href="#" class="eliminar-jornada" data-id="<%= data._id  %>"  data-localidad="<%= data.localidad %>" data-toggle="modal" data-target="#modal-danger"> Eliminar</a></li>
