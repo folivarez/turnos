@@ -6,8 +6,7 @@ var passport = require("passport");
 
 
 exports.admin = function(req, res) {
-    console.log(req.user);
-    console.log(req.session);
+
     let user = req.user;
     var jornadasActivas = {
         activa: true,
@@ -31,10 +30,10 @@ exports.admin = function(req, res) {
         console.log('length ' + data.length);
         if (err) return next(err);
 
-          for ( i ; i <= data.length - 1; i++) {
-            
-           
-            idActivas.push( Object(data[i]._id));
+        for (i; i <= data.length - 1; i++) {
+
+
+            idActivas.push(Object(data[i]._id));
 
         };
 
@@ -69,13 +68,13 @@ exports.admin = function(req, res) {
             totalTurnosConfirmados = contTurnosConfirmados;
             totalTurnosCancelados = contTurnosCancelados;
 
-            var totalJornadas = data.length; 
-            
-            
+            var totalJornadas = data.length;
+
+
 
             res.status(200).render('admin/dashboard', {
                 'jobs': data,
-                user : user,
+                user: user,
                 moment: moment,
                 totalJornadas,
                 totalTurnosSinConfirmar,
@@ -96,64 +95,82 @@ exports.aviso_mensaje = function(req, res) {
 
 exports.cartel_web = function(req, res) {
     let user = req.user;
-    res.render('avisos/cartel_web', { 
+    res.render('avisos/cartel_web', {
         layout: false,
-        user:user,
+        user: user,
 
     });
 };
 
 
 exports.cantidadDeTurnos = function(req, res) {
-        let user = req.user;
-        var start = moment().startOf('day'); // set to 12:00 am today
-        var end = moment().endOf('day'); 
+    let user = req.user;
+    var start = moment().startOf('day'); // set to 12:00 am today
+    var end = moment().endOf('day');
 
-        var fecha = [
-                        {$match: {reserva: {$gte: new Date(start), $lt: new Date(end)}}},
-                        {"$group" : {_id:"$jornada", count:{$sum:1}}}
-                        ];
+    var fecha = [
+        { $match: { reserva: { $gte: new Date(start), $lt: new Date(end) } } },
+        { "$group": { _id: "$jornada", count: { $sum: 1 } } }
+    ];
 
-        var activas = {activa: true};
-        var  inJornadas = [];
-        var jornadasNombre = {};
-        
-        Turno.aggregate(fecha, function(err, turnosPorJornada) {
+    var activas = { activa: true };
+    var inJornadas = [];
+    var jornadasNombre = {};
+
+    Turno.aggregate(fecha, function(err, turnosPorJornada) {
+        if (err) return next(err);
+
+        turnosPorJornada.forEach(element => {
+            inJornadas.push(element._id);
+
+        });
+
+        let jornadaBuscadas = {
+            _id: { $in: inJornadas },
+        };
+
+        //console.log('--------------------------------------------------');  
+        var jornada_agrupada = {};
+
+        Jornadas.find(jornadaBuscadas, function(err, data_jornadas) {
             if (err) return next(err);
-                        
-            turnosPorJornada.forEach(element =>{
-                inJornadas.push(element._id);
-                
+
+
+            res.send({
+                'jornadas': data_jornadas,
+                'turnosporjornada': turnosPorJornada,
+                start,
+                end
             });
 
-            let jornadaBuscadas = {
-                _id: { $in: inJornadas },
-            };
-
-            //console.log('--------------------------------------------------');  
-            var jornada_agrupada = {};
-
-            Jornadas.find(jornadaBuscadas, function(err, data_jornadas) {
-                if (err) return next(err);
-
-               
-                res.send( {'jornadas':data_jornadas,
-                           'turnosporjornada':turnosPorJornada,
-                           start,end
-                            });
-                
-            }).sort({ _id: -1 });
-        }).sort({ jornada: -1 });
+        }).sort({ _id: -1 });
+    }).sort({ jornada: -1 });
 };
 
 exports.cantidadDeTurnosView = function(req, res) {
-        let user = req.user;
+    let user = req.user;
 
-        res.render('jornadas/jornada_graficos', {
-            layout: false,
-            moment: moment,
-            user:user,
-        });
-       
+    res.render('jornadas/jornada_graficos', {
+        layout: false,
+        moment: moment,
+        user: user,
+    });
+
 };
 
+
+exports.test_turno = function(req, res) {
+    
+    let user = req.user;
+
+    console.log(req.body.jornada);
+
+    var turno = {
+        'jornada':  req.body.jornada 
+    };
+
+    Turno.findOne(turno, function(err, data) {
+        res.send(data);
+    });
+
+};

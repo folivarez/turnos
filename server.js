@@ -25,7 +25,8 @@ app.use(express.static(__dirname + '/public/' ));
 var dbURI = '';
 if (process.env.ENVIRONMENT == 'PROD') {
     dbURI = process.env.DBPROD;
-    process.env.GOOGLELOG;
+    require('@google-cloud/debug-agent').start();
+    
 }
 else{
     dbURI = process.env.DBTEST; 
@@ -67,9 +68,7 @@ app.use(session({
     secret: process.env.SECRET, // session secret
     resave: true,
     saveUninitialized: true,
-    //maxAge: 604800000,
-    //cookie: { _expires: (60 * 60 * 1000) },  // 30 
-    //store: new MongoStore({ mongooseConnection: mongoose.connection })
+    
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions

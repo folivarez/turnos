@@ -6,8 +6,8 @@ $("#guardar-veterinario").click(function(e) {
     e.preventDefault();
 
     
-    var nombre = $("#nombre").val();
-    var adicional = $("#adicional").val();
+    var nombre = $("#nombre").val().trim();
+    var adicional = $("#adicional").val().trim();
     var puntos = $("#puntos").val();
 
     console.log("datos a guardar " + nombre + ' - ' + adicional + ' - '  + puntos);
