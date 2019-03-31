@@ -15,7 +15,10 @@ $(document).ready(function() {
             [10, "asc"]
         ],
         "paging": false,
-        "searching": false,
+        "searching": true,
+        "language": {
+             "sSearch":"Buscar:"
+        }
     });
 
     $('.listaTurnoMobile').DataTable({
@@ -23,7 +26,12 @@ $(document).ready(function() {
             [4, "asc"]
         ],
         "paging": false,
-        "searching": false,
+        "searching": true,
+        "language": {
+             "sSearch":"Buscar:"
+        },
+
+
     });
 
     $(".eliminar-jornada").click(function(e) {
@@ -120,6 +128,24 @@ $(document).ready(function() {
             function(status) {
 
                 location.reload();
+            });
+    });
+
+    $("#test").click(function(e) {
+        e.preventDefault();
+
+        var idJornada = $(this).data('id');
+
+        $.post("/castraciones/testturno", { jornada: idJornada },
+            function(status) {
+
+                if (status != '') {
+                    console.log('funciona ' + status._id);
+                    window.open("https://castraciones-218323.appspot.com/castraciones/confirmarTurno/" + status._id);
+                }
+                else{
+                    alert('NO FUNCIONA! \n Avisarme porfa asi reviso.\n Fede');   
+                }
             });
     });
 

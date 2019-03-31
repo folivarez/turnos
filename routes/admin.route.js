@@ -13,6 +13,8 @@ router.get('/dashboard', isLoggedIn,admin_controller.admin);
 router.get('/cartel_web', isLoggedIn, admin_controller.cartel_web);
 router.post('/newAviso', isLoggedIn, public_controller.new_aviso);
 
+router.post('/testturno',  admin_controller.test_turno);
+
 router.get('/cantidaddeturnos', isLoggedIn, admin_controller.cantidadDeTurnosView);
 router.post('/cantidaddeturnos', isLoggedIn, admin_controller.cantidadDeTurnos);
 
