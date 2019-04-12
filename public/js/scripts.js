@@ -41,7 +41,7 @@ $(document).on("click", ".fechaJornada", function() {
     if (completa == "") {
         $("#myModal2").attr('data-id', idJornada);
         $("#localidadJornada").html('Jornada: <b>' + localidad + '</b>')
-        $("#precio").html('$' + precio);
+        $(".precio").html('$' + precio);
         $("#direccionJornada").html('Zona: <b>' + direparcial + '</b>')
         if (typeof name !== "undefined") {
             $("#observacionJornada").html('<b>' + observacion + '</b>')
