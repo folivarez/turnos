@@ -2,7 +2,6 @@ const Turno = require('../models/turno.models');
 const Veterinarios = require('../models/veterinario.models');
 var format = require('date-format');
 var moment = require('moment-timezone');
-//var nodemailer = require('nodemailer');
 const sgMail = require('@sendgrid/mail');
 const Jornadas = require('../models/jornada.models');
 const reel = require('node-reel');
@@ -35,7 +34,7 @@ exports.turnoLista = function(req, res) {
 
         res.render('turnos/turnoLista', {
             'jobs': data,
-            user:user,
+            user: user,
             moment: moment
         });
     })
@@ -84,8 +83,6 @@ function actualizar_contador_jornada(idJornada, contador) {
 
 
 function sumar_mediahora(hora) {
-    //var hora_final = moment(hora).add(30, 'minutes').format('HH:mm');
-    //return hora_final;
     return moment(hora).add(30, 'minutes').format('HH:mm');
 }
 
@@ -158,8 +155,8 @@ exports.confirmarTurno = function(req, res) {
             console.log('reconozco cliente ' + _cliente.nombre);
             Jornadas.findById(_cliente.jornada, function(err, jor) {
 
-                Veterinarios.findOne({$or:[{ 'nombre': jor.veterinario },]}, function(err, veterinario) {
-  
+                Veterinarios.findOne({ $or: [{ 'nombre': jor.veterinario }, ] }, function(err, veterinario) {
+
                     res.render('turnos/confirmarTurno', {
                         'cliente': _cliente,
                         'jornada': jor,
@@ -251,78 +248,75 @@ exports.envio_turno = function(req, res) {
 async function altaDeTurno(req, res) {
 
     let check_telefono = {
-            jornada: req.body.jornada,
-            telefono: req.body.telefono,
-        };
-        //console.log('check DNI ' + check_dni.dni);
+        jornada: req.body.jornada,
+        telefono: req.body.telefono,
+    };
+    //console.log('check DNI ' + check_dni.dni);
 
     Turno.countDocuments(check_telefono, function(err, turno) {
 
         console.log('turnos devueltos ' + turno); //verificar si piden detallar animales
-            if (!turno || turno < 3) {
-                
-                console.log('Guardar turno ' + turno);
-                _hora = "";
-                var hora_nueva;
-                _contador = 0;
-                idJornadaSelec = req.body.jornada;
+        if (!turno || turno < 3) {
 
-                Jornadas.findById(idJornadaSelec, function(err, jor) {
-                    if (err) return next(err);
+            console.log('Guardar turno ' + turno);
+            _hora = "";
+            var hora_nueva;
+            _contador = 0;
+            idJornadaSelec = req.body.jornada;
 
-                    _localidad = jor.localidad;
-                    _precio = jor.precio;
-                    _fecha = jor.fecha;
-                    _hora = jor.hora_prox_turno;
-                    _direparcial = jor.direparcial;
-                    _grupo = jor.cant_grupo;
-                    _contador = jor.cont;
+            Jornadas.findById(idJornadaSelec, function(err, jor) {
+                if (err) return next(err);
 
-                    if (_contador >= _grupo) {
-                        actualizar_contador_jornada(idJornadaSelec, 1);
-                        hora_nueva = moment(_hora).add(30, 'minutes');
-                        actualizar_hora_jornada(idJornadaSelec, hora_nueva);
-                    } else {
-                        hora_nueva = _hora;
-                        i = _contador + 1;
-                        actualizar_contador_jornada(idJornadaSelec, i.toString());
-                    }
-                    var turno = new Turno({
-                        nombre: req.body.nombre,
-                        telefono: req.body.telefono,
-                        mail: '',
-                        dni: req.body.dni,
-                        jornada: req.body.jornada,
-                        hora: hora_nueva,
-                        animal: {
-                            tipo: req.body.tipo,
-                            peso: req.body.peso,
-                            nombreMascota: req.body.nombreMascota,
-                            cantidad: req.body.cantidad,
-                            preniado: req.body.preniado
-                        },
-                        aviso: req.body.aviso,
-                        confirmado: '',
-                        asistio: '',
-                        reserva: req.body.reserva
-                    });
+                _localidad = jor.localidad;
+                _precio = jor.precio;
+                _fecha = jor.fecha;
+                _hora = jor.hora_prox_turno;
+                _direparcial = jor.direparcial;
+                _grupo = jor.cant_grupo;
+                _contador = jor.cont;
 
-                        turno.save().then(item => {
-                            res.status(200).send("guardando turno en database");
-                        })
-                        .catch(err => {
-                            res.status(400).send("unable to save to database " + err);
-                            console.log(err);
-                        });
+                if (_contador >= _grupo) {
+                    actualizar_contador_jornada(idJornadaSelec, 1);
+                    hora_nueva = moment(_hora).add(30, 'minutes');
+                    actualizar_hora_jornada(idJornadaSelec, hora_nueva);
+                } else {
+                    hora_nueva = _hora;
+                    i = _contador + 1;
+                    actualizar_contador_jornada(idJornadaSelec, i.toString());
+                }
+                var turno = new Turno({
+                    nombre: req.body.nombre,
+                    telefono: req.body.telefono,
+                    mail: '',
+                    dni: req.body.dni,
+                    jornada: req.body.jornada,
+                    hora: hora_nueva,
+                    animal: {
+                        tipo: req.body.tipo,
+                        peso: req.body.peso,
+                        nombreMascota: req.body.nombreMascota,
+                        cantidad: req.body.cantidad,
+                        preniado: req.body.preniado
+                    },
+                    aviso: req.body.aviso,
+                    confirmado: '',
+                    asistio: '',
+                    reserva: req.body.reserva
                 });
-                return hora_nueva;
-            }
-            else{
-                res.status(202).send(req.body.nombre);
-            }
-    });
 
-    
+                turno.save().then(item => {
+                        res.status(200).send("guardando turno en database");
+                    })
+                    .catch(err => {
+                        res.status(400).send("unable to save to database " + err);
+                        console.log(err);
+                    });
+            });
+            return hora_nueva;
+        } else {
+            res.status(202).send(req.body.nombre);
+        }
+    });
 }
 
 exports.presente = function(req, res) {
