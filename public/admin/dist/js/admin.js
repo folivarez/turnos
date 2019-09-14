@@ -141,7 +141,7 @@ $(document).ready(function() {
 
                 if (status != '') {
                     console.log('funciona ' + status._id);
-                    window.open("https://castraciones-218323.appspot.com/castraciones/confirmarTurno/" + status._id);
+                    window.open("https://castraciones-2.appspot.com/castraciones/confirmarTurno/" + status._id);
                 }
                 else{
                     alert('NO FUNCIONA! \n Avisarme porfa asi reviso.\n Fede');   

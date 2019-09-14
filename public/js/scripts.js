@@ -146,7 +146,7 @@ $(document).ready(function() {
                     if (status == 'guardando turno en database' ) {
                         $('#submit').addClass("ocultar");
                         $('.ocul').addClass("ocultar");
-                        var success = '<span> Entre 24 y 48 horas antes </span> del dia de la campaña de castración enviaremos un mensaje automático por <span>Whatsapp</span> con todas las indicaciones. </p> <p>¡Muchas Gracias!</p>';
+                        var success = '<span> Entre las 24 horas antes </span> del dia de la campaña enviaremos un mensaje automático por <span>Whatsapp</span> con las indicaciones y direccion del lugar. </p> <p>¡Muchas Gracias!</p>';
 
                         $('.error-message-2').hide();
                         $('.success-message-2').hide();

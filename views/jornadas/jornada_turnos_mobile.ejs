@@ -182,7 +182,16 @@
                                     </thead>
                                     <tbody>
                                         <% turnosLista.forEach(function(turnos) { %>
+                                        
+                                        <% if (turnos.animal.peso == "Mas de 30 Kg") { %>
+
+                                        <tr class="table-warning">
+                                        
+                                        <% } else {  %>
+ 
                                         <tr>
+
+                                        <% } %>
 
                                             <% if (turnos.confirmado == 1) { %>
                                                 <td class="bg-green">Si</td>
@@ -200,19 +209,12 @@
                                             <td>
                                                 <%= turnos.nombre %>
                                             </td>
-                                             
-<!-- 
-                                            <td><%= turnos.animal.peso %></td> -->
 
                                             <% if (turnos.asistio == '') { %>
                                               <td class="rojo"><a  data-estado="ausente" data-id="<%= turnos.id %>" class="estadoPersonaMobile presente" ><i class="fas fa-toggle-off fa-2x"></i></a></td>
                                             <% } else { %>
                                               <td class="verde"><a data-estado="presente" data-id="<%= turnos.id %>" class="estadoPersonaMobile"><i class="fas fa-toggle-on fa-2x"></i></a></td>
                                             <% } %>
-                                            <!-- <td>
-                                                <%= turnos.animal.peso %>
-                                            </td> -->
-                                           
                                             <td>
                                                 <%= moment(turnos.hora).format('HH:mm'); %> hs.</td>
                                                  <td>

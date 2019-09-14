@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"da",
+				"datosDeJornada"
+			],
+			[
+				"cant",
+				"cantidadDeTurnos"
+			],
+			[
+				"tur",
+				"turnoGuardado"
+			],
+			[
+				"turno",
+				"turnoGuardado"
+			],
+			[
+				"es",
+				"estadoTurno"
+			],
+			[
+				"locat",
+				"location\t: Location Window"
+			],
+			[
 				"box-",
 				"box-body"
 			],
@@ -52,10 +76,6 @@
 				"length\t: int Function"
 			],
 			[
-				"tur",
-				"turno"
-			],
-			[
 				"b",
 				"both\tclear"
 			],
@@ -78,10 +98,6 @@
 			[
 				"can",
 				"cantidadAvisosPendientes"
-			],
-			[
-				"cant",
-				"cantAvisos"
 			],
 			[
 				"T",
@@ -316,26 +332,19 @@
 	"buffers":
 	[
 		{
-			"file": "views/jornadas/jornadas.ejs",
+			"file": "index.ejs",
 			"settings":
 			{
-				"buffer_size": 10197,
+				"buffer_size": 17231,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "controllers/admin.controller.js",
+			"file": "views/jornadas/jornada_turnos.ejs",
 			"settings":
 			{
-				"buffer_size": 4430,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/turnos/confirmarTurno.ejs",
-			"settings":
-			{
-				"buffer_size": 13218,
+				"buffer_size": 19936,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -344,7 +353,34 @@
 			"file": "controllers/turno.controller.js",
 			"settings":
 			{
-				"buffer_size": 9806,
+				"buffer_size": 12585,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/jornadas/jornada_update.ejs",
+			"settings":
+			{
+				"buffer_size": 9261,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".env",
+			"settings":
+			{
+				"buffer_size": 425,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server.js",
+			"settings":
+			{
+				"buffer_size": 2368,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
@@ -352,33 +388,46 @@
 			"file": "public/js/scripts.js",
 			"settings":
 			{
-				"buffer_size": 7309,
+				"buffer_size": 7310,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/admin/dist/js/graficos.js",
+			"file": "views/jornadas/jornada_turnos_mobile.ejs",
 			"settings":
 			{
-				"buffer_size": 2336,
+				"buffer_size": 14775,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/admin/dist/js/admin.js",
+			"file": "public/admin/dist/css/admin.css",
 			"settings":
 			{
-				"buffer_size": 6752,
+				"buffer_size": 160,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "controllers/public.controller.js",
+			"file": "views/turnos/confirmarTurno.ejs",
 			"settings":
 			{
-				"buffer_size": 1436,
+				"buffer_size": 13201,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 10667 files for \"líquido\" (case sensitive, whole word)\n\nD:\\Desarrollo\\LoveAnimals\\turnosv2\\views\\turnos\\confirmarTurno.ejs:\n  106                          <hr>\n  107                          <h3>MUY IMPORTANTE: Cuidados para antes de la cirugia.</h3>\n  108:                         <h4>Ayuno: 12hs sólido y 4hs de líquido.</h4>\n  109                          <p>Una manta, frazada o toalla para cubrirlo una vez que es operado.</p>\n  110                              <% if (cliente.animal.tipo=='GATO' || cliente.animal.tipo=='GATA') { -%>\n  ...\n  175                          <hr>\n  176                          <h3>MUY IMPORTANTE: Cuidados para antes de la cirugia.</h3>\n  177:                         <h4>Ayuno: 12hs sólido y 10hs de líquido.</h4>\n  178                          <p>Una manta, frazada o toalla para cubrirlo una vez que es operado.</p>\n  179                              <% if (cliente.animal.tipo=='GATO' || cliente.animal.tipo=='GATA') { -%>\n\n2 matches in 1 file\n",
+			"settings":
+			{
+				"buffer_size": 994,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
 			}
 		}
 	],
@@ -430,9 +479,6 @@
 		"/D/Desarrollo/LoveAnimals/turnosv2",
 		"/D/Desarrollo/LoveAnimals/turnosv2/controllers",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/css",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/routes",
@@ -445,43 +491,51 @@
 	],
 	"file_history":
 	[
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/jornadaTurnos.js",
+		"/D/Desarrollo/LoveAnimals/sitio_productivo/postoperatoriointra.html",
+		"/D/Desarrollo/LoveAnimals/sitio_productivo/postoperatorionormal.html",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/confirmarTurno_old.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/errorTurno.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/admin.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/cancelarTurno.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/confirmarTurno.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/turno.controller.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/.env",
+		"/C/Users/maledukado/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/admin.controller.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornadas.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/server.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_turnos_mobile.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_turnos.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/routes/admin.route.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/graficos.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/js/scripts.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/jornada.controller.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/public.controller.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/css/admin.css",
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/veterinarios.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_graficos.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/templates/aside.ejs",
-		"/D/Desarrollo/LoveAnimals/turnosv2/routes/admin.route.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/routes/turno.route.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/admin/dashboard.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/js/Chart.min.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/routes/jornada.route.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/index.ejs",
-		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/turno.controller.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/server.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/js/format-google-calendar.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/css/style.css",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/js/scripts.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/js/calendar.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/public.controller.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/.gitignore",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/veterinarios.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/veterinario.controller.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/jornadaTurnos.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/admin.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/app.yaml",
 		"/D/Desarrollo/LoveAnimals/turnosv2/config/passport.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/login/home.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/auth.controller.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/admin.controller.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/avisos.js",
 		"/C/Users/MALEDU~1/AppData/Local/Temp/Rar$DRa7084.31750/recursos-reservando/js/listado.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/js/supersized.shutter.min.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/js/waypoints.min.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornadas.ejs",
-		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_turnos_mobile.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_update.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/edit_jornada.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_turnos.ejs",
-		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/confirmarTurno.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/avisos/cartel_web.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/crear_jornada.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/veterinarios/veterinarios.ejs",
@@ -503,7 +557,6 @@
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/pages/veterinarios.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/models/turno.models.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/avisos/aviso_postoperatorio_intradermico.html",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/css/admin.css",
 		"/D/Desarrollo/Acamica/ProyectosCurso/05-Ciudad_Zombie/js/dibujante.js",
 		"/D/Desarrollo/Acamica/ProyectosCurso/05-Ciudad_Zombie/js/juego.js",
 		"/C/Users/MALEDU~1/AppData/Local/Temp/Rar$DRa14912.32256/recursos-ciudad-zombie/js/juego.js",
@@ -534,7 +587,6 @@
 		"/D/Desarrollo/LoveAnimals/sitio/scripts.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/css/supersized.css",
 		"/D/Desarrollo/LoveAnimals/sitio/index.html",
-		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/errorTurno.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/update_jornada.ejs",
 		"/D/Desarrollo/LoveAnimals/turnos/public/css/responsive.css",
 		"/D/Desarrollo/LoveAnimals/turnos/public/admin/dist/js/admin.js",
@@ -567,11 +619,11 @@
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 52.0
 	},
 	"find_in_files":
 	{
-		"height": 107.0,
+		"height": 132.0,
 		"where_history":
 		[
 			""
@@ -579,9 +631,15 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"líquido",
+			"appspot",
+			"estadoTurno",
+			"700",
+			"Search:",
+			"search",
 			"});",
 			"jornada_cantidad",
 			"user",
@@ -608,60 +666,90 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "views/jornadas/jornadas.ejs",
+					"file": "index.ejs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10197,
+						"buffer_size": 17231,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5387,
-								5387
+								15,
+								15
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 528.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "controllers/admin.controller.js",
+					"file": "views/jornadas/jornada_turnos.ejs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4430,
+						"buffer_size": 19936,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2509,
-								2509
+								15594,
+								15612
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2432.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "controllers/turno.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12585,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4834,
+								4834
 							]
 						],
 						"settings":
@@ -671,19 +759,19 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2496.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "views/turnos/confirmarTurno.ejs",
+					"buffer": 3,
+					"file": "views/jornadas/jornada_update.ejs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13218,
+						"buffer_size": 9261,
 						"regions":
 						{
 						},
@@ -697,14 +785,72 @@
 						"settings":
 						{
 							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1536.0,
+						"translation.y": 1280.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": ".env",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 425,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12,
+								16
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2368,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								944,
+								944
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 48.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
 					"type": "text"
 				}
 			]
@@ -714,153 +860,172 @@
 			"sheets":
 			[
 				{
-					"buffer": 3,
-					"file": "controllers/turno.controller.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9806,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4317,
-								4328
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1968.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "public/js/scripts.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7309,
+						"buffer_size": 7310,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								963,
+								963
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2064.0,
+						"translation.y": 1392.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "public/admin/dist/js/graficos.js",
+					"buffer": 7,
+					"file": "views/jornadas/jornada_turnos_mobile.ejs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2336,
+						"buffer_size": 14775,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2244,
-								2244
+								10555,
+								10555
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
+							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 314.0,
+						"translation.y": 880.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "public/admin/dist/js/admin.js",
+					"buffer": 8,
+					"file": "public/admin/dist/css/admin.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6752,
+						"buffer_size": 160,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								157,
+								157
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2544.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "controllers/public.controller.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1436,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "views/turnos/confirmarTurno.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13201,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10925,
+								10925
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2392.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 994,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										324,
+										331
+									],
+									[
+										747,
+										754
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								994,
+								994
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -872,7 +1037,7 @@
 	},
 	"input":
 	{
-		"height": 41.0
+		"height": 49.0
 	},
 	"layout":
 	{
@@ -894,7 +1059,7 @@
 		"cols":
 		[
 			0.0,
-			0.336904761904,
+			0.563682625887,
 			1.0
 		],
 		"rows":
@@ -954,7 +1119,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 240.0,
+	"side_bar_width": 222.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
