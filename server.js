@@ -25,7 +25,7 @@ app.use(express.static(__dirname + '/public/' ));
 var dbURI = '';
 if (process.env.ENVIRONMENT == 'PROD') {
     dbURI = process.env.DBPROD;
-    require('@google-cloud/debug-agent').start();
+    /*require('@google-cloud/debug-agent').start();*/
     
 }
 else{

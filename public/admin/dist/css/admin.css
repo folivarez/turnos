@@ -12,3 +12,7 @@
 .verde{
 	color: green;
 }
+
+.table-warning{
+	background-color: #F5C6CB !important;
+}

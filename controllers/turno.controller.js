@@ -243,7 +243,7 @@ exports.envio_turno = function(req, res) {
         res.send("Aviso enviado");
     });
 };
-
+/*
 
 async function altaDeTurno(req, res) {
 
@@ -317,6 +317,119 @@ async function altaDeTurno(req, res) {
             res.status(202).send(req.body.nombre);
         }
     });
+}*/
+
+
+
+
+async function altaDeTurno(req, res) {
+
+    try {
+        let cantidadDeTurnos = await cuentoTurnos(req.body.jornada, req.body.telefono, req, res);
+        let datosDeJornada = [];
+        console.log("turnos existentes " + cantidadDeTurnos);
+    } catch (error) {
+        //falloCallback(error);
+        console.log("error al obtner turno " + error);
+    }
+}
+
+function cuentoTurnos(jornada, telefono, req, res) {
+
+    let check_telefono = {
+        jornada: jornada,
+        telefono: telefono,
+    };
+
+    Turno.countDocuments(check_telefono, function(err, cantidadDeTurnos) {
+        console.log("primero cuento");
+        console.log('turnos devueltos ' + cantidadDeTurnos); //verificar si piden detallar animales
+        controloCantidad(cantidadDeTurnos, req, res);
+    });
+
+}
+
+var hora_nueva;
+
+async function controloCantidad(cantidadDeTurnos, req, res) {
+    if (!cantidadDeTurnos || cantidadDeTurnos < 3) {
+
+        await obtengoJornada(req.body.jornada, req, res);
+        
+        
+
+    } else {
+        res.status(202).send(req.body.nombre);
+    }
+}
+
+
+function obtengoJornada(idJornada, req, res) {
+    console.log("segundo obtengo jornada");
+    _hora = "";
+    
+    _contador = 0;
+    var datos = [];
+
+    Jornadas.findById(idJornada, function(err, jor) {
+
+        if (err) return next(err);
+
+        _localidad = jor.localidad;
+        _precio = jor.precio;
+        _fecha = jor.fecha;
+        _hora = jor.hora_prox_turno;
+        _direparcial = jor.direparcial;
+        _grupo = jor.cant_grupo;
+        _contador = jor.cont;
+
+        if (_contador >= _grupo) {
+            actualizar_contador_jornada(idJornada, 1);
+            hora_nueva = moment(_hora).add(30, 'minutes');
+            actualizar_hora_jornada(idJornada, hora_nueva);
+        } else {
+            hora_nueva = _hora;
+            i = _contador + 1;
+            actualizar_contador_jornada(idJornada, i.toString());
+        }
+        console.log("revisar: " + _localidad, _precio, _fecha, _hora, _direparcial, _grupo, _contador, hora_nueva);
+        sacoTurno(req.body.nombre, req.body.telefono, req.body.dni, req.body.jornada, hora_nueva /*hora_nueva*/ , req.body.tipo, req.body.peso, req.body.nombreMascota, req.body.cantidad, req.body.preniado, req.body.aviso, req.body.reserva, res);
+        
+    });
+
+    
+}
+
+
+function sacoTurno(nombre, telefono, dni, jornada, hora_nueva, tipo, peso, nombreMascota, cantidad, preniado, aviso, reserva, res) {
+    console.log("tercero saco turno HORA " + hora_nueva );
+    var turno = new Turno({
+        nombre: nombre,
+        telefono: telefono,
+        mail: '',
+        dni: dni,
+        jornada: jornada,
+        hora: hora_nueva,
+        animal: {
+            tipo: tipo,
+            peso: peso,
+            nombreMascota: nombreMascota,
+            cantidad: cantidad,
+            preniado: preniado
+        },
+        aviso: aviso,
+        confirmado: '',
+        asistio: '',
+        reserva: reserva
+    });
+
+    turno.save().then(item => {
+            res.status(200).send("guardando turno en database");
+        })
+        .catch(err => {
+            res.status(400).send("unable to save to database ");
+            console.log(err);
+        });
 }
 
 exports.presente = function(req, res) {

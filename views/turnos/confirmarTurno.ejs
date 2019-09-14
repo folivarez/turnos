@@ -52,11 +52,11 @@
                         <% if (cliente.confirmado=='0') { -%>
                         <h2 class="center text-dark">Hola <%= cliente.nombre %>, su Turno esta CANCELADO!</h2>
                         <p>Debera sacar uno nuevo si lo desea.</p>
-                        <p> <a class="empresa" href="https://castraciones-218323.appspot.com/castraciones" ><button type="button" class="btn btn-success ">SACAR TURNO</button> </a></p>
+                        <p> <a class="empresa" href="https://castraciones-2.appspot.com/castraciones" ><button type="button" class="btn btn-success ">SACAR TURNO</button> </a></p>
                         <% } else if (cliente.confirmado=='1'){ -%>
                         <h2 class="center text-dark">Hola <%= cliente.nombre %>, su Turno esta confirmado!</h2>
                         <p>Puede cancelarlo si lo desea.</p>
-                        <p> <a class="empresa" href="https://castraciones-218323.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" ><button type="button" class="btn btn-danger ">CANCELO</button> </a></p>
+                        <p> <a class="empresa" href="https://castraciones-2.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" ><button type="button" class="btn btn-danger ">CANCELO</button> </a></p>
                         <p>Le recordamos que puede entrar al link que recibio por Whatsapp las veces que lo requiera.</p>
                         <br>
                         <p><b>Fecha: </b>
@@ -105,7 +105,7 @@
                          <h3><%= jornada.observacion %></h3>
                         <hr>
                         <h3>MUY IMPORTANTE: Cuidados para antes de la cirugia.</h3>
-                        <h4>Ayuno: 12hs sólido y 10hs de líquido.</h4>
+                        <h4>Ayuno: 12hs sólido y 4hs de líquido.</h4>
                         <p>Una manta, frazada o toalla para cubrirlo una vez que es operado.</p>
                             <% if (cliente.animal.tipo=='GATO' || cliente.animal.tipo=='GATA') { -%>
                             <p>GATOS/AS : concurrir con collar y transportarlo en donde ud. quiera(mochila, bolso transportador, etc) pero debe llevar una bolsa de red o arpillera SI o SI para ingresar a cirugía (son las bolsas de cebolla y se consiguen en forma gratuita o a muy bajo costo en verdulerias)</p>
@@ -120,7 +120,7 @@
 
                         else { -%>
                         <h2 class="center text-dark">Hola <%= cliente.nombre %>, necesitamos que confirme o cancele su turno!</h2>
-                        <p> <a class="empresa" href="https://castraciones-218323.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" ><button type="button" class="btn btn-danger ">CANCELO</button> </a><a class="empresa" id="confirmaTurno" data-id="<%= cliente.id %>"  href="#" ><button type="button" id="btnConfirmo" class="btn btn-success verde">CONFIRMO</button> </a></p>
+                        <p> <a class="empresa" href="https://castraciones-2.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" ><button type="button" class="btn btn-danger ">CANCELO</button> </a><a class="empresa" id="confirmaTurno" data-id="<%= cliente.id %>"  href="#" ><button type="button" id="btnConfirmo" class="btn btn-success verde">CONFIRMO</button> </a></p>
                         <p>Le recordamos que puede entrar al link que recibio por Whatsapp las veces que lo requiera.</p>
                         <br>
                         <p><b>Fecha: </b>
@@ -174,7 +174,7 @@
                          <h3><%= jornada.observacion %></h3>
                         <hr>
                         <h3>MUY IMPORTANTE: Cuidados para antes de la cirugia.</h3>
-                        <h4>Ayuno: 12hs sólido y 10hs de líquido.</h4>
+                        <h4>Ayuno: 12hs sólido y 4hs de líquido.</h4>
                         <p>Una manta, frazada o toalla para cubrirlo una vez que es operado.</p>
                             <% if (cliente.animal.tipo=='GATO' || cliente.animal.tipo=='GATA') { -%>
                             <p>GATOS/AS : concurrir con collar y transportarlo en donde ud. quiera(mochila, bolso transportador, etc) pero debe llevar una bolsa de red o arpillera SI o SI para ingresar a cirugía (son las bolsas de cebolla y se consiguen en forma gratuita o a muy bajo costo en verdulerias)</p>
