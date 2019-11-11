@@ -54,7 +54,24 @@ $(document).on("click", ".fechaJornada", function() {
     }
 });
 
+
 $(document).ready(function() {
+
+
+    $( "#telefono" ).keyup(function() {
+        
+        
+        if($("#telefono").val().startsWith(0)){
+            $(".form-group").addClass("has-error");
+            $(".siguiente").attr("disabled",true);
+        }
+        else{
+            $(".form-group").removeClass("has-error");
+            $(".siguiente").removeAttr("disabled");
+        }
+        
+
+    });
 
 
     var navListItems = $('div.setup-panel div a'),
