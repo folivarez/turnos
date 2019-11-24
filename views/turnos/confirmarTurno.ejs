@@ -56,7 +56,7 @@
                         <% } else if (cliente.confirmado=='1'){ -%>
                         <h2 class="center text-dark">Hola <%= cliente.nombre %>, su Turno esta confirmado!</h2>
                         <p>Puede cancelarlo si lo desea.</p>
-                        <p> <a class="empresa" href="https://castraciones-2.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" ><button type="button" class="btn btn-danger ">CANCELO</button> </a></p>
+                        <p> <a class="empresa cancelaTurno" data-id="<%= cliente.id %>"><button type="button" class="btn btn-danger ">CANCELO</button> </a></p>
                         <p>Le recordamos que puede entrar al link que recibio por Whatsapp las veces que lo requiera.</p>
                         <br>
                         <p><b>Fecha: </b>
@@ -120,7 +120,8 @@
 
                         else { -%>
                         <h2 class="center text-dark">Hola <%= cliente.nombre %>, necesitamos que confirme o cancele su turno!</h2>
-                        <p> <a class="empresa" href="https://castraciones-2.appspot.com/castraciones/cancelarTurno/<%= (cliente.id); %>" ><button type="button" class="btn btn-danger ">CANCELO</button> </a><a class="empresa" id="confirmaTurno" data-id="<%= cliente.id %>"  href="#" ><button type="button" id="btnConfirmo" class="btn btn-success verde">CONFIRMO</button> </a></p>
+                        <p> <a class="empresa cancelaTurno" data-id="<%= cliente.id %>" href="" ><button type="button" class="btn btn-danger ">CANCELO</button> </a>
+                            <a class="empresa" id="confirmaTurno" data-id="<%= cliente.id %>"  href="#" ><button type="button" id="btnConfirmo" class="btn btn-success verde">CONFIRMO</button> </a></p>
                         <p>Le recordamos que puede entrar al link que recibio por Whatsapp las veces que lo requiera.</p>
                         <br>
                         <p><b>Fecha: </b>

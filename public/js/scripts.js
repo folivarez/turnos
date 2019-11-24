@@ -201,7 +201,7 @@ $(document).ready(function() {
     $("#confirmaTurno").click(function(e) {
         e.preventDefault();
 
-        var idTurno = $("#confirmaTurno").data('id');
+        var idTurno = $(".cancelaTurno").data('id');
 
         $.post("/castraciones/btnConfirmarTurno", { idTurno: idTurno },
             function(status) {
@@ -213,6 +213,17 @@ $(document).ready(function() {
 
             });
 
+    });
+
+    $(".cancelaTurno").click(function(e) {
+        e.preventDefault();
+
+        var idTurno = $(".cancelaTurno").data('id');
+        console.log('cancelo');
+
+        location.assign("https://castraciones-2.appspot.com/castraciones/cancelarTurno/" + idTurno);
+
+        
     });
 
 
