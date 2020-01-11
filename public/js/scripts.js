@@ -35,11 +35,13 @@ $(document).on("click", ".fechaJornada", function() {
     var completa = $(this).data('completa');
     var observacion = $(this).data('observacion');
     var precio = $(this).data('precio');
+    var fecha = $(this).data('turno');
     
    
 
     if (completa == "") {
         $("#myModal2").attr('data-id', idJornada);
+        $("#fecha").html('Turno: <b>' + fecha + ' hs.</b>')
         $("#localidadJornada").html('Jornada: <b>' + localidad + '</b>')
         $(".precio").html('$' + precio);
         $("#direccionJornada").html('Zona: <b>' + direparcial + '</b>')
@@ -58,9 +60,7 @@ $(document).on("click", ".fechaJornada", function() {
 $(document).ready(function() {
 
 
-    $( "#telefono" ).keyup(function() {
-        
-        
+    $( "#telefono" ).keyup(function() {  
         if($("#telefono").val().startsWith(0)){
             $(".form-group").addClass("has-error");
             $(".siguiente").attr("disabled",true);
@@ -69,9 +69,9 @@ $(document).ready(function() {
             $(".form-group").removeClass("has-error");
             $(".siguiente").removeAttr("disabled");
         }
-        
-
     });
+
+
 
 
     var navListItems = $('div.setup-panel div a'),

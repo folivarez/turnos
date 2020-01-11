@@ -60,7 +60,7 @@
                     <!-- <h3 class="titulo">Proximas jornadas</h3> -->
                     <% jobs.forEach(function(data) { %>
                     <div class="col-md-4">
-                        <a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-observacion="<%= data.observacion %>" data-precio="<%= data.precio %>" data-direparcial="<%= data.direparcial %>" data-fecha="<%= moment(data.fecha).utcOffset('-0300').format('D/M/YYYY'); %>" data-completa="<%=data.completa%>" data-toggle="modal" data-target="#myModal2" >
+                        <a href="#" class="fechaJornada" data-id="<%= data._id %>" data-localidad="<%= data.localidad %>" data-observacion="<%= data.observacion %>" data-precio="<%= data.precio %>" data-direparcial="<%= data.direparcial %>" data-fecha="<%= moment(data.fecha).utcOffset('-0300').format('D/M/YYYY'); %>" data-completa="<%=data.completa%>" data-toggle="modal" data-turno="<%= moment(data.hora_prox_turno).format('D/M/YYYY HH:mm'); %>" data-target="#myModal2" >
 
                                         <div class="cuadrado">                            
                                             <h5 class="center centerh5"><%= data.localidad %></h5>
@@ -105,6 +105,7 @@
                             </div>
                             <div class="row setup-content" id="step-1">
                                 <div class="col-md-offset-3 col-md-6 col-xs-12 ">
+                                    <h4 id="fecha"></h4>
                                     <h4 id="localidadJornada"></h4>
                                     <h4 id="direccionJornada"></h4>
                                     <h4 id="observacionJornada"></h4>
@@ -141,6 +142,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Seleccione Animal</label>
                                             <select class="form-control" id="tipo">
+                                                <option>Seleccione Animal</option>
                                                 <option>PERRA</option>
                                                 <option>PERRO</option>
                                                 <option>GATA</option>
