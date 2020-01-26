@@ -93,6 +93,13 @@
                                   <option value="0">Externos</option>
                             </select>
                          </div>   
+                         <div class="form-group">
+                            <label for="antibiotico">Medicacion Para Casa </label>
+                            <select class="form-control form-control-sm" for="antibiotico" name="antibiotico" id="antibiotico">
+                                  <option value="NO">NO</option>
+                                  <option value="SI">SI</option>
+                            </select>
+                         </div>   
                             <button type="submit" id="guardar-veterinario"class="btn btn-primary">Guardar Veterinario</button>
 
               </form>         
@@ -115,6 +122,7 @@
                                   <th scope="col">Nombre</th>
                                   <th scope="col">Adicional</th>
                                   <th scope="col">Puntos</th>
+                                  <th scope="col">Medicacion Para Casa</th>
 
                               </tr>
                           </thead>
@@ -128,6 +136,7 @@
                                  <% } else { -%>
                                       <td>Intradermicos</td>
                                  <% } -%>
+                                 <td><%= veterinarios.antibiotico %></td>
                                  <td> <a href="#" class="eliminar-veterinario" data-id="<%= veterinarios._id  %>"> Eliminar</a></td>
                               </tr>
                               <% }); %>

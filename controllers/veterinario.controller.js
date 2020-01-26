@@ -9,6 +9,7 @@ exports.new_veterinario = function(req, res) {
         nombre: req.body.nombre,
         puntos: req.body.puntos,
         adicional: req.body.adicional,
+        antibiotico: req.body.antibiotico,
         activo: req.body.activo
     });
 

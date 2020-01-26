@@ -6,6 +6,7 @@ var veterinario_schema = new Schema({
     nombre: String,
     puntos: String,
     adicional: String,
+    antibiotico: String,
     activo: String,
  });
  
