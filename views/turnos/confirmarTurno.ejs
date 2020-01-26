@@ -56,7 +56,7 @@
                         <% } else if (cliente.confirmado=='1'){ -%>
                         <h2 class="center text-dark">Hola <%= cliente.nombre %>, su Turno esta confirmado!</h2>
                         <p>Puede cancelarlo si lo desea.</p>
-                        <p> <a class="empresa cancelaTurno" data-id="<%= cliente.id %>"><button type="button" class="btn btn-danger ">CANCELO</button> </a></p>
+                        <p> <a class="empresa cancelaTurno" data-id="<%= cliente.id %>"  data-toggle="modal" data-target="#cancelarTurno"><button type="button" class="btn btn-danger ">CANCELO</button> </a></p>
                         <p>Le recordamos que puede entrar al link que recibio por Whatsapp las veces que lo requiera.</p>
                         <br>
                         <p><b>Fecha: </b>
@@ -120,8 +120,8 @@
 
                         else { -%>
                         <h2 class="center text-dark">Hola <%= cliente.nombre %>, necesitamos que confirme o cancele su turno!</h2>
-                        <p> <a class="empresa cancelaTurno" data-id="<%= cliente.id %>" href="" ><button type="button" class="btn btn-danger ">CANCELO</button> </a>
-                            <a class="empresa" id="confirmaTurno" data-id="<%= cliente.id %>"  href="#" ><button type="button" id="btnConfirmo" class="btn btn-success verde">CONFIRMO</button> </a></p>
+                        <p> <a class="empresa cancelaTurno" data-id="<%= cliente.id %>" id="meetus" data-toggle="modal" data-target="#cancelarTurno"  ><button type="button" class="btn btn-danger ">CANCELO</button> </a>
+                            <a class="empresa" id="confirmaTurno" data-id="<%= cliente.id %>"  ><button type="button" id="btnConfirmo" class="btn btn-success verde">CONFIRMO</button> </a></p>
                         <p>Le recordamos que puede entrar al link que recibio por Whatsapp las veces que lo requiera.</p>
                         <br>
                         <p><b>Fecha: </b>
@@ -197,6 +197,45 @@
             </div>
         </div>
     </section>
+
+     <div id="cancelarTurno" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <a href="#" class="close borde-blanco" data-dismiss="modal" aria-hidden="true">
+            <span class="fa fa-close close-1 "></span>
+            <span class="fa fa-close close-2 "></span>
+          </a>
+          <div class="modal-body">
+              <div class="container">
+                  <div class="row modal-body-content">
+                      <div class="col-md-6 col-md-offset-3">
+                          <h2>Seleccione el motivo por el cual desea cancelar el turno:</h2>
+                          <h4></h4>
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                    <form class="form-inline">
+                                      <div class="form-group">
+                                        <select class="form-control" id="motivo">
+                                                <option>Seleccione Motivo</option>
+                                                <option>Económicos.</option>
+                                                <option>Transporte/Movilidad.</option>
+                                                <option>Laboral.</option>
+                                                <option>Personal.</option>
+                                                <option>Saque turno para otra campaña.</option>
+                                            </select>
+                                      </div>
+                                      <button data-id="<%= cliente.id %>" id="cancelar-turno" data-dismiss="modal" class="btn btn-danger">Cancelar turno</button>
+                                    </form>
+                                  </div>
+                                  <div class="col-md-12" id="resultado-busqueda">
+                                     
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     <!-- Javascript -->
     <script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>

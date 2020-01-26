@@ -22,6 +22,7 @@ var turno_schema = new Schema({
     reserva: Date,
     response_mail: String,
     postoperatorio: String,
+    cancelacion_motivo: String,
 });
 
 module.exports = mongoose.model('Turnos', turno_schema, 'Turnos');

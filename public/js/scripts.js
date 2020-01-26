@@ -35,11 +35,13 @@ $(document).on("click", ".fechaJornada", function() {
     var completa = $(this).data('completa');
     var observacion = $(this).data('observacion');
     var precio = $(this).data('precio');
+    var fecha = $(this).data('turno');
     
    
 
     if (completa == "") {
         $("#myModal2").attr('data-id', idJornada);
+        $("#fecha").html('Turno: <b>' + fecha + ' hs.</b>')
         $("#localidadJornada").html('Jornada: <b>' + localidad + '</b>')
         $(".precio").html('$' + precio);
         $("#direccionJornada").html('Zona: <b>' + direparcial + '</b>')
@@ -58,20 +60,20 @@ $(document).on("click", ".fechaJornada", function() {
 $(document).ready(function() {
 
 
-    $( "#telefono" ).keyup(function() {
-        
-        
+    $( "#telefono" ).keyup(function() {  
         if($("#telefono").val().startsWith(0)){
             $(".form-group").addClass("has-error");
             $(".siguiente").attr("disabled",true);
+            //$(".stepwizard-step").hide();
         }
         else{
             $(".form-group").removeClass("has-error");
             $(".siguiente").removeAttr("disabled");
+            //$(".stepwizard-step").show();
         }
-        
-
     });
+
+
 
 
     var navListItems = $('div.setup-panel div a'),
@@ -163,7 +165,7 @@ $(document).ready(function() {
                     if (status == 'guardando turno en database' ) {
                         $('#submit').addClass("ocultar");
                         $('.ocul').addClass("ocultar");
-                        var success = '<span> Entre las 24 horas antes </span> del dia de la campaña enviaremos un mensaje automático por <span>Whatsapp</span> con las indicaciones y direccion del lugar. </p> <p>¡Muchas Gracias!</p>';
+                        var success = '<span> 24 horas antes </span> del dia de la campaña enviaremos un mensaje automático por <span>Whatsapp</span> con las indicaciones y direccion del lugar. </p> <p>¡Muchas Gracias!</p>';
 
                         $('.error-message-2').hide();
                         $('.success-message-2').hide();
@@ -215,14 +217,25 @@ $(document).ready(function() {
 
     });
 
-    $(".cancelaTurno").click(function(e) {
+    $("#cancelar-turno").click(function(e) {
         e.preventDefault();
 
-        var idTurno = $(".cancelaTurno").data('id');
-        console.log('cancelo');
+        var motivo = $("#motivo").val();
 
-        location.assign("https://castraciones-2.appspot.com/castraciones/cancelarTurno/" + idTurno);
+        // console.log(motivo)
 
+        var idTurno = $(this).data('id');
+        console.log('cancelo ' + idTurno);
+        if (motivo == 'Seleccione Motivo') {
+            
+            alert("Seleccione un motivo por favor! ");
+            return;
+        }
+
+         $.post("/castraciones/cancelarTurno", { idTurno: idTurno, motivo: motivo },
+            function(status) {
+                     location.reload();   
+            });
         
     });
 
