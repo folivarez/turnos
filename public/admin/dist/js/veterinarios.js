@@ -9,9 +9,10 @@ $("#guardar-veterinario").click(function(e) {
     var nombre = $("#nombre").val().trim();
     var adicional = $("#adicional").val().trim();
     var puntos = $("#puntos").val();
+    var antibiotico = $("#antibiotico").val();
 
     console.log("datos a guardar " + nombre + ' - ' + adicional + ' - '  + puntos);
-    $.post("/castraciones/veterinarios", { nombre: nombre, adicional: adicional, puntos: puntos, activo:1 },
+    $.post("/castraciones/veterinarios", { nombre: nombre, adicional: adicional, antibiotico:antibiotico, puntos: puntos, activo:1 },
         function(status) {
             
             console.log(status);

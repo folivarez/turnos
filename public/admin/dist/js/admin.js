@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     $('.listaTurnoMobile').DataTable({
         "order": [
-            [4, "asc"]
+            [3, "asc"]
         ],
         "paging": false,
         "searching": true,
@@ -202,29 +202,23 @@ $(document).on("click", ".estadoPersonaMobile", function(e) {
     var idTurno = $(this).data('id');
     var estado = $(this).data('estado');
     
-    console.log('estadoPersona ' + estado);
     if (estado == 'presente') {
+
+        //console.log('--ausente');
         $(this).html('<i class="fas fa-toggle-off fa-2x"></i>');
         $(this).data('estado','ausente');
         $(this).addClass( "presente" );
-        //$(this).removeAttr( "data-estado" );
-        //$(this).attr('data-estado', 'ausente');
 
     } else {
+        //console.log('--presente ');
         estadoPersona = 1;
         $(this).html('<i class="fas fa-toggle-on fa-2x"></i>');
         $(this).data('estado','presente');
         $(this).removeClass( "presente" );
-        //$(this).removeAttr( "data-estado" );
-        //$(this).attr('data-estado', 'presente');
-        //location.reload();
     }
-
-    //$(this).html('Presente');
 
 
     $.post("/castraciones/presente", { idTurno: idTurno, estado: estado },
         function(status) {
-            console.log(status);
         });
 });
