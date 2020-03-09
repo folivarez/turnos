@@ -344,37 +344,91 @@
 	"buffers":
 	[
 		{
-			"file": "views/veterinarios/veterinarios.ejs",
+			"file": "views/turnos/confirmarTurno.ejs",
 			"settings":
 			{
-				"buffer_size": 8814,
+				"buffer_size": 15383,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "controllers/veterinario.controller.js",
+			"file": "index.ejs",
 			"settings":
 			{
-				"buffer_size": 1756,
+				"buffer_size": 17456,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/admin/dist/js/jornadaTurnos.js",
+			"file": "public/css/style.css",
 			"settings":
 			{
-				"buffer_size": 5486,
+				"buffer_size": 19318,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "mongoose.js",
+			"file": "public/js/scripts.js",
 			"settings":
 			{
-				"buffer_size": 566,
+				"buffer_size": 8403,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/admin/dist/js/admin.js",
+			"settings":
+			{
+				"buffer_size": 7205,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/jornadas/jornada_turnos.ejs",
+			"settings":
+			{
+				"buffer_size": 20110,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/jornadas/jornada_turnos_mobile.ejs",
+			"settings":
+			{
+				"buffer_size": 16812,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "routes/turno.route.js",
+			"settings":
+			{
+				"buffer_size": 716,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "controllers/turno.controller.js",
+			"settings":
+			{
+				"buffer_size": 13763,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "models/turno.models.js",
+			"settings":
+			{
+				"buffer_size": 655,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		}
@@ -431,6 +485,7 @@
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/css",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/routes",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views",
@@ -441,23 +496,29 @@
 	],
 	"file_history":
 	[
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/veterinarios.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/index.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/veterinarios/veterinarios.ejs",
+		"/D/Desarrollo/LoveAnimals/turnosv2/routes/admin.route.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/admin.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/veterinarios.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/routes/turno.route.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/models/veterinario.models.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/mongoose.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/jornadaTurnos.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/jornada.controller.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/veterinario.controller.js",
+		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/cancelarTurno.ejs",
+		"/D/Desarrollo/LoveAnimals/sitio_productivo/postoperatorionormalSinMedicacionCasa.html",
+		"/D/Desarrollo/LoveAnimals/sitio_productivo/postoperatorionormal.html",
+		"/D/Desarrollo/LoveAnimals/sitio_productivo/postoperatoriointra.html",
+		"/D/Desarrollo/LoveAnimals/sitio_productivo/postoperatoriointraSinMedicacionCasa.html",
 		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/turno.controller.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_turnos_mobile.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/confirmarTurno.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_turnos.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/js/scripts.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/jornadaTurnos.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/jornada.controller.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/index.ejs",
-		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/veterinario.controller.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/routes/admin.route.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/routes/turno.route.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/controllers/admin.controller.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/routes/jornada.route.js",
-		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/cancelarTurno.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/server.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/.gitignore",
 		"/D/Desarrollo/LoveAnimals/turnosv2/app.yaml",
@@ -472,8 +533,6 @@
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/css/admin.css",
 		"/D/Desarrollo/LoveAnimals/turnosv2/.env",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/jornada_update.ejs",
-		"/D/Desarrollo/LoveAnimals/sitio_productivo/postoperatoriointra.html",
-		"/D/Desarrollo/LoveAnimals/sitio_productivo/postoperatorionormal.html",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/confirmarTurno_old.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/turnos/errorTurno.ejs",
 		"/C/Users/maledukado/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
@@ -493,7 +552,6 @@
 		"/D/Desarrollo/LoveAnimals/turnosv2/public/admin/dist/js/edit_jornada.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/avisos/cartel_web.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/jornadas/crear_jornada.ejs",
-		"/D/Desarrollo/LoveAnimals/turnosv2/views/veterinarios/veterinarios.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/templates/header.ejs",
 		"/D/Desarrollo/LoveAnimals/turnosv2/routes/login.route.js",
 		"/D/Desarrollo/LoveAnimals/turnosv2/views/avisos/aviso_mensajeNOSEUSA.ejs",
@@ -565,10 +623,7 @@
 		"/D/Desarrollo/LoveAnimals/turnos/models/turno.models.js",
 		"/D/Desarrollo/LoveAnimals/turnos/views/turnos/confirmarTurno.ejs",
 		"/D/Desarrollo/LoveAnimals/turnos/views/turnos/cancelarTurno.ejs",
-		"/D/Desarrollo/LoveAnimals/turnos/views/jornadas/crear_jornada.ejs",
-		"/D/Desarrollo/LoveAnimals/turnos/views/jornadas/index.ejs",
-		"/D/Desarrollo/LoveAnimals/turnos/public/admin/dist/js/pages/dashboard.js",
-		"/D/Desarrollo/LoveAnimals/turnos/public/admin/dist/js/adminlte.min.js"
+		"/D/Desarrollo/LoveAnimals/turnos/views/jornadas/crear_jornada.ejs"
 	],
 	"find":
 	{
@@ -587,6 +642,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"local",
+			"localhost:8080",
+			"localhost",
 			"localidadJornada",
 			"veterinarioNombre",
 			"vete",
@@ -627,7 +685,7 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
@@ -638,65 +696,65 @@
 			[
 				{
 					"buffer": 0,
-					"file": "views/veterinarios/veterinarios.ejs",
+					"file": "views/turnos/confirmarTurno.ejs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8814,
+						"buffer_size": 15383,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4411,
-								4411
+								14341,
+								14341
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 4,
+								"tabSize": 4
+							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 1408.0,
+						"translation.y": 4288.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 2,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 1,
-					"file": "controllers/veterinario.controller.js",
+					"file": "index.ejs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1756,
+						"buffer_size": 17456,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								364,
-								364
+								5321,
+								5336
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 288.0,
+						"translation.y": 1664.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -704,19 +762,55 @@
 				},
 				{
 					"buffer": 2,
-					"file": "public/admin/dist/js/jornadaTurnos.js",
+					"file": "public/css/style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5486,
+						"buffer_size": 19318,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3887,
-								3887
+								19314,
+								19314
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4896.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "public/js/scripts.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8403,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1350,
+								1355
 							]
 						],
 						"settings":
@@ -724,41 +818,201 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true,
-							"word_wrap": true
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 944.0,
+						"translation.y": 3062.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "mongoose.js",
+					"buffer": 4,
+					"file": "public/admin/dist/js/admin.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 566,
+						"buffer_size": 7205,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								62,
-								162
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/jornadas/jornada_turnos.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20110,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3728.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "views/jornadas/jornada_turnos_mobile.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16812,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13323,
+								13323
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/EJS 2/EJS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3332.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "routes/turno.route.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 716,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								393,
+								393
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "controllers/turno.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13763,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10816,
+								10816
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6380.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "models/turno.models.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 655,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								556,
+								574
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -766,7 +1020,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -792,7 +1046,7 @@
 		"cols":
 		[
 			0.0,
-			0.337004615047,
+			0.447201308728,
 			1.0
 		],
 		"rows":
@@ -802,6 +1056,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
 	"output.exec":
 	{
 		"height": 114.0
@@ -814,7 +1072,7 @@
 	"project": "castraciones.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -844,7 +1102,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
@@ -852,7 +1110,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 220.0,
+	"side_bar_width": 162.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

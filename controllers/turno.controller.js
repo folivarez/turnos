@@ -173,7 +173,9 @@ exports.confirmarTurno = function(req, res) {
 };
 
 exports.cancelar_turno = function(req, res) {
-    var id = req.params.id;
+    console.log('MOTIVO: ' + req.body.motivo)
+    var id = req.body.idTurno;
+    var motivo = req.body.motivo;
     var id_final = '';
     var idAux = id.substr(-3); //id.slice(0, -3)
     var idAux1 = id.substr(-1); //id.slice(0, -3)
@@ -187,16 +189,18 @@ exports.cancelar_turno = function(req, res) {
     }
 
     var myquery = {
-        _id: id_final,
+        _id: id,
     };
 
     var newvalues = {
         $set: {
             confirmado: 0,
+            cancelacion_motivo: motivo,
         }
     };
 
-    Turno.findOneAndUpdate(myquery, newvalues, function(err, data) {
+     Turno.findOneAndUpdate(myquery, newvalues, function(err, data) {// modificado para cancelar turno con motivo 02/02/2020
+        
         try {
             res.render('turnos/cancelarTurno', {
                 'jobs': data,
@@ -243,84 +247,6 @@ exports.envio_turno = function(req, res) {
         res.send("Aviso enviado");
     });
 };
-/*
-
-async function altaDeTurno(req, res) {
-
-    let check_telefono = {
-        jornada: req.body.jornada,
-        telefono: req.body.telefono,
-    };
-    //console.log('check DNI ' + check_dni.dni);
-
-    Turno.countDocuments(check_telefono, function(err, turno) {
-
-        console.log('turnos devueltos ' + turno); //verificar si piden detallar animales
-        if (!turno || turno < 3) {
-
-            console.log('Guardar turno ' + turno);
-            _hora = "";
-            var hora_nueva;
-            _contador = 0;
-            idJornadaSelec = req.body.jornada;
-
-            Jornadas.findById(idJornadaSelec, function(err, jor) {
-                if (err) return next(err);
-
-                _localidad = jor.localidad;
-                _precio = jor.precio;
-                _fecha = jor.fecha;
-                _hora = jor.hora_prox_turno;
-                _direparcial = jor.direparcial;
-                _grupo = jor.cant_grupo;
-                _contador = jor.cont;
-
-                if (_contador >= _grupo) {
-                    actualizar_contador_jornada(idJornadaSelec, 1);
-                    hora_nueva = moment(_hora).add(30, 'minutes');
-                    actualizar_hora_jornada(idJornadaSelec, hora_nueva);
-                } else {
-                    hora_nueva = _hora;
-                    i = _contador + 1;
-                    actualizar_contador_jornada(idJornadaSelec, i.toString());
-                }
-                var turno = new Turno({
-                    nombre: req.body.nombre,
-                    telefono: req.body.telefono,
-                    mail: '',
-                    dni: req.body.dni,
-                    jornada: req.body.jornada,
-                    hora: hora_nueva,
-                    animal: {
-                        tipo: req.body.tipo,
-                        peso: req.body.peso,
-                        nombreMascota: req.body.nombreMascota,
-                        cantidad: req.body.cantidad,
-                        preniado: req.body.preniado
-                    },
-                    aviso: req.body.aviso,
-                    confirmado: '',
-                    asistio: '',
-                    reserva: req.body.reserva
-                });
-
-                turno.save().then(item => {
-                        res.status(200).send("guardando turno en database");
-                    })
-                    .catch(err => {
-                        res.status(400).send("unable to save to database " + err);
-                        console.log(err);
-                    });
-            });
-            return hora_nueva;
-        } else {
-            res.status(202).send(req.body.nombre);
-        }
-    });
-}*/
-
-
-
 
 async function altaDeTurno(req, res) {
 
@@ -420,7 +346,8 @@ function sacoTurno(nombre, telefono, dni, jornada, hora_nueva, tipo, peso, nombr
         aviso: aviso,
         confirmado: '',
         asistio: '',
-        reserva: reserva
+        reserva: reserva,
+        cancelacion_motivo: '',
     });
 
     turno.save().then(item => {
@@ -463,3 +390,118 @@ exports.presente = function(req, res) {
     });
 
 };
+
+
+
+
+exports.turnoPorTelefono = function(req, res) {
+    let respuesta = '';
+    Turno.findOne({
+       $or: [
+           { 'telefono': req.body.telefono },
+       ]
+   }, function(err, data) {
+
+       if (err) return next(err);
+
+       if (data != null) {
+            Jornadas.findById(data.jornada, function(err, jor) {
+
+                if(jor.activa == false){
+                    respuesta = 'La campaña esta finalizada';
+                }
+                else{
+                    if (data.confirmado == '0') {
+                        respuesta = 'Su turno se encuentra CANCELADO';
+                    }
+                    else{
+                            respuesta = [data.id, data.nombre, moment(data.hora).format('DD/MM/YYYY, HH:mm'), jor.localidad, jor.direparcial];        
+                    }       //respuesta = [data.id, data.nombre, data.hora, jor.localidad, jor.direparcial];        
+                }
+                res.send(respuesta);   
+           });
+       }
+       else{
+           res.send('No se encontraron turnos.');
+       }
+       
+   }).sort({ hora: -1 });
+};
+
+
+
+/*
+
+async function altaDeTurno(req, res) {
+
+    let check_telefono = {
+        jornada: req.body.jornada,
+        telefono: req.body.telefono,
+    };
+    //console.log('check DNI ' + check_dni.dni);
+
+    Turno.countDocuments(check_telefono, function(err, turno) {
+
+        console.log('turnos devueltos ' + turno); //verificar si piden detallar animales
+        if (!turno || turno < 3) {
+
+            console.log('Guardar turno ' + turno);
+            _hora = "";
+            var hora_nueva;
+            _contador = 0;
+            idJornadaSelec = req.body.jornada;
+
+            Jornadas.findById(idJornadaSelec, function(err, jor) {
+                if (err) return next(err);
+
+                _localidad = jor.localidad;
+                _precio = jor.precio;
+                _fecha = jor.fecha;
+                _hora = jor.hora_prox_turno;
+                _direparcial = jor.direparcial;
+                _grupo = jor.cant_grupo;
+                _contador = jor.cont;
+
+                if (_contador >= _grupo) {
+                    actualizar_contador_jornada(idJornadaSelec, 1);
+                    hora_nueva = moment(_hora).add(30, 'minutes');
+                    actualizar_hora_jornada(idJornadaSelec, hora_nueva);
+                } else {
+                    hora_nueva = _hora;
+                    i = _contador + 1;
+                    actualizar_contador_jornada(idJornadaSelec, i.toString());
+                }
+                var turno = new Turno({
+                    nombre: req.body.nombre,
+                    telefono: req.body.telefono,
+                    mail: '',
+                    dni: req.body.dni,
+                    jornada: req.body.jornada,
+                    hora: hora_nueva,
+                    animal: {
+                        tipo: req.body.tipo,
+                        peso: req.body.peso,
+                        nombreMascota: req.body.nombreMascota,
+                        cantidad: req.body.cantidad,
+                        preniado: req.body.preniado
+                    },
+                    aviso: req.body.aviso,
+                    confirmado: '',
+                    asistio: '',
+                    reserva: req.body.reserva
+                });
+
+                turno.save().then(item => {
+                        res.status(200).send("guardando turno en database");
+                    })
+                    .catch(err => {
+                        res.status(400).send("unable to save to database " + err);
+                        console.log(err);
+                    });
+            });
+            return hora_nueva;
+        } else {
+            res.status(202).send(req.body.nombre);
+        }
+    });
+}*/

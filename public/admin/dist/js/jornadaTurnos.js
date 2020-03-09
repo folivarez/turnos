@@ -67,7 +67,7 @@ $(document).ready(function() {
                     // var _mensaje_si_modificar = 'Hola ' + nombre + ', su turno para la Jornada de Castracion en ' + localidad + ' ha sido recibido.\n *Si Ud. desea confirmarlo presione aquí* 👇 \n https://castraciones-2.appspot.com/castraciones/confirmarTurno/' + id +'\n\nOrganizacion Love Animals🐾\n\n*Mensaje automático, NO responder.*'
 
                     var urlPostoperatorio = "";
-                    console.log('-------------- Puntos ' + veterinarioPuntos + ' | ' + veterinarioMedicacion);
+                    //console.log('-------------- Puntos ' + veterinarioPuntos + ' | ' + veterinarioMedicacion);
                     if (veterinarioPuntos == 0 && veterinarioMedicacion == 'NO') {
                         urlPostoperatorio = "postoperatorionormalSin.html";
                     }
@@ -102,18 +102,25 @@ $(document).ready(function() {
 
     });
 
-
     $('.otrosAvisos').on('click', function(e) {
         e.preventDefault();
 
         var _telefono = $(this).data('telefono').toString();
         var telefono = _telefono.slice(2, 10);
-
-        console.log("mensajeAviso " + mensajeAviso);
         var mensaje = encodeURIComponent(mensajeAviso);
 
         window.open('https://wa.me/5411' + telefono + '?text=' + mensaje, '_blank');
         location.reload();
+    });
 
+    $('.cancelar-turno').on('click', function(e) {
+        e.preventDefault();
+        
+        let id = $(this).data('id');
+        
+        $.post("/castraciones/cancelarTurno", { idTurno: id, motivo: 'SISTEMA' },
+            function(status) {
+                     location.reload();   
+        });
     });
 });

@@ -24,9 +24,7 @@ router.post('/home', passport.authenticate('local-login', {
     successReturnToOrRedirect : '/castraciones/dashboard',
     failureRedirect : 'home',
     
-}   
-    
-)
+})
 
 );
 router.get('/profile', isLoggedIn, (req, res) => {

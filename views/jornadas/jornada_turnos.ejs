@@ -194,6 +194,7 @@
                                             <th scope="col">Preñada</th>
                                             <th scope="col">Turno Otorgado</th>
                                             <th scope="col">Hora que saco el turno</th>
+                                            <th scope="col">Motivo de Cancelacion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -239,7 +240,8 @@
                                             <% } else { -%>
                                               <td><a href="" class="otrosAvisos text-white" data-localidad="<%= jornada.localidad %>" data-observacion="<%= jornada.observacion %>" data-hora="<%= moment(turnos.hora).format('HH:mm'); %>" data-telefono="<%= turnos.telefono %>" data-nombre="<%= turnos.nombre %>" data-fecha="<%= moment(turnos.hora).format('D/M/YYYY'); %>" data-id="<%= turnos.id %>"><i class="fas fa-bell fa-2x"></i></a></td>
                                             <% } -%>
-                                            <td><a target="_blank" href="https://castraciones-2.appspot.com/castraciones/cancelarTurno/<%= turnos.id %>">Cancelarlo</a></td>
+                                            
+                                            <td><a href="" class="cancelar-turno" data-id="<%= turnos.id %>">Cancelarlo</a></td>
                                             <td>
                                                 <%= turnos.dni %>
                                             </td>
@@ -265,6 +267,7 @@
                                                 <%= moment(turnos.hora).format('HH:mm'); %> hs.</td>
                                                 <td>
                                                 <%= moment(turnos.reserva).format('D/M HH:mm '); %> hs.</td>
+                                                <td><%= turnos.cancelacion_motivo %></td>
                                         </tr>
                                         <% }); %>
                                     </tbody>

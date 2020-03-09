@@ -36,7 +36,6 @@ $(".eliminar-veterinario").click(function(e) {
 });
 
 
-
  
 
 /*

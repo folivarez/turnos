@@ -176,7 +176,7 @@
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Asistio</th>
                                             <th scope="col">Turno</th>
-                                            <th scope="col">DNI</th>
+                                            <th scope="col">Animal</th>
                                             <th scope="col">orden turno</th>
                                         </tr>
                                     </thead>
@@ -215,13 +215,30 @@
                                             <% } else { %>
                                               <td class="verde"><a data-estado="presente"  data-veterinarionombre="<%= jornada.veterinario %>"data-localidad="<%= jornada.localidad %>" data-mascota="<%= turnos.animal.nombreMascota %>" data-observacion="<%= jornada.observacion %>" data-hora="<%= moment(turnos.hora).format('HH:mm'); %>" data-telefono="<%= turnos.telefono %>" data-nombre="<%= turnos.nombre %>" data-fecha="<%= moment(turnos.hora).format('D/M/YYYY'); %>" data-id="<%= turnos.id %>" class="estadoPersonaMobile postoperatorio"><i class="fas fa-toggle-on fa-2x"></i></a></td>
                                             <% } %>
-                                            <td>
-                                                <%= moment(turnos.hora).format('HH:mm'); %> hs.</td>
-                                                 <td>
-                                                    <%= turnos.dni %>
-                                                </td>
-                                                <td>
-                                                <%= moment(turnos.reserva).format('D/M HH:mm '); %> hs.</td>
+                                            <td><%= moment(turnos.hora).format('HH:mm'); %> hs.</td>
+                                                
+                                                    <!-- <td><%=turnos.animal.tipo%></td> -->
+                                                    <% switch (turnos.animal.tipo) {
+                                                        case 'PERRO' : %>
+                                                                 <td><i class="fas fa-dog fa-2x text-blue"></i></td>
+                                                                <% break;
+
+                                                        case 'PERRA' : %>
+                                                                 <td><i class="fas fa-dog fa-2x text-fuchsia"></i></td>
+                                                                <% break;
+
+                                                        case 'GATO' : %>
+                                                                <td><i class="fas fa-cat fa-2x text-blue"></i></td>
+                                                                <% break;
+
+                                                        case 'GATA' : %>
+                                                                 <td><i class="fas fa-cat fa-2x text-fuchsia"></i></td>
+                                                                <% break;
+
+                                                    } %>
+                                                    
+                                                
+                                                <td><%= moment(turnos.reserva).format('D/M HH:mm '); %> hs.</td>
                                         </tr>
                                         <% }); %>
                                     </tbody>
