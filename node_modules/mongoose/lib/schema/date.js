@@ -4,11 +4,11 @@
 
 'use strict';
 
-const MongooseError = require('../error');
+const MongooseError = require('../error/index');
+const SchemaDateOptions = require('../options/SchemaDateOptions');
+const SchemaType = require('../schematype');
 const castDate = require('../cast/date');
 const utils = require('../utils');
-
-const SchemaType = require('../schematype');
 
 const CastError = SchemaType.CastError;
 
@@ -38,6 +38,7 @@ SchemaDate.schemaName = 'Date';
  */
 SchemaDate.prototype = Object.create(SchemaType.prototype);
 SchemaDate.prototype.constructor = SchemaDate;
+SchemaDate.prototype.OptionsConstructor = SchemaDateOptions;
 
 /*!
  * ignore

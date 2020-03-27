@@ -5,6 +5,7 @@
  */
 
 const MongooseCollection = require('../../collection');
+const MongooseError = require('../../error/mongooseError');
 const Collection = require('mongodb').Collection;
 const get = require('../../helpers/get');
 const sliced = require('sliced');
@@ -122,8 +123,15 @@ function iter(i) {
     const lastArg = arguments[arguments.length - 1];
 
     // If user force closed, queueing will hang forever. See #5664
-    if (this.opts.$wasForceClosed) {
-      return this.conn.db.collection(this.name)[i].apply(collection, args);
+    if (this.conn.$wasForceClosed) {
+      const error = new MongooseError('Connection was force closed');
+      if (args.length > 0 &&
+          typeof args[args.length - 1] === 'function') {
+        args[args.length - 1](error);
+        return;
+      } else {
+        throw error;
+      }
     }
     if (this.buffer) {
       if (syncCollectionMethods[i]) {
@@ -150,7 +158,7 @@ function iter(i) {
       } else if (debug instanceof stream.Writable) {
         this.$printToStream(_this.name, i, args, debug);
       } else {
-        this.$print(_this.name, i, args);
+        this.$print(_this.name, i, args, typeof debug.color === 'undefined' ? true : debug.color);
       }
     }
 
@@ -190,13 +198,13 @@ for (const i in Collection.prototype) {
  * @method $print
  */
 
-NativeCollection.prototype.$print = function(name, i, args) {
-  const moduleName = '\x1B[0;36mMongoose:\x1B[0m ';
+NativeCollection.prototype.$print = function(name, i, args, color) {
+  const moduleName = color ? '\x1B[0;36mMongoose:\x1B[0m ' : 'Mongoose: ';
   const functionCall = [name, i].join('.');
   const _args = [];
   for (let j = args.length - 1; j >= 0; --j) {
     if (this.$format(args[j]) || _args.length) {
-      _args.unshift(this.$format(args[j]));
+      _args.unshift(this.$format(args[j], color));
     }
   }
   const params = '(' + _args.join(', ') + ')';
@@ -231,10 +239,10 @@ NativeCollection.prototype.$printToStream = function(name, i, args, stream) {
  * @method $format
  */
 
-NativeCollection.prototype.$format = function(arg) {
+NativeCollection.prototype.$format = function(arg, color) {
   const type = typeof arg;
   if (type === 'function' || type === 'undefined') return '';
-  return format(arg);
+  return format(arg, false, color);
 };
 
 /*!
@@ -259,7 +267,7 @@ function formatObjectId(x, key) {
 function formatDate(x, key) {
   x[key] = inspectable('new Date("' + x[key].toUTCString() + '")');
 }
-function format(obj, sub) {
+function format(obj, sub, color) {
   if (obj && typeof obj.toBSON === 'function') {
     obj = obj.toBSON();
   }
@@ -322,7 +330,7 @@ function format(obj, sub) {
   }
 
   return util.
-    inspect(x, false, 10, true).
+    inspect(x, false, 10, color).
     replace(/\n/g, '').
     replace(/\s{2,}/g, ' ');
 }

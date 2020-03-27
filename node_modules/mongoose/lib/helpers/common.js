@@ -15,7 +15,7 @@ exports.modifiedPaths = modifiedPaths;
  * ignore
  */
 
-function flatten(update, path, options) {
+function flatten(update, path, options, schema) {
   let keys;
   if (update && utils.isMongooseObject(update) && !Buffer.isBuffer(update)) {
     keys = Object.keys(update.toObject({ transform: false, virtuals: false }));
@@ -31,11 +31,16 @@ function flatten(update, path, options) {
     const key = keys[i];
     const val = update[key];
     result[path + key] = val;
+
+    // Avoid going into mixed paths if schema is specified
+    const keySchema = schema && schema.path && schema.path(path + key);
+    if (keySchema && keySchema.instance === 'Mixed') continue;
+
     if (shouldFlatten(val)) {
       if (options && options.skipArrays && Array.isArray(val)) {
         continue;
       }
-      const flat = flatten(val, path + key, options);
+      const flat = flatten(val, path + key, options, schema);
       for (const k in flat) {
         result[k] = flat[k];
       }
