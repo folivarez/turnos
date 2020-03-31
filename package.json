@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "App de turnos para castraciones.",
   "main": "server.js",
+  "nodemonConfig": {
+    "ignore": ["front/*"]
+  },
   "scripts": {
     "deploy": "gcloud app deploy",
-    "start": "node server.js"
+    "start": "node server.js",
+    "nodemon": "nodemon"
   },
   "author": "Federico Olivarez",
   "license": "ISC",
@@ -28,7 +32,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
     "mongodb": "^3.2.7",
-    "mongoose": ">=5.7.5",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "node-cron": "^2.0.3",
     "node-reel": "^1.0.12",
