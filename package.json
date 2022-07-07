@@ -25,7 +25,7 @@
     "express-back": "0.0.2",
     "express-session": "^1.16.2",
     "jwt-simple": "^0.5.6",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.25",
     "mongodb": "^3.2.7",
     "mongoose": "^5.7.5",
